@@ -1,0 +1,485 @@
+{
+  "period": {
+    "from": "2026-03-02",
+    "to": "2026-05-31"
+  },
+  "base_currency": "USD",
+  "generated_from_period": {
+    "from": "2026-01-01",
+    "to": "2026-03-02"
+  },
+  "revenue_forecast": {
+    "30_days": {
+      "committed": 204626.19,
+      "pipeline": 0,
+      "total": 204626.19
+    },
+    "60_days": {
+      "committed": 373387.32,
+      "pipeline": 3675,
+      "total": 377062.32
+    },
+    "90_days": {
+      "committed": 635895.53,
+      "pipeline": 3675,
+      "total": 639570.53
+    }
+  },
+  "cash_flow": {
+    "30_days": {
+      "inflows": 35865.06,
+      "outflows": 11195,
+      "net": 24670.06
+    },
+    "60_days": {
+      "inflows": 153997.85,
+      "outflows": 22390,
+      "net": 131607.85
+    },
+    "90_days": {
+      "inflows": 272130.64,
+      "outflows": 33585,
+      "net": 238545.64
+    }
+  },
+  "scenarios": {
+    "optimistic": {
+      "90_day_revenue": 729166.08,
+      "90_day_net_cash": 617010.53
+    },
+    "expected": {
+      "90_day_revenue": 639570.53,
+      "90_day_net_cash": 238545.64
+    },
+    "pessimistic": {
+      "90_day_revenue": 317996.84,
+      "90_day_net_cash": 139759.45
+    }
+  },
+  "warnings": [
+    "OVERDUE AR: 3 invoices totaling $21,283.38 USD are past their due date.",
+    "HIGH UNBILLED WORK: $482,174.66 in completed work has not yet been invoiced. Bill promptly to improve cash flow.",
+    "REVENUE DIP: February collections ($59,108.5) dropped 39% from January ($96,684.69)."
+  ],
+  "key_assumptions": {
+    "average_days_to_payment": 25,
+    "team_cost_rate_usd_per_hour": 50,
+    "estimated_monthly_team_hours": 202,
+    "estimated_monthly_team_cost": 10100,
+    "monthly_opex_usd": 1095,
+    "cad_to_usd_rate": 0.735,
+    "total_outstanding_ar_usd": 35865.06,
+    "total_pending_invoicing_usd": 482174.66,
+    "total_remaining_budgets_usd": 392852.71,
+    "total_pipeline_usd": 14700,
+    "total_pipeline_weighted_usd": 7350,
+    "avg_monthly_revenue_usd": 74643.5,
+    "last_3_month_avg_revenue_usd": 66378.64
+  },
+  "monthly_revenue_trend": {
+    "2025-10": 79944.37,
+    "2025-11": 94137.21,
+    "2025-12": 43342.73,
+    "2026-01": 96684.69,
+    "2026-02": 59108.5
+  },
+  "outstanding_invoices": [
+    {
+      "number": "003-ATLA-26",
+      "subject": "01 Atlas Workwear B2B Website - Discovery",
+      "currency": "CAD",
+      "amount_unpaid": 14805,
+      "amount_unpaid_usd": 10881.68,
+      "sent_on": "2026-02-26",
+      "pay_on": "2026-03-13",
+      "overdue": false,
+      "days_outstanding": 4
+    },
+    {
+      "number": "001-ENNI-26",
+      "subject": "Ennis Q4'25",
+      "currency": "CAD",
+      "amount_unpaid": 7560,
+      "amount_unpaid_usd": 5556.6,
+      "sent_on": "2026-01-08",
+      "pay_on": "2026-02-19",
+      "overdue": true,
+      "days_outstanding": 53
+    },
+    {
+      "number": "002-TAA-26",
+      "subject": "TA Q1'26",
+      "currency": "CAD",
+      "amount_unpaid": 11865,
+      "amount_unpaid_usd": 8720.78,
+      "sent_on": "2026-02-02",
+      "pay_on": "2026-02-17",
+      "overdue": true,
+      "days_outstanding": 28
+    },
+    {
+      "number": "002-WIRE-26",
+      "subject": "Wire America Q1 Support",
+      "currency": "USD",
+      "amount_unpaid": 3700,
+      "amount_unpaid_usd": 3700,
+      "sent_on": "2026-02-18",
+      "pay_on": "2026-03-05",
+      "overdue": false,
+      "days_outstanding": 12
+    },
+    {
+      "number": "001-ELTE-26",
+      "subject": "01 Elte B2B - Discovery ",
+      "currency": "USD",
+      "amount_unpaid": 7006,
+      "amount_unpaid_usd": 7006,
+      "sent_on": "2026-02-10",
+      "pay_on": "2026-02-25",
+      "overdue": true,
+      "days_outstanding": 20
+    }
+  ],
+  "collection_schedule": {
+    "0_30_days": [
+      {
+        "number": "003-ATLA-26",
+        "amount_usd": 10881.68,
+        "expected": "2026-03-23",
+        "overdue": false
+      },
+      {
+        "number": "001-ENNI-26",
+        "amount_usd": 5556.6,
+        "expected": "2026-03-17",
+        "overdue": true
+      },
+      {
+        "number": "002-TAA-26",
+        "amount_usd": 8720.78,
+        "expected": "2026-03-17",
+        "overdue": true
+      },
+      {
+        "number": "002-WIRE-26",
+        "amount_usd": 3700,
+        "expected": "2026-03-15",
+        "overdue": false
+      },
+      {
+        "number": "001-ELTE-26",
+        "amount_usd": 7006,
+        "expected": "2026-03-07",
+        "overdue": true
+      }
+    ],
+    "31_60_days": [],
+    "61_90_days": []
+  },
+  "pending_invoicing_summary": {
+    "total_usd": 482174.66,
+    "count": 50,
+    "top_items": [
+      {
+        "name": "03 Fumex - Development",
+        "amount_usd": 41440,
+        "currency": "USD"
+      },
+      {
+        "name": "03 True Terpenes B2B - Development",
+        "amount_usd": 40145,
+        "currency": "USD"
+      },
+      {
+        "name": "03 Atlas Workwear B2B Website - Development",
+        "amount_usd": 36033.38,
+        "currency": "CAD"
+      },
+      {
+        "name": "03 Perfero B2B - Development",
+        "amount_usd": 29045,
+        "currency": "USD"
+      },
+      {
+        "name": "03 New Pro B2B - Development",
+        "amount_usd": 24096,
+        "currency": "USD"
+      },
+      {
+        "name": "02 True Terpenes B2B - Design",
+        "amount_usd": 20350,
+        "currency": "USD"
+      },
+      {
+        "name": "Clarius Q1'26 Support",
+        "amount_usd": 17860.5,
+        "currency": "CAD"
+      },
+      {
+        "name": "04 Arcadian Outfitters B2B Website - Integration",
+        "amount_usd": 17205,
+        "currency": "USD"
+      },
+      {
+        "name": "03 Arcadian Outfitters B2B Website - Development",
+        "amount_usd": 15910,
+        "currency": "USD"
+      },
+      {
+        "name": "04 True Terpenes B2B - Integrations",
+        "amount_usd": 15725,
+        "currency": "USD"
+      },
+      {
+        "name": "01 True Terpenes B2B - Discovery ",
+        "amount_usd": 12765,
+        "currency": "USD"
+      },
+      {
+        "name": "Elte Growth Retainer Q1 2026",
+        "amount_usd": 12400,
+        "currency": "USD"
+      },
+      {
+        "name": "02 03 Atlas Workwear B2B Website - Design",
+        "amount_usd": 12237.75,
+        "currency": "CAD"
+      },
+      {
+        "name": "TA Q2'25",
+        "amount_usd": 12067.78,
+        "currency": "CAD"
+      },
+      {
+        "name": "04 Atlas Workwear B2B Website - Integration",
+        "amount_usd": 11965.8,
+        "currency": "CAD"
+      }
+    ]
+  },
+  "active_deals_remaining": {
+    "total_usd": 392852.71,
+    "count": 40,
+    "items": [
+      {
+        "name": "03 New Pro B2B - Development",
+        "remaining_usd": 27188.83,
+        "end_date": null
+      },
+      {
+        "name": "05 New Pro B2B - Hypercare",
+        "remaining_usd": 2241.58,
+        "end_date": null
+      },
+      {
+        "name": "Holistic Timeline Initiative",
+        "remaining_usd": 1803.51,
+        "end_date": null
+      },
+      {
+        "name": "Fast Fix - Accounts Director",
+        "remaining_usd": 2326.24,
+        "end_date": null
+      },
+      {
+        "name": "05 Arcadian Outfitters B2B Website - UAT",
+        "remaining_usd": 601.25,
+        "end_date": null
+      },
+      {
+        "name": "06 Arcadian Outfitters B2B Website - Hypercare",
+        "remaining_usd": 3330,
+        "end_date": null
+      },
+      {
+        "name": "03 Atlas Workwear B2B Website - Development",
+        "remaining_usd": 11551.08,
+        "end_date": "2026-03-06"
+      },
+      {
+        "name": "05 Atlas Workwear B2B Website - UAT",
+        "remaining_usd": 2950.66,
+        "end_date": "2026-03-06"
+      },
+      {
+        "name": "06 Atlas Workwear B2B Website - Hypercare",
+        "remaining_usd": 5235.04,
+        "end_date": null
+      },
+      {
+        "name": "04 Atlas Workwear B2B Website - Integration",
+        "remaining_usd": 3977.27,
+        "end_date": "2026-03-06"
+      },
+      {
+        "name": "Sealand Support Q1'26",
+        "remaining_usd": 4079.25,
+        "end_date": "2026-03-31"
+      },
+      {
+        "name": "Wire America Q1 Support",
+        "remaining_usd": 11100,
+        "end_date": "2026-03-31"
+      },
+      {
+        "name": "TA Q1'26",
+        "remaining_usd": 22413.21,
+        "end_date": "2026-03-31"
+      },
+      {
+        "name": "Ennis Q1'26",
+        "remaining_usd": 7614.6,
+        "end_date": "2026-03-31"
+      },
+      {
+        "name": "Biok Q1'26",
+        "remaining_usd": 5287.16,
+        "end_date": "2026-03-31"
+      },
+      {
+        "name": "Clarius Q1'26 Support",
+        "remaining_usd": 13022.73,
+        "end_date": "2026-03-31"
+      },
+      {
+        "name": "Clarius Server Costs 2026",
+        "remaining_usd": 2170.41,
+        "end_date": "2026-12-31"
+      },
+      {
+        "name": "Hovertech Q1'26",
+        "remaining_usd": 7400,
+        "end_date": "2026-03-31"
+      },
+      {
+        "name": "TA Server Costs 2026",
+        "remaining_usd": 1421.89,
+        "end_date": "2026-12-31"
+      },
+      {
+        "name": "01 TA Integration - Discovery ",
+        "remaining_usd": 5031.08,
+        "end_date": null
+      },
+      {
+        "name": "02 TA Integration - Data Integration",
+        "remaining_usd": 8974.35,
+        "end_date": null
+      },
+      {
+        "name": "01 Perfero B2B - Discovery ",
+        "remaining_usd": 6475,
+        "end_date": "2026-03-06"
+      },
+      {
+        "name": "01 True Terpenes B2B - Discovery ",
+        "remaining_usd": 11423.75,
+        "end_date": null
+      },
+      {
+        "name": "01 MIA Change Requests",
+        "remaining_usd": 1800,
+        "end_date": null
+      },
+      {
+        "name": "02 Perfero B2B - Design",
+        "remaining_usd": 11840,
+        "end_date": "2026-03-20"
+      },
+      {
+        "name": "03 Perfero B2B - Development",
+        "remaining_usd": 29045,
+        "end_date": null
+      },
+      {
+        "name": "04 Perfero B2B - Post-Launch Support",
+        "remaining_usd": 7400,
+        "end_date": null
+      },
+      {
+        "name": "Wire Q1'26",
+        "remaining_usd": 10915,
+        "end_date": "2026-03-31"
+      },
+      {
+        "name": "01 Fumex - Discovery ",
+        "remaining_usd": 3422.5,
+        "end_date": null
+      },
+      {
+        "name": "Productive.io Onboarding Initiative - Budget",
+        "remaining_usd": 582.12,
+        "end_date": "2026-03-01"
+      },
+      {
+        "name": "02 True Terpenes B2B - Design",
+        "remaining_usd": 20350,
+        "end_date": null
+      },
+      {
+        "name": "03 True Terpenes B2B - Development",
+        "remaining_usd": 40145,
+        "end_date": null
+      },
+      {
+        "name": "04 True Terpenes B2B - Integrations",
+        "remaining_usd": 15725,
+        "end_date": null
+      },
+      {
+        "name": "05 True Terpenes B2B - Hypercare",
+        "remaining_usd": 7400,
+        "end_date": null
+      },
+      {
+        "name": "02 Fumex - Design",
+        "remaining_usd": 2220,
+        "end_date": null
+      },
+      {
+        "name": "03 Fumex - Development",
+        "remaining_usd": 41440,
+        "end_date": null
+      },
+      {
+        "name": "04 Fumex - Integrations",
+        "remaining_usd": 6845,
+        "end_date": null
+      },
+      {
+        "name": "05 Fumex - Development",
+        "remaining_usd": 7400,
+        "end_date": null
+      },
+      {
+        "name": "Elte Growth Retainer Q1 2026",
+        "remaining_usd": 18122.08,
+        "end_date": "2026-04-30"
+      },
+      {
+        "name": "Productive.io Onboarding Initiative - Budget",
+        "remaining_usd": 582.12,
+        "end_date": "2026-03-08"
+      }
+    ]
+  },
+  "pipeline_deals": [
+    {
+      "id": "2968603",
+      "name": "CRO B2C",
+      "probability": 50,
+      "estimated_value_usd": 7350,
+      "weighted_value_usd": 3675,
+      "currency": "CAD"
+    },
+    {
+      "id": "3006223",
+      "name": "Epass Integration",
+      "probability": 50,
+      "estimated_value_usd": 7350,
+      "weighted_value_usd": 3675,
+      "currency": "CAD"
+    }
+  ],
+  "computed_at": "2026-03-02T16:35:16.504Z"
+}

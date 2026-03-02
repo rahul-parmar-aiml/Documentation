@@ -1,0 +1,402 @@
+{
+  "period": {
+    "from": "2026-01-01",
+    "to": "2026-03-02"
+  },
+  "summary": {
+    "total_agency_revenue": 219253.75,
+    "total_agency_cost": 49478.32,
+    "total_agency_profit": 169775.43,
+    "agency_gross_margin_pct": 77.4,
+    "total_client_hours": 989.6,
+    "clients_with_revenue": 14,
+    "clients_with_cost_only": 6
+  },
+  "clients": [
+    {
+      "client_id": "803241",
+      "client_name": "Atlas Workwear",
+      "total_revenue": 46635.75,
+      "total_cost": 13895.11,
+      "gross_profit": 32740.64,
+      "gross_margin_pct": 70.2,
+      "hours_invested": 277.9,
+      "revenue_per_hour": 167.81,
+      "pct_of_agency_revenue": 21.3,
+      "active_projects": 1,
+      "outstanding_ar": 10881.67,
+      "ar_aging_days": 4,
+      "risk_level": "medium",
+      "risk_factors": [
+        "Moderate concentration: 21.3% of agency revenue",
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "852638",
+      "client_name": "True Terpenes",
+      "total_revenue": 32500.0,
+      "total_cost": 400.0,
+      "gross_profit": 32100.0,
+      "gross_margin_pct": 98.8,
+      "hours_invested": 8.0,
+      "revenue_per_hour": 4062.5,
+      "pct_of_agency_revenue": 14.8,
+      "active_projects": 1,
+      "outstanding_ar": 32500.0,
+      "ar_aging_days": 28,
+      "risk_level": "medium",
+      "risk_factors": [
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "852634",
+      "client_name": "Perfero",
+      "total_revenue": 29750.0,
+      "total_cost": 212.5,
+      "gross_profit": 29537.5,
+      "gross_margin_pct": 99.3,
+      "hours_invested": 4.2,
+      "revenue_per_hour": 7000.0,
+      "pct_of_agency_revenue": 13.6,
+      "active_projects": 1,
+      "outstanding_ar": 8750.0,
+      "ar_aging_days": 7,
+      "risk_level": "medium",
+      "risk_factors": [
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "738730",
+      "client_name": "Clarius",
+      "total_revenue": 24300.0,
+      "total_cost": 2353.33,
+      "gross_profit": 21946.67,
+      "gross_margin_pct": 90.3,
+      "hours_invested": 47.1,
+      "revenue_per_hour": 516.29,
+      "pct_of_agency_revenue": 11.1,
+      "active_projects": 1,
+      "outstanding_ar": 8505.0,
+      "ar_aging_days": 0,
+      "risk_level": "medium",
+      "risk_factors": [
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "739175",
+      "client_name": "Ennis",
+      "total_revenue": 15876.0,
+      "total_cost": 787.5,
+      "gross_profit": 15088.5,
+      "gross_margin_pct": 95.0,
+      "hours_invested": 15.8,
+      "revenue_per_hour": 1008.0,
+      "pct_of_agency_revenue": 7.2,
+      "active_projects": 1,
+      "outstanding_ar": 16669.8,
+      "ar_aging_days": 53,
+      "risk_level": "medium",
+      "risk_factors": [
+        "AR aging: 53 days outstanding",
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "735692",
+      "client_name": "TA (Travel App)",
+      "total_revenue": 23152.5,
+      "total_cost": 8800.8,
+      "gross_profit": 14351.7,
+      "gross_margin_pct": 62.0,
+      "hours_invested": 176.0,
+      "revenue_per_hour": 131.54,
+      "pct_of_agency_revenue": 10.6,
+      "active_projects": 2,
+      "outstanding_ar": 17441.55,
+      "ar_aging_days": 28,
+      "risk_level": "low",
+      "risk_factors": []
+    },
+    {
+      "client_id": "870150",
+      "client_name": "Fumex",
+      "total_revenue": 9500.0,
+      "total_cost": 125.0,
+      "gross_profit": 9375.0,
+      "gross_margin_pct": 98.7,
+      "hours_invested": 2.5,
+      "revenue_per_hour": 3800.0,
+      "pct_of_agency_revenue": 4.3,
+      "active_projects": 1,
+      "outstanding_ar": 0.0,
+      "ar_aging_days": 0,
+      "risk_level": "medium",
+      "risk_factors": [
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "740541",
+      "client_name": "Wire America",
+      "total_revenue": 11100.0,
+      "total_cost": 3109.91,
+      "gross_profit": 7990.09,
+      "gross_margin_pct": 72.0,
+      "hours_invested": 62.2,
+      "revenue_per_hour": 178.46,
+      "pct_of_agency_revenue": 5.1,
+      "active_projects": 2,
+      "outstanding_ar": 7400.0,
+      "ar_aging_days": 12,
+      "risk_level": "low",
+      "risk_factors": []
+    },
+    {
+      "client_id": "739174",
+      "client_name": "BioK+",
+      "total_revenue": 8158.5,
+      "total_cost": 1639.17,
+      "gross_profit": 6519.33,
+      "gross_margin_pct": 79.9,
+      "hours_invested": 32.8,
+      "revenue_per_hour": 248.86,
+      "pct_of_agency_revenue": 3.7,
+      "active_projects": 1,
+      "outstanding_ar": 6254.85,
+      "ar_aging_days": 29,
+      "risk_level": "medium",
+      "risk_factors": [
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "865374",
+      "client_name": "Elte Carpets",
+      "total_revenue": 6200.0,
+      "total_cost": 179.17,
+      "gross_profit": 6020.83,
+      "gross_margin_pct": 97.1,
+      "hours_invested": 3.6,
+      "revenue_per_hour": 1730.23,
+      "pct_of_agency_revenue": 2.8,
+      "active_projects": 1,
+      "outstanding_ar": 7006.0,
+      "ar_aging_days": 20,
+      "risk_level": "medium",
+      "risk_factors": [
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "771411",
+      "client_name": "Arcadian Outfitters",
+      "total_revenue": 5906.0,
+      "total_cost": 2383.58,
+      "gross_profit": 3522.42,
+      "gross_margin_pct": 59.6,
+      "hours_invested": 47.7,
+      "revenue_per_hour": 123.89,
+      "pct_of_agency_revenue": 2.7,
+      "active_projects": 1,
+      "outstanding_ar": 5906.0,
+      "ar_aging_days": 28,
+      "risk_level": "medium",
+      "risk_factors": [
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "740534",
+      "client_name": "Hovertech",
+      "total_revenue": 3700.0,
+      "total_cost": 316.3,
+      "gross_profit": 3383.7,
+      "gross_margin_pct": 91.5,
+      "hours_invested": 6.3,
+      "revenue_per_hour": 584.89,
+      "pct_of_agency_revenue": 1.7,
+      "active_projects": 1,
+      "outstanding_ar": 0.0,
+      "ar_aging_days": 0,
+      "risk_level": "medium",
+      "risk_factors": [
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "865727",
+      "client_name": "MIA Bijoux",
+      "total_revenue": 1800.0,
+      "total_cost": 0,
+      "gross_profit": 1800.0,
+      "gross_margin_pct": 100.0,
+      "hours_invested": 0,
+      "revenue_per_hour": 0,
+      "pct_of_agency_revenue": 0.8,
+      "active_projects": 1,
+      "outstanding_ar": 0.0,
+      "ar_aging_days": 0,
+      "risk_level": "medium",
+      "risk_factors": [
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "734874",
+      "client_name": "Sealand",
+      "total_revenue": 0,
+      "total_cost": 44.61,
+      "gross_profit": -44.61,
+      "gross_margin_pct": -100,
+      "hours_invested": 0.9,
+      "revenue_per_hour": 0.0,
+      "pct_of_agency_revenue": 0.0,
+      "active_projects": 2,
+      "outstanding_ar": 0,
+      "ar_aging_days": 0,
+      "risk_level": "high",
+      "risk_factors": [
+        "Unprofitable: no revenue, $44.61 cost"
+      ]
+    },
+    {
+      "client_id": "739446",
+      "client_name": "ACME",
+      "total_revenue": 675.0,
+      "total_cost": 960.09,
+      "gross_profit": -285.09,
+      "gross_margin_pct": -42.2,
+      "hours_invested": 19.2,
+      "revenue_per_hour": 35.15,
+      "pct_of_agency_revenue": 0.3,
+      "active_projects": 1,
+      "outstanding_ar": 0.0,
+      "ar_aging_days": 0,
+      "risk_level": "high",
+      "risk_factors": [
+        "Low margin: -42.2% (< 40% threshold)",
+        "Single project dependency (1 active project)"
+      ]
+    },
+    {
+      "client_id": "740540",
+      "client_name": "Stonz",
+      "total_revenue": 0,
+      "total_cost": 319.61,
+      "gross_profit": -319.61,
+      "gross_margin_pct": -100,
+      "hours_invested": 6.4,
+      "revenue_per_hour": 0.0,
+      "pct_of_agency_revenue": 0.0,
+      "active_projects": 1,
+      "outstanding_ar": 0,
+      "ar_aging_days": 0,
+      "risk_level": "high",
+      "risk_factors": [
+        "Unprofitable: no revenue, $319.61 cost"
+      ]
+    },
+    {
+      "client_id": "739447",
+      "client_name": "Cowpokes",
+      "total_revenue": 0,
+      "total_cost": 487.73,
+      "gross_profit": -487.73,
+      "gross_margin_pct": -100,
+      "hours_invested": 9.8,
+      "revenue_per_hour": 0.0,
+      "pct_of_agency_revenue": 0.0,
+      "active_projects": 1,
+      "outstanding_ar": 0,
+      "ar_aging_days": 0,
+      "risk_level": "high",
+      "risk_factors": [
+        "Unprofitable: no revenue, $487.73 cost"
+      ]
+    },
+    {
+      "client_id": "740536",
+      "client_name": "Organika",
+      "total_revenue": 0,
+      "total_cost": 2677.8,
+      "gross_profit": -2677.8,
+      "gross_margin_pct": -100,
+      "hours_invested": 53.6,
+      "revenue_per_hour": 0.0,
+      "pct_of_agency_revenue": 0.0,
+      "active_projects": 1,
+      "outstanding_ar": 0,
+      "ar_aging_days": 0,
+      "risk_level": "high",
+      "risk_factors": [
+        "Unprofitable: no revenue, $2,677.80 cost"
+      ]
+    },
+    {
+      "client_id": "736404",
+      "client_name": "Fast Fix",
+      "total_revenue": 0,
+      "total_cost": 2699.8,
+      "gross_profit": -2699.8,
+      "gross_margin_pct": -100,
+      "hours_invested": 54.0,
+      "revenue_per_hour": 0.0,
+      "pct_of_agency_revenue": 0.0,
+      "active_projects": 1,
+      "outstanding_ar": 0,
+      "ar_aging_days": 0,
+      "risk_level": "high",
+      "risk_factors": [
+        "Unprofitable: no revenue, $2,699.80 cost"
+      ]
+    },
+    {
+      "client_id": "735260",
+      "client_name": "New Pro Container",
+      "total_revenue": 0,
+      "total_cost": 8086.32,
+      "gross_profit": -8086.32,
+      "gross_margin_pct": -100,
+      "hours_invested": 161.7,
+      "revenue_per_hour": 0.0,
+      "pct_of_agency_revenue": 0.0,
+      "active_projects": 1,
+      "outstanding_ar": 0,
+      "ar_aging_days": 0,
+      "risk_level": "high",
+      "risk_factors": [
+        "Unprofitable: no revenue, $8,086.32 cost"
+      ]
+    }
+  ],
+  "top_clients_by_profit": [
+    "Atlas Workwear",
+    "True Terpenes",
+    "Perfero",
+    "Clarius",
+    "Ennis"
+  ],
+  "unprofitable_clients": [
+    "Sealand",
+    "ACME",
+    "Stonz",
+    "Cowpokes",
+    "Organika",
+    "Fast Fix",
+    "New Pro Container"
+  ],
+  "high_risk_clients": [
+    "Sealand",
+    "ACME",
+    "Stonz",
+    "Cowpokes",
+    "Organika",
+    "Fast Fix",
+    "New Pro Container"
+  ],
+  "computed_at": "2026-03-02T16:36:35.666112Z"
+}

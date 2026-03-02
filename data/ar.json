@@ -1,0 +1,174 @@
+{
+  "period": {
+    "from": "2026-01-01",
+    "to": "2026-03-02"
+  },
+  "base_currency": "USD",
+  "fx_rates_used": {
+    "CAD_to_USD": 0.735,
+    "rate_date": "2026-03-01"
+  },
+  "total_ar": 35865.04,
+  "total_ar_including_drafts": 270124.42,
+  "aging_buckets": {
+    "current": {
+      "amount": 35865.04,
+      "count": 5
+    },
+    "days_31_60": {
+      "amount": 0.0,
+      "count": 0
+    },
+    "days_61_90": {
+      "amount": 0.0,
+      "count": 0
+    },
+    "days_90_plus": {
+      "amount": 0.0,
+      "count": 0
+    }
+  },
+  "dso_days": 10.0,
+  "dso_inputs": {
+    "total_ar": 35865.04,
+    "total_revenue_in_period": 219253.75,
+    "days_in_period": 61
+  },
+  "overdue_invoices": [
+    {
+      "client": "TA",
+      "invoice_id": "002-TAA-26",
+      "amount": 8720.77,
+      "currency_original": "CAD",
+      "amount_original": 11865.0,
+      "due_date": "2026-02-17",
+      "days_overdue": 13
+    },
+    {
+      "client": "Ennis",
+      "invoice_id": "001-ENNI-26",
+      "amount": 5556.6,
+      "currency_original": "CAD",
+      "amount_original": 7560.0,
+      "due_date": "2026-02-19",
+      "days_overdue": 11
+    },
+    {
+      "client": "Elte",
+      "invoice_id": "001-ELTE-26",
+      "amount": 7006.0,
+      "currency_original": "USD",
+      "amount_original": 7006.0,
+      "due_date": "2026-02-25",
+      "days_overdue": 5
+    }
+  ],
+  "ar_by_client": [
+    {
+      "client": "Atlas Workwear",
+      "total_ar": 10881.67,
+      "oldest_days": 0,
+      "payment_pattern": "slow",
+      "avg_days_to_pay": 7.0,
+      "invoice_count": 1
+    },
+    {
+      "client": "TA",
+      "total_ar": 8720.77,
+      "oldest_days": 13,
+      "payment_pattern": "slow",
+      "avg_days_to_pay": 14.3,
+      "invoice_count": 1
+    },
+    {
+      "client": "Elte",
+      "total_ar": 7006.0,
+      "oldest_days": 5,
+      "payment_pattern": "unknown",
+      "avg_days_to_pay": null,
+      "invoice_count": 1
+    },
+    {
+      "client": "Ennis",
+      "total_ar": 5556.6,
+      "oldest_days": 11,
+      "payment_pattern": "fast",
+      "avg_days_to_pay": -8.2,
+      "invoice_count": 1
+    },
+    {
+      "client": "Wire America",
+      "total_ar": 3700.0,
+      "oldest_days": 0,
+      "payment_pattern": "slow",
+      "avg_days_to_pay": 15.0,
+      "invoice_count": 1
+    }
+  ],
+  "collection_forecast": [
+    {
+      "invoice_id": "002-TAA-26",
+      "client": "TA",
+      "amount": 8720.77,
+      "expected_collection_date": "2026-03-03",
+      "confidence": "medium"
+    },
+    {
+      "invoice_id": "001-ENNI-26",
+      "client": "Ennis",
+      "amount": 5556.6,
+      "expected_collection_date": "2026-03-09",
+      "confidence": "high"
+    },
+    {
+      "invoice_id": "003-ATLA-26",
+      "client": "Atlas Workwear",
+      "amount": 10881.67,
+      "expected_collection_date": "2026-03-20",
+      "confidence": "medium"
+    },
+    {
+      "invoice_id": "002-WIRE-26",
+      "client": "Wire America",
+      "amount": 3700.0,
+      "expected_collection_date": "2026-03-20",
+      "confidence": "medium"
+    },
+    {
+      "invoice_id": "001-ELTE-26",
+      "client": "Elte",
+      "amount": 7006.0,
+      "expected_collection_date": "2026-03-27",
+      "confidence": "low"
+    }
+  ],
+  "draft_invoices_summary": {
+    "count": 26,
+    "total_usd": 234259.38,
+    "note": "Draft/unsent invoices - not included in AR aging buckets"
+  },
+  "health": "green",
+  "health_details": {
+    "dso_status": "green",
+    "dso_threshold": "green < 30, yellow 30-45, red > 45",
+    "ar_over_60_days_pct": 0.0,
+    "ar_over_60_status": "green",
+    "ar_over_60_threshold": "green < 10%, yellow 10-25%, red > 25%"
+  },
+  "data_sources": {
+    "invoices": "analysis/raw/invoices.json (Productive.io API)",
+    "payments": "analysis/raw/payments.json (Productive.io API)",
+    "ar_aging": "COMPUTED from invoice data (API endpoint failed)",
+    "fx_rates": "reference-data.md (manual, updated 2026-03-01)"
+  },
+  "methodology_notes": [
+    "AR aging computed from invoice data since the AR aging API endpoint failed",
+    "Only SENT invoices (sent_on is not null) are counted as true AR",
+    "Draft/unsent invoices are tracked separately but excluded from aging buckets and DSO",
+    "All amounts converted to USD using CAD/USD = 0.735 from reference data",
+    "Productive.io amounts are in cents; divided by 100 for dollar values",
+    "DSO = (Total AR / Total Revenue in Period) x Days in Period",
+    "Payment patterns derived from historical paid invoice data (paid_on vs pay_on)"
+  ],
+  "computed_at": "2026-03-02T16:32:28.646435Z"
+}

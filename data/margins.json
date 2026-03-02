@@ -1,0 +1,347 @@
+{
+  "period": {
+    "from": "2026-01-01",
+    "to": "2026-03-02"
+  },
+  "base_currency": "USD",
+  "currency_conversion": {
+    "CAD_to_USD": 0.735,
+    "USD_to_CAD": 1.36
+  },
+  "gross_margin": {
+    "total_revenue": 219253.75,
+    "total_direct_cost": 8541.66,
+    "total_direct_cost_billable": 4120.83,
+    "total_direct_cost_internal": 4420.83,
+    "gross_profit": 210712.09,
+    "gross_margin_pct": 96.1,
+    "health": "green"
+  },
+  "net_margin": {
+    "gross_profit": 210712.09,
+    "operating_expenses": 2260.65,
+    "net_profit": 208451.44,
+    "net_margin_pct": 95.1,
+    "health": "green"
+  },
+  "margin_by_project": [
+    {
+      "project_name": "Atlas Workwear B2B Project",
+      "revenue": 46635.75,
+      "direct_cost": 791.67,
+      "hours": 15.83,
+      "gross_profit": 45844.08,
+      "gross_margin_pct": 98.3
+    },
+    {
+      "project_name": "True Terpenes B2B Web Project",
+      "revenue": 32500.0,
+      "direct_cost": 325.0,
+      "hours": 6.5,
+      "gross_profit": 32175.0,
+      "gross_margin_pct": 99.0
+    },
+    {
+      "project_name": "Perfero B2B Web Project",
+      "revenue": 29750.0,
+      "direct_cost": 100.0,
+      "hours": 2.0,
+      "gross_profit": 29650.0,
+      "gross_margin_pct": 99.7
+    },
+    {
+      "project_name": "Clarius Retainer",
+      "revenue": 24300.0,
+      "direct_cost": 308.33,
+      "hours": 6.17,
+      "gross_profit": 23991.67,
+      "gross_margin_pct": 98.7
+    },
+    {
+      "project_name": "TA App Retainer",
+      "revenue": 23152.5,
+      "direct_cost": 100.0,
+      "hours": 2.0,
+      "gross_profit": 23052.5,
+      "gross_margin_pct": 99.6
+    },
+    {
+      "project_name": "Ennis Support",
+      "revenue": 15876.0,
+      "direct_cost": 95.83,
+      "hours": 1.92,
+      "gross_profit": 15780.17,
+      "gross_margin_pct": 99.4
+    },
+    {
+      "project_name": "Wire America Support",
+      "revenue": 11100.0,
+      "direct_cost": 195.83,
+      "hours": 3.92,
+      "gross_profit": 10904.17,
+      "gross_margin_pct": 98.2
+    },
+    {
+      "project_name": "fumex",
+      "revenue": 9500.0,
+      "direct_cost": 150.0,
+      "hours": 3.0,
+      "gross_profit": 9350.0,
+      "gross_margin_pct": 98.4
+    },
+    {
+      "project_name": "BioK+ Support",
+      "revenue": 8158.5,
+      "direct_cost": 0,
+      "hours": 0,
+      "gross_profit": 8158.5,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "project_name": "Elte Carpets Retainer",
+      "revenue": 6200.0,
+      "direct_cost": 262.5,
+      "hours": 5.25,
+      "gross_profit": 5937.5,
+      "gross_margin_pct": 95.8
+    },
+    {
+      "project_name": "Arcadian Outfitters B2B Web Project",
+      "revenue": 5906.0,
+      "direct_cost": 275.0,
+      "hours": 5.5,
+      "gross_profit": 5631.0,
+      "gross_margin_pct": 95.3
+    },
+    {
+      "project_name": "Hovertech Support",
+      "revenue": 3700.0,
+      "direct_cost": 250.0,
+      "hours": 5.0,
+      "gross_profit": 3450.0,
+      "gross_margin_pct": 93.2
+    },
+    {
+      "project_name": "MIA Bijoux CR",
+      "revenue": 1800.0,
+      "direct_cost": 0,
+      "hours": 0,
+      "gross_profit": 1800.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "project_name": "ACME B2B Project",
+      "revenue": 675.0,
+      "direct_cost": 0,
+      "hours": 0,
+      "gross_profit": 675.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "project_name": "Cowpokes Data Migration",
+      "revenue": 0,
+      "direct_cost": 275.0,
+      "hours": 5.5,
+      "gross_profit": -275.0,
+      "gross_margin_pct": -100.0
+    },
+    {
+      "project_name": "Fast Fix Web Project",
+      "revenue": 0,
+      "direct_cost": 125.0,
+      "hours": 2.5,
+      "gross_profit": -125.0,
+      "gross_margin_pct": -100.0
+    },
+    {
+      "project_name": "New Pro Container B2B Project",
+      "revenue": 0,
+      "direct_cost": 341.67,
+      "hours": 6.83,
+      "gross_profit": -341.67,
+      "gross_margin_pct": -100.0
+    },
+    {
+      "project_name": "Sealand Support",
+      "revenue": 0,
+      "direct_cost": 525.0,
+      "hours": 10.5,
+      "gross_profit": -525.0,
+      "gross_margin_pct": -100.0
+    }
+  ],
+  "internal_cost_centers": [
+    {
+      "project_name": "BAU",
+      "direct_cost": 3945.83,
+      "hours": 78.92
+    },
+    {
+      "project_name": "Makro Sales and Marketing",
+      "direct_cost": 475.0,
+      "hours": 9.5
+    }
+  ],
+  "effective_rates": [
+    {
+      "person_id": "-",
+      "person_name": "[Project: Atlas Workwear B2B Project]",
+      "bill_rate": 2946.04,
+      "cost_rate": 50.0,
+      "effective_rate": 2946.04,
+      "markup_pct": 5792.1,
+      "profitable": true
+    },
+    {
+      "person_id": "-",
+      "person_name": "[Project: True Terpenes B2B Web Project]",
+      "bill_rate": 5000.0,
+      "cost_rate": 50.0,
+      "effective_rate": 5000.0,
+      "markup_pct": 9900.0,
+      "profitable": true
+    },
+    {
+      "person_id": "-",
+      "person_name": "[Project: Perfero B2B Web Project]",
+      "bill_rate": 14875.0,
+      "cost_rate": 50.0,
+      "effective_rate": 14875.0,
+      "markup_pct": 29650.0,
+      "profitable": true
+    },
+    {
+      "person_id": "-",
+      "person_name": "[Project: Clarius Retainer]",
+      "bill_rate": 3938.41,
+      "cost_rate": 50.0,
+      "effective_rate": 3938.41,
+      "markup_pct": 7776.8,
+      "profitable": true
+    },
+    {
+      "person_id": "-",
+      "person_name": "[Project: TA App Retainer]",
+      "bill_rate": 11576.25,
+      "cost_rate": 50.0,
+      "effective_rate": 11576.25,
+      "markup_pct": 23052.5,
+      "profitable": true
+    },
+    {
+      "person_id": "-",
+      "person_name": "[Project: Ennis Support]",
+      "bill_rate": 8268.75,
+      "cost_rate": 50.0,
+      "effective_rate": 8268.75,
+      "markup_pct": 16437.5,
+      "profitable": true
+    },
+    {
+      "person_id": "-",
+      "person_name": "[Project: Wire America Support]",
+      "bill_rate": 2831.63,
+      "cost_rate": 50.0,
+      "effective_rate": 2831.63,
+      "markup_pct": 5563.3,
+      "profitable": true
+    },
+    {
+      "person_id": "-",
+      "person_name": "[Project: fumex]",
+      "bill_rate": 3166.67,
+      "cost_rate": 50.0,
+      "effective_rate": 3166.67,
+      "markup_pct": 6233.3,
+      "profitable": true
+    },
+    {
+      "person_id": "-",
+      "person_name": "[Project: Elte Carpets Retainer]",
+      "bill_rate": 1180.95,
+      "cost_rate": 50.0,
+      "effective_rate": 1180.95,
+      "markup_pct": 2261.9,
+      "profitable": true
+    },
+    {
+      "person_id": "-",
+      "person_name": "[Project: Arcadian Outfitters B2B Web Project]",
+      "bill_rate": 1073.82,
+      "cost_rate": 50.0,
+      "effective_rate": 1073.82,
+      "markup_pct": 2047.6,
+      "profitable": true
+    },
+    {
+      "person_id": "-",
+      "person_name": "[Project: Hovertech Support]",
+      "bill_rate": 740.0,
+      "cost_rate": 50.0,
+      "effective_rate": 740.0,
+      "markup_pct": 1380.0,
+      "profitable": true
+    }
+  ],
+  "agency_effective_rate": 3654.23,
+  "opex_breakdown": [
+    {
+      "category": "Tools",
+      "item": "Productive.io",
+      "amount": 206.45
+    },
+    {
+      "category": "Tools",
+      "item": "GitHub",
+      "amount": 30.97
+    },
+    {
+      "category": "Tools",
+      "item": "Slack",
+      "amount": 51.61
+    },
+    {
+      "category": "Tools",
+      "item": "Claude Code",
+      "amount": 412.9
+    },
+    {
+      "category": "Infrastructure",
+      "item": "Hosting",
+      "amount": 61.94
+    },
+    {
+      "category": "Insurance",
+      "item": "Business insurance",
+      "amount": 309.68
+    },
+    {
+      "category": "Admin",
+      "item": "Accounting/bookkeeping",
+      "amount": 619.35
+    },
+    {
+      "category": "Admin",
+      "item": "Legal",
+      "amount": 206.45
+    },
+    {
+      "category": "Marketing",
+      "item": "Ads/sponsorships",
+      "amount": 206.45
+    },
+    {
+      "category": "Other",
+      "item": "Miscellaneous",
+      "amount": 154.84
+    }
+  ],
+  "data_notes": {
+    "time_entry_coverage": "API returned 200 entries covering 2026-02-09 to 2026-03-02 only (likely paginated; does NOT cover full Jan-Mar period)",
+    "cost_rate_source": "Default $50/hr USD for all team members (from reference data)",
+    "revenue_source": "All invoices dated 2026-01-01 through 2026-03-02 converted to USD",
+    "margin_caveat": "Gross margins appear inflated because time entries cover only ~3 weeks of the 2-month period while invoices cover the full period. True margins are lower.",
+    "internal_classification": "BAU, Makro Sales and Marketing are classified as internal cost centers (no client revenue expected)"
+  },
+  "computed_at": "2026-03-02T16:33:25.032343+00:00"
+}

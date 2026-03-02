@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makro Agency -- CEO Dashboard</title>
+<style>
+  /* ============ RESET & BASE ============ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #f5f6fa;
+    color: #2d3436;
+    line-height: 1.6;
+  }
+
+  /* ============ HEADER ============ */
+  .header {
+    background: linear-gradient(135deg, #0c0c1d 0%, #1a1a3e 50%, #2d2d6b 100%);
+    color: #fff;
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .header h1 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .header h1 span { color: #6c5ce7; }
+  .header .meta {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    text-align: right;
+  }
+
+  /* ============ CONTAINER ============ */
+  .container { max-width: 1280px; margin: 0 auto; padding: 1.5rem; }
+
+  /* ============ VERDICT BANNER ============ */
+  .verdict {
+    background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+    color: #fff;
+    padding: 1.2rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,184,148,0.3);
+  }
+
+  /* ============ KPI CARDS ============ */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .kpi-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-left: 4px solid #dfe6e9;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+  .kpi-card.green { border-left-color: #00b894; }
+  .kpi-card.yellow { border-left-color: #fdcb6e; }
+  .kpi-card.red { border-left-color: #e17055; }
+  .kpi-card .label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #636e72;
+    margin-bottom: 0.3rem;
+  }
+  .kpi-card .value {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #2d3436;
+    line-height: 1.2;
+  }
+  .kpi-card .sub {
+    font-size: 0.78rem;
+    color: #636e72;
+    margin-top: 0.25rem;
+  }
+  .kpi-card .badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 0.3rem;
+  }
+  .badge.green-bg { background: #00b894; color: #fff; }
+  .badge.yellow-bg { background: #fdcb6e; color: #2d3436; }
+  .badge.red-bg { background: #e17055; color: #fff; }
+
+  /* ============ WINS / RISKS GRID ============ */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+  .panel {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .panel h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .panel ul { list-style: none; padding: 0; }
+  .panel ul li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #f1f2f6;
+    font-size: 0.88rem;
+  }
+  .panel ul li:last-child { border-bottom: none; }
+  .panel ul li strong { color: #2d3436; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; flex-shrink: 0; }
+  .dot.green { background: #00b894; }
+  .dot.red { background: #e17055; }
+  .dot.yellow { background: #fdcb6e; }
+
+  /* ============ SECTIONS ============ */
+  .section {
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #f1f2f6;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .section-header:hover { background: #f8f9fc; }
+  .section-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3436;
+  }
+  .section-header .chevron {
+    font-size: 1.2rem;
+    color: #b2bec3;
+    transition: transform 0.25s;
+  }
+  .section-header.open .chevron { transform: rotate(180deg); }
+  .section-body {
+    padding: 1.5rem;
+    display: none;
+  }
+  .section-body.open { display: block; }
+
+  /* ============ TABLES ============ */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  thead th {
+    background: #f8f9fc;
+    padding: 0.65rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: #636e72;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    border-bottom: 2px solid #dfe6e9;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+  }
+  thead th:hover { color: #2d3436; }
+  thead th::after {
+    content: '';
+    display: inline-block;
+    margin-left: 4px;
+    opacity: 0.3;
+  }
+  thead th.sort-asc::after { content: ' \u25B2'; opacity: 1; }
+  thead th.sort-desc::after { content: ' \u25BC'; opacity: 1; }
+  tbody td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid #f1f2f6;
+    vertical-align: top;
+  }
+  tbody tr:hover { background: #f8f9fc; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .tag {
+    display: inline-block;
+    padding: 0.1rem 0.45rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .tag-green { background: #e6fff6; color: #00b894; }
+  .tag-yellow { background: #fff8e1; color: #e17055; }
+  .tag-red { background: #ffe0d6; color: #d63031; }
+
+  /* ============ SUMMARY STAT ============ */
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 160px;
+  }
+  .stat-item .stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #636e72;
+    letter-spacing: 0.04em;
+  }
+  .stat-item .stat-val {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2d3436;
+  }
+
+  /* ============ CASH POSITION BAR ============ */
+  .cash-bar {
+    background: #f1f2f6;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+  }
+  .cash-bar .item { }
+  .cash-bar .item .lbl {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #636e72;
+    letter-spacing: 0.04em;
+  }
+  .cash-bar .item .val {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  /* ============ MINI CHART (ASCII-STYLE BAR) ============ */
+  .bar-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .bar-fill {
+    height: 8px;
+    border-radius: 4px;
+    min-width: 2px;
+    transition: width 0.3s;
+  }
+  .bar-fill.green { background: #00b894; }
+  .bar-fill.yellow { background: #fdcb6e; }
+  .bar-fill.red { background: #e17055; }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.78rem;
+    color: #b2bec3;
+  }
+
+  /* ============ PRINT ============ */
+  @media print {
+    body { background: #fff; }
+    .header { background: #1a1a3e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-body { display: block !important; }
+    .kpi-card, .panel, .section { box-shadow: none; border: 1px solid #dfe6e9; }
+    .section-header .chevron { display: none; }
+    .container { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<div class="header">
+  <div>
+    <h1><span>Makro Agency</span> -- CEO Dashboard</h1>
+  </div>
+  <div class="meta">
+    Period: Jan 1 - Mar 2, 2026<br>
+    Generated: March 2, 2026
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ============ VERDICT ============ -->
+<div class="verdict">
+  Agency is HEALTHY this period. Revenue 2x above target, AR clean, strong 90-day pipeline. Address utilization gap to sustain margins.
+</div>
+
+<!-- ============ KPI CARDS ============ -->
+<div class="kpi-grid">
+  <div class="kpi-card green">
+    <div class="label">Period Revenue</div>
+    <div class="value">$136,557</div>
+    <div class="sub">Invoiced (Sent/Paid)</div>
+    <div class="badge green-bg">Above Target</div>
+  </div>
+  <div class="kpi-card green">
+    <div class="label">Cash Received</div>
+    <div class="value">$155,793</div>
+    <div class="sub">Incl. prior-period collections</div>
+    <div class="badge green-bg">Healthy</div>
+  </div>
+  <div class="kpi-card green">
+    <div class="label">Gross Margin</div>
+    <div class="value">77.4%</div>
+    <div class="sub">Target: 65%</div>
+    <div class="badge green-bg">Green</div>
+  </div>
+  <div class="kpi-card green">
+    <div class="label">DSO</div>
+    <div class="value">10 days</div>
+    <div class="sub">Target: &lt; 30 days</div>
+    <div class="badge green-bg">Green</div>
+  </div>
+  <div class="kpi-card red">
+    <div class="label">Billable Utilization</div>
+    <div class="value">12.8%</div>
+    <div class="sub">Target: 70-85%</div>
+    <div class="badge red-bg">Critical</div>
+  </div>
+  <div class="kpi-card yellow">
+    <div class="label">Client Concentration</div>
+    <div class="value">34.2%</div>
+    <div class="sub">Atlas (top client)</div>
+    <div class="badge yellow-bg">Caution</div>
+  </div>
+  <div class="kpi-card green">
+    <div class="label">AR Health</div>
+    <div class="value">$35,865</div>
+    <div class="sub">0% over 60 days</div>
+    <div class="badge green-bg">Green</div>
+  </div>
+  <div class="kpi-card green">
+    <div class="label">90-Day Forecast</div>
+    <div class="value">$639,571</div>
+    <div class="sub">Expected scenario</div>
+    <div class="badge green-bg">Strong</div>
+  </div>
+</div>
+
+<!-- ============ WINS & RISKS ============ -->
+<div class="two-col">
+  <div class="panel">
+    <h3><span class="dot green"></span> Top 3 Wins</h3>
+    <ul>
+      <li><strong>Revenue exceeds target by 2x+</strong> -- Jan ($78,676) and Feb ($57,881) both above $30K target. Cash received totaled $155,793.</li>
+      <li><strong>Excellent DSO of 10 days</strong> -- AR is clean with 0% over 60 days. All outstanding invoices in current aging bucket.</li>
+      <li><strong>Strong 90-day pipeline: $639,571</strong> -- $635,896 committed revenue provides robust forward visibility.</li>
+    </ul>
+  </div>
+  <div class="panel">
+    <h3><span class="dot red"></span> Top 3 Risks</h3>
+    <ul>
+      <li><strong>Billable utilization at 12.8%</strong> -- 11 of 14 team members on bench. Bench cost: $176,825. Shift to billable work immediately.</li>
+      <li><strong>Client concentration: Atlas at 34.2%</strong> -- Top 3 clients = 61.5% of revenue. Diversification needed.</li>
+      <li><strong>$21,283 in overdue invoices</strong> -- 3 invoices past due from TA (13d), Ennis (11d), Elte (5d). Follow up now.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ CASH POSITION ============ -->
+<div class="cash-bar">
+  <div class="item">
+    <div class="lbl">Outstanding AR</div>
+    <div class="val">$35,865</div>
+  </div>
+  <div class="item">
+    <div class="lbl">30-Day Net Cash</div>
+    <div class="val" style="color:#00b894">+$24,670</div>
+  </div>
+  <div class="item">
+    <div class="lbl">90-Day Net Cash</div>
+    <div class="val" style="color:#00b894">+$238,546</div>
+  </div>
+  <div class="item">
+    <div class="lbl">Unbilled Work</div>
+    <div class="val" style="color:#e17055">$482,175</div>
+  </div>
+  <div class="item">
+    <div class="lbl">MRR Estimate</div>
+    <div class="val">$43,479</div>
+  </div>
+</div>
+
+<!-- ============ SECTION: REVENUE ============ -->
+<div class="section">
+  <div class="section-header open" onclick="toggleSection(this)">
+    <h2>2. Revenue</h2>
+    <span class="chevron">&#9660;</span>
+  </div>
+  <div class="section-body open">
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-label">Total Invoiced</div>
+        <div class="stat-val">$136,557</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Total Collected</div>
+        <div class="stat-val">$103,284</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Collection Rate</div>
+        <div class="stat-val">75.6%</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Avg Days to Pay</div>
+        <div class="stat-val">17.1 days</div>
+      </div>
+    </div>
+
+    <h3 style="margin:1rem 0 0.5rem;font-size:0.95rem;">Revenue by Client</h3>
+    <table class="sortable" id="tbl-revenue">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Client</th>
+          <th>Invoiced (USD)</th>
+          <th>Collected (USD)</th>
+          <th>Outstanding (USD)</th>
+          <th>% of Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Atlas (ATLA)</td><td class="num">$46,635.75</td><td class="num">$36,272.25</td><td class="num">$10,363.50</td><td class="num">34.2%</td></tr>
+        <tr><td>2</td><td>Perficient (PERF)</td><td class="num">$21,000.00</td><td class="num">$21,000.00</td><td class="num">$0.00</td><td class="num">15.4%</td></tr>
+        <tr><td>3</td><td>CL001 Client</td><td class="num">$16,200.00</td><td class="num">$16,200.00</td><td class="num">$0.00</td><td class="num">11.9%</td></tr>
+        <tr><td>4</td><td>TAA</td><td class="num">$15,435.00</td><td class="num">$7,717.50</td><td class="num">$7,717.50</td><td class="num">11.3%</td></tr>
+        <tr><td>5</td><td>Fume (FUME)</td><td class="num">$9,500.00</td><td class="num">$9,500.00</td><td class="num">$0.00</td><td class="num">7.0%</td></tr>
+        <tr><td>6</td><td>Wireline (WIRE)</td><td class="num">$7,400.00</td><td class="num">$3,700.00</td><td class="num">$3,700.00</td><td class="num">5.4%</td></tr>
+        <tr><td>7</td><td>Eltera (ELTE)</td><td class="num">$6,200.00</td><td class="num">$0.00</td><td class="num">$6,200.00</td><td class="num">4.5%</td></tr>
+        <tr><td>8</td><td>Ennis (ENNI)</td><td class="num">$5,292.00</td><td class="num">$0.00</td><td class="num">$5,292.00</td><td class="num">3.9%</td></tr>
+        <tr><td>9</td><td>Hovercraft (HOVE)</td><td class="num">$3,700.00</td><td class="num">$3,700.00</td><td class="num">$0.00</td><td class="num">2.7%</td></tr>
+        <tr><td>10</td><td>BioK</td><td class="num">$2,719.50</td><td class="num">$2,719.50</td><td class="num">$0.00</td><td class="num">2.0%</td></tr>
+        <tr><td>11</td><td>MIAB</td><td class="num">$1,800.00</td><td class="num">$1,800.00</td><td class="num">$0.00</td><td class="num">1.3%</td></tr>
+        <tr><td>12</td><td>ACME</td><td class="num">$675.00</td><td class="num">$675.00</td><td class="num">$0.00</td><td class="num">0.5%</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin:1rem 0 0.5rem;font-size:0.95rem;">Monthly Trend</h3>
+    <table>
+      <thead>
+        <tr><th>Month</th><th>Invoiced</th><th>Collected</th><th>Collection Rate</th><th>MoM Growth</th><th>vs Target ($30K)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2026-01</td><td class="num">$78,676</td><td class="num">$73,384</td><td class="num">93.3%</td><td class="num">--</td><td class="num"><span class="tag tag-green">262%</span></td></tr>
+        <tr><td>2026-02</td><td class="num">$57,881</td><td class="num">$29,900</td><td class="num">51.7%</td><td class="num" style="color:#e17055">-26.4%</td><td class="num"><span class="tag tag-green">193%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ SECTION: AR ============ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>3. Accounts Receivable &nbsp;<span class="tag tag-green">GREEN</span></h2>
+    <span class="chevron">&#9660;</span>
+  </div>
+  <div class="section-body">
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-label">Total AR</div>
+        <div class="stat-val">$35,865</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">DSO</div>
+        <div class="stat-val">10 days</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">AR > 60 Days</div>
+        <div class="stat-val">0.0%</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Overdue Invoices</div>
+        <div class="stat-val">3</div>
+      </div>
+    </div>
+
+    <h3 style="margin:1rem 0 0.5rem;font-size:0.95rem;">AR Aging</h3>
+    <table>
+      <thead><tr><th>Bucket</th><th>Amount (USD)</th><th>Count</th><th>Distribution</th></tr></thead>
+      <tbody>
+        <tr><td>Current (0-30 days)</td><td class="num">$35,865.04</td><td class="num">5</td><td><div class="bar-container"><div class="bar-fill green" style="width:200px"></div><span>100%</span></div></td></tr>
+        <tr><td>31-60 days</td><td class="num">$0.00</td><td class="num">0</td><td><div class="bar-container"><div class="bar-fill green" style="width:0px"></div><span>0%</span></div></td></tr>
+        <tr><td>61-90 days</td><td class="num">$0.00</td><td class="num">0</td><td><div class="bar-container"><div class="bar-fill yellow" style="width:0px"></div><span>0%</span></div></td></tr>
+        <tr><td>90+ days</td><td class="num">$0.00</td><td class="num">0</td><td><div class="bar-container"><div class="bar-fill red" style="width:0px"></div><span>0%</span></div></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin:1rem 0 0.5rem;font-size:0.95rem;">Overdue Invoices</h3>
+    <table>
+      <thead><tr><th>Client</th><th>Invoice</th><th>Amount (USD)</th><th>Due Date</th><th>Days Overdue</th></tr></thead>
+      <tbody>
+        <tr><td>TA</td><td>002-TAA-26</td><td class="num">$8,720.77</td><td>2026-02-17</td><td class="num"><span class="tag tag-red">13 days</span></td></tr>
+        <tr><td>Ennis</td><td>001-ENNI-26</td><td class="num">$5,556.60</td><td>2026-02-19</td><td class="num"><span class="tag tag-red">11 days</span></td></tr>
+        <tr><td>Elte</td><td>001-ELTE-26</td><td class="num">$7,006.00</td><td>2026-02-25</td><td class="num"><span class="tag tag-yellow">5 days</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin:1rem 0 0.5rem;font-size:0.95rem;">Collection Forecast</h3>
+    <table>
+      <thead><tr><th>Invoice</th><th>Client</th><th>Amount (USD)</th><th>Expected Collection</th><th>Confidence</th></tr></thead>
+      <tbody>
+        <tr><td>002-TAA-26</td><td>TA</td><td class="num">$8,720.77</td><td>2026-03-03</td><td><span class="tag tag-yellow">Medium</span></td></tr>
+        <tr><td>001-ENNI-26</td><td>Ennis</td><td class="num">$5,556.60</td><td>2026-03-09</td><td><span class="tag tag-green">High</span></td></tr>
+        <tr><td>003-ATLA-26</td><td>Atlas Workwear</td><td class="num">$10,881.67</td><td>2026-03-20</td><td><span class="tag tag-yellow">Medium</span></td></tr>
+        <tr><td>002-WIRE-26</td><td>Wire America</td><td class="num">$3,700.00</td><td>2026-03-20</td><td><span class="tag tag-yellow">Medium</span></td></tr>
+        <tr><td>001-ELTE-26</td><td>Elte</td><td class="num">$7,006.00</td><td>2026-03-27</td><td><span class="tag tag-red">Low</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ SECTION: GROSS MARGIN ============ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>4. Gross Margin &nbsp;<span class="tag tag-green">77.4%</span></h2>
+    <span class="chevron">&#9660;</span>
+  </div>
+  <div class="section-body">
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-label">Total Revenue</div>
+        <div class="stat-val">$219,254</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Total Cost</div>
+        <div class="stat-val">$49,478</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Gross Profit</div>
+        <div class="stat-val">$169,775</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Gross Margin</div>
+        <div class="stat-val" style="color:#00b894">77.4%</div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:#636e72;margin-bottom:1rem;">Agency-wide gross margin includes full client cost data. Well above the 65% target.</p>
+
+    <h3 style="margin:1rem 0 0.5rem;font-size:0.95rem;">Margin by Project</h3>
+    <table class="sortable">
+      <thead><tr><th>Project</th><th>Revenue</th><th>Cost</th><th>Profit</th><th>GM %</th></tr></thead>
+      <tbody>
+        <tr><td>Atlas Workwear B2B</td><td class="num">$46,636</td><td class="num">$13,895</td><td class="num">$32,741</td><td class="num">70.2%</td></tr>
+        <tr><td>True Terpenes B2B</td><td class="num">$32,500</td><td class="num">$400</td><td class="num">$32,100</td><td class="num">98.8%</td></tr>
+        <tr><td>Perfero B2B</td><td class="num">$29,750</td><td class="num">$213</td><td class="num">$29,538</td><td class="num">99.3%</td></tr>
+        <tr><td>Clarius Retainer</td><td class="num">$24,300</td><td class="num">$2,353</td><td class="num">$21,947</td><td class="num">90.3%</td></tr>
+        <tr><td>TA App Retainer</td><td class="num">$23,153</td><td class="num">$8,801</td><td class="num">$14,352</td><td class="num">62.0%</td></tr>
+        <tr><td>Ennis Support</td><td class="num">$15,876</td><td class="num">$788</td><td class="num">$15,089</td><td class="num">95.0%</td></tr>
+        <tr><td>Wire America Support</td><td class="num">$11,100</td><td class="num">$3,110</td><td class="num">$7,990</td><td class="num">72.0%</td></tr>
+        <tr><td>Fumex</td><td class="num">$9,500</td><td class="num">$125</td><td class="num">$9,375</td><td class="num">98.7%</td></tr>
+        <tr><td>BioK+ Support</td><td class="num">$8,159</td><td class="num">$1,639</td><td class="num">$6,519</td><td class="num">79.9%</td></tr>
+        <tr><td>Elte Carpets Retainer</td><td class="num">$6,200</td><td class="num">$179</td><td class="num">$6,021</td><td class="num">97.1%</td></tr>
+        <tr><td>Arcadian Outfitters</td><td class="num">$5,906</td><td class="num">$2,384</td><td class="num">$3,522</td><td class="num">59.6%</td></tr>
+        <tr><td>Hovertech Support</td><td class="num">$3,700</td><td class="num">$316</td><td class="num">$3,384</td><td class="num">91.5%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ SECTION: NET MARGIN ============ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>5. Profit Margin &nbsp;<span class="tag tag-green">95.1%</span></h2>
+    <span class="chevron">&#9660;</span>
+  </div>
+  <div class="section-body">
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-label">Gross Profit</div>
+        <div class="stat-val">$210,712</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Operating Expenses</div>
+        <div class="stat-val">$2,261</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Net Profit</div>
+        <div class="stat-val">$208,451</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Net Margin</div>
+        <div class="stat-val" style="color:#00b894">95.1%</div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:#636e72;margin-bottom:1rem;">Net margin based on time-entry costs. Monthly OpEx: $1,095. Prorated for 2.06 months = $2,261.</p>
+
+    <h3 style="margin:1rem 0 0.5rem;font-size:0.95rem;">Operating Expense Breakdown</h3>
+    <table>
+      <thead><tr><th>Category</th><th>Item</th><th>Amount (Period)</th></tr></thead>
+      <tbody>
+        <tr><td>Tools</td><td>Claude Code</td><td class="num">$412.90</td></tr>
+        <tr><td>Admin</td><td>Accounting/bookkeeping</td><td class="num">$619.35</td></tr>
+        <tr><td>Insurance</td><td>Business insurance</td><td class="num">$309.68</td></tr>
+        <tr><td>Admin</td><td>Legal</td><td class="num">$206.45</td></tr>
+        <tr><td>Marketing</td><td>Ads/sponsorships</td><td class="num">$206.45</td></tr>
+        <tr><td>Tools</td><td>Productive.io</td><td class="num">$206.45</td></tr>
+        <tr><td>Other</td><td>Miscellaneous</td><td class="num">$154.84</td></tr>
+        <tr><td>Infrastructure</td><td>Hosting</td><td class="num">$61.94</td></tr>
+        <tr><td>Tools</td><td>Slack</td><td class="num">$51.61</td></tr>
+        <tr><td>Tools</td><td>GitHub</td><td class="num">$30.97</td></tr>
+        <tr style="font-weight:700;border-top:2px solid #dfe6e9"><td colspan="2">Total</td><td class="num">$2,260.65</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ SECTION: CLIENT PROFITABILITY ============ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>6. Client Profitability</h2>
+    <span class="chevron">&#9660;</span>
+  </div>
+  <div class="section-body">
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-label">Clients with Revenue</div>
+        <div class="stat-val">14</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Unprofitable Clients</div>
+        <div class="stat-val" style="color:#e17055">7</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Agency Gross Margin</div>
+        <div class="stat-val">77.4%</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Combined Losses</div>
+        <div class="stat-val" style="color:#e17055">-$14,560</div>
+      </div>
+    </div>
+
+    <h3 style="margin:1rem 0 0.5rem;font-size:0.95rem;">Client Ranking (by Gross Profit)</h3>
+    <table class="sortable" id="tbl-clients">
+      <thead>
+        <tr><th>Rank</th><th>Client</th><th>Revenue</th><th>Cost</th><th>Profit</th><th>Margin</th><th>Hours</th><th>$/hr</th><th>Risk</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Atlas Workwear</td><td class="num">$46,636</td><td class="num">$13,895</td><td class="num">$32,741</td><td class="num">70.2%</td><td class="num">277.9</td><td class="num">$168</td><td><span class="tag tag-yellow">MED</span></td></tr>
+        <tr><td>2</td><td>True Terpenes</td><td class="num">$32,500</td><td class="num">$400</td><td class="num">$32,100</td><td class="num">98.8%</td><td class="num">8.0</td><td class="num">$4,063</td><td><span class="tag tag-yellow">MED</span></td></tr>
+        <tr><td>3</td><td>Perfero</td><td class="num">$29,750</td><td class="num">$213</td><td class="num">$29,538</td><td class="num">99.3%</td><td class="num">4.2</td><td class="num">$7,000</td><td><span class="tag tag-yellow">MED</span></td></tr>
+        <tr><td>4</td><td>Clarius</td><td class="num">$24,300</td><td class="num">$2,353</td><td class="num">$21,947</td><td class="num">90.3%</td><td class="num">47.1</td><td class="num">$516</td><td><span class="tag tag-yellow">MED</span></td></tr>
+        <tr><td>5</td><td>Ennis</td><td class="num">$15,876</td><td class="num">$788</td><td class="num">$15,089</td><td class="num">95.0%</td><td class="num">15.8</td><td class="num">$1,008</td><td><span class="tag tag-yellow">MED</span></td></tr>
+        <tr><td>6</td><td>TA (Travel App)</td><td class="num">$23,153</td><td class="num">$8,801</td><td class="num">$14,352</td><td class="num">62.0%</td><td class="num">176.0</td><td class="num">$132</td><td><span class="tag tag-green">LOW</span></td></tr>
+        <tr><td>7</td><td>Fumex</td><td class="num">$9,500</td><td class="num">$125</td><td class="num">$9,375</td><td class="num">98.7%</td><td class="num">2.5</td><td class="num">$3,800</td><td><span class="tag tag-yellow">MED</span></td></tr>
+        <tr><td>8</td><td>Wire America</td><td class="num">$11,100</td><td class="num">$3,110</td><td class="num">$7,990</td><td class="num">72.0%</td><td class="num">62.2</td><td class="num">$178</td><td><span class="tag tag-green">LOW</span></td></tr>
+        <tr><td>9</td><td>BioK+</td><td class="num">$8,159</td><td class="num">$1,639</td><td class="num">$6,519</td><td class="num">79.9%</td><td class="num">32.8</td><td class="num">$249</td><td><span class="tag tag-yellow">MED</span></td></tr>
+        <tr><td>10</td><td>Elte Carpets</td><td class="num">$6,200</td><td class="num">$179</td><td class="num">$6,021</td><td class="num">97.1%</td><td class="num">3.6</td><td class="num">$1,730</td><td><span class="tag tag-yellow">MED</span></td></tr>
+        <tr><td>11</td><td>Arcadian Outfitters</td><td class="num">$5,906</td><td class="num">$2,384</td><td class="num">$3,522</td><td class="num">59.6%</td><td class="num">47.7</td><td class="num">$124</td><td><span class="tag tag-yellow">MED</span></td></tr>
+        <tr><td>12</td><td>Hovertech</td><td class="num">$3,700</td><td class="num">$316</td><td class="num">$3,384</td><td class="num">91.5%</td><td class="num">6.3</td><td class="num">$585</td><td><span class="tag tag-yellow">MED</span></td></tr>
+        <tr><td>13</td><td>MIA Bijoux</td><td class="num">$1,800</td><td class="num">$0</td><td class="num">$1,800</td><td class="num">100.0%</td><td class="num">0.0</td><td class="num">--</td><td><span class="tag tag-yellow">MED</span></td></tr>
+        <tr style="color:#e17055"><td>14</td><td>ACME</td><td class="num">$675</td><td class="num">$960</td><td class="num">-$285</td><td class="num">-42.2%</td><td class="num">19.2</td><td class="num">$35</td><td><span class="tag tag-red">HIGH</span></td></tr>
+        <tr style="color:#e17055"><td>15</td><td>Sealand</td><td class="num">$0</td><td class="num">$45</td><td class="num">-$45</td><td class="num">--</td><td class="num">0.9</td><td class="num">$0</td><td><span class="tag tag-red">HIGH</span></td></tr>
+        <tr style="color:#e17055"><td>16</td><td>Stonz</td><td class="num">$0</td><td class="num">$320</td><td class="num">-$320</td><td class="num">--</td><td class="num">6.4</td><td class="num">$0</td><td><span class="tag tag-red">HIGH</span></td></tr>
+        <tr style="color:#e17055"><td>17</td><td>Cowpokes</td><td class="num">$0</td><td class="num">$488</td><td class="num">-$488</td><td class="num">--</td><td class="num">9.8</td><td class="num">$0</td><td><span class="tag tag-red">HIGH</span></td></tr>
+        <tr style="color:#e17055"><td>18</td><td>Organika</td><td class="num">$0</td><td class="num">$2,678</td><td class="num">-$2,678</td><td class="num">--</td><td class="num">53.6</td><td class="num">$0</td><td><span class="tag tag-red">HIGH</span></td></tr>
+        <tr style="color:#e17055"><td>19</td><td>Fast Fix</td><td class="num">$0</td><td class="num">$2,700</td><td class="num">-$2,700</td><td class="num">--</td><td class="num">54.0</td><td class="num">$0</td><td><span class="tag tag-red">HIGH</span></td></tr>
+        <tr style="color:#e17055"><td>20</td><td>New Pro Container</td><td class="num">$0</td><td class="num">$8,086</td><td class="num">-$8,086</td><td class="num">--</td><td class="num">161.7</td><td class="num">$0</td><td><span class="tag tag-red">HIGH</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ SECTION: UTILIZATION ============ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>7. Team Utilization &nbsp;<span class="tag tag-red">12.8%</span></h2>
+    <span class="chevron">&#9660;</span>
+  </div>
+  <div class="section-body">
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-label">Team Members</div>
+        <div class="stat-val">14</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Billable Hours</div>
+        <div class="stat-val">615.7</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Billable Util %</div>
+        <div class="stat-val" style="color:#e17055">12.8%</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Bench Cost</div>
+        <div class="stat-val" style="color:#e17055">$176,825</div>
+      </div>
+    </div>
+
+    <h3 style="margin:1rem 0 0.5rem;font-size:0.95rem;">Per-Person Utilization</h3>
+    <table class="sortable" id="tbl-util">
+      <thead><tr><th>Person</th><th>Billable Hrs</th><th>Non-Bill Hrs</th><th>Total Hrs</th><th>Available</th><th>Util %</th><th>Visual</th></tr></thead>
+      <tbody>
+        <tr><td>Zineb Chouiref</td><td class="num">136.4</td><td class="num">195.7</td><td class="num">332.1</td><td class="num">344</td><td class="num">39.7%</td><td><div class="bar-container"><div class="bar-fill yellow" style="width:79px"></div></div></td></tr>
+        <tr><td>Will M</td><td class="num">122.3</td><td class="num">45.5</td><td class="num">167.8</td><td class="num">344</td><td class="num">35.6%</td><td><div class="bar-container"><div class="bar-fill yellow" style="width:71px"></div></div></td></tr>
+        <tr><td>Shakeel Mumtaz</td><td class="num">109.5</td><td class="num">31.2</td><td class="num">140.7</td><td class="num">344</td><td class="num">31.8%</td><td><div class="bar-container"><div class="bar-fill yellow" style="width:64px"></div></div></td></tr>
+        <tr><td>Haley .</td><td class="num">53.4</td><td class="num">151.3</td><td class="num">204.7</td><td class="num">344</td><td class="num">15.5%</td><td><div class="bar-container"><div class="bar-fill red" style="width:31px"></div></div></td></tr>
+        <tr><td>Jonathan Garay</td><td class="num">37.2</td><td class="num">9.0</td><td class="num">46.2</td><td class="num">344</td><td class="num">10.8%</td><td><div class="bar-container"><div class="bar-fill red" style="width:22px"></div></div></td></tr>
+        <tr><td>Jake Bennett</td><td class="num">36.1</td><td class="num">31.6</td><td class="num">67.8</td><td class="num">344</td><td class="num">10.5%</td><td><div class="bar-container"><div class="bar-fill red" style="width:21px"></div></div></td></tr>
+        <tr><td>Noel de Toledo</td><td class="num">34.8</td><td class="num">281.2</td><td class="num">316.0</td><td class="num">344</td><td class="num">10.1%</td><td><div class="bar-container"><div class="bar-fill red" style="width:20px"></div></div></td></tr>
+        <tr><td>Rahul P</td><td class="num">23.5</td><td class="num">129.5</td><td class="num">153.0</td><td class="num">344</td><td class="num">6.8%</td><td><div class="bar-container"><div class="bar-fill red" style="width:14px"></div></div></td></tr>
+        <tr><td>Nathan V</td><td class="num">23.2</td><td class="num">266.2</td><td class="num">289.4</td><td class="num">344</td><td class="num">6.7%</td><td><div class="bar-container"><div class="bar-fill red" style="width:13px"></div></div></td></tr>
+        <tr><td>Ella Fedorenko</td><td class="num">18.8</td><td class="num">276.1</td><td class="num">294.8</td><td class="num">344</td><td class="num">5.5%</td><td><div class="bar-container"><div class="bar-fill red" style="width:11px"></div></div></td></tr>
+        <tr><td>John Keats</td><td class="num">11.4</td><td class="num">221.0</td><td class="num">232.4</td><td class="num">344</td><td class="num">3.3%</td><td><div class="bar-container"><div class="bar-fill red" style="width:7px"></div></div></td></tr>
+        <tr><td>Daniel Ken</td><td class="num">9.1</td><td class="num">225.4</td><td class="num">234.5</td><td class="num">344</td><td class="num">2.6%</td><td><div class="bar-container"><div class="bar-fill red" style="width:5px"></div></div></td></tr>
+        <tr><td>Isabel Maier</td><td class="num">0.0</td><td class="num">48.0</td><td class="num">48.0</td><td class="num">344</td><td class="num">0.0%</td><td><div class="bar-container"><div class="bar-fill red" style="width:2px"></div></div></td></tr>
+        <tr><td>Olu O</td><td class="num">0.0</td><td class="num">0.5</td><td class="num">0.5</td><td class="num">344</td><td class="num">0.0%</td><td><div class="bar-container"><div class="bar-fill red" style="width:2px"></div></div></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.82rem;color:#e17055;margin-top:0.5rem;font-weight:600;">11 of 14 team members on bench (&lt;30% billable). Next 30 days: 2,576 hours capacity with zero bookings.</p>
+  </div>
+</div>
+
+<!-- ============ SECTION: BUDGETS ============ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>8. Budget Health &nbsp;<span class="tag tag-green">39 GRN</span>&nbsp;<span class="tag tag-red">5 RED</span></h2>
+    <span class="chevron">&#9660;</span>
+  </div>
+  <div class="section-body">
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-label">Total Budgets</div>
+        <div class="stat-val">44</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Green</div>
+        <div class="stat-val" style="color:#00b894">39</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Red (Overrun)</div>
+        <div class="stat-val" style="color:#e17055">5</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Total Remaining</div>
+        <div class="stat-val">$391,837</div>
+      </div>
+    </div>
+
+    <h3 style="margin:1rem 0 0.5rem;font-size:0.95rem;color:#e17055;">RED Alert -- Over Budget</h3>
+    <table class="sortable">
+      <thead><tr><th>Budget</th><th>Client</th><th>Currency</th><th>Budget</th><th>Spent</th><th>Overrun</th><th>Burn %</th></tr></thead>
+      <tbody>
+        <tr style="color:#d63031"><td>01 New Pro B2B - Discovery</td><td>New Pro</td><td>USD</td><td class="num">$10,360</td><td class="num">$28,740</td><td class="num">-$18,380</td><td class="num"><strong>277.4%</strong></td></tr>
+        <tr style="color:#d63031"><td>Wire America - Launch Support</td><td>Wire America</td><td>USD</td><td class="num">$10,730</td><td class="num">$20,948</td><td class="num">-$10,218</td><td class="num"><strong>195.2%</strong></td></tr>
+        <tr style="color:#d63031"><td>Stonz - Budget</td><td>Stonz</td><td>CAD</td><td class="num">$4,348</td><td class="num">$7,036</td><td class="num">-$2,689</td><td class="num"><strong>161.8%</strong></td></tr>
+        <tr style="color:#d63031"><td>04 New Pro B2B - QA / UAT</td><td>New Pro</td><td>USD</td><td class="num">$6,290</td><td class="num">$8,487</td><td class="num">-$2,197</td><td class="num"><strong>134.9%</strong></td></tr>
+        <tr style="color:#d63031"><td>02 New Pro B2B - Design</td><td>New Pro</td><td>USD</td><td class="num">$4,255</td><td class="num">$4,563</td><td class="num">-$308</td><td class="num"><strong>107.2%</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin:1.5rem 0 0.5rem;font-size:0.95rem;">Key Active Budgets</h3>
+    <table class="sortable">
+      <thead><tr><th>Health</th><th>Client</th><th>Budget</th><th>Currency</th><th>Total</th><th>Spent</th><th>Remaining</th><th>Burn %</th><th>Time %</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag tag-green">GRN</span></td><td>Atlas Workwear</td><td>03 Atlas - Development</td><td>CAD</td><td class="num">$49,025</td><td class="num">$33,309</td><td class="num">$15,716</td><td class="num">67.9%</td><td class="num">95.8%</td></tr>
+        <tr><td><span class="tag tag-green">GRN</span></td><td>TA</td><td>TA Q1'26</td><td>CAD</td><td class="num">$40,885</td><td class="num">$10,391</td><td class="num">$30,494</td><td class="num">25.4%</td><td class="num">67.4%</td></tr>
+        <tr><td><span class="tag tag-green">GRN</span></td><td>Clarius</td><td>Clarius Q1'26 Support</td><td>CAD</td><td class="num">$24,300</td><td class="num">$6,582</td><td class="num">$17,718</td><td class="num">27.1%</td><td class="num">67.4%</td></tr>
+        <tr><td><span class="tag tag-green">GRN</span></td><td>Elte</td><td>Elte Growth Retainer Q1</td><td>USD</td><td class="num">$18,600</td><td class="num">$478</td><td class="num">$18,122</td><td class="num">2.6%</td><td class="num">28.9%</td></tr>
+        <tr><td><span class="tag tag-green">GRN</span></td><td>True Terpenes</td><td>01 Discovery</td><td>USD</td><td class="num">$12,765</td><td class="num">$1,341</td><td class="num">$11,424</td><td class="num">10.5%</td><td class="num">open</td></tr>
+        <tr><td><span class="tag tag-green">GRN</span></td><td>Ennis</td><td>Ennis Q1'26</td><td>CAD</td><td class="num">$11,100</td><td class="num">$740</td><td class="num">$10,360</td><td class="num">6.7%</td><td class="num">67.4%</td></tr>
+        <tr><td><span class="tag tag-green">GRN</span></td><td>Perfero</td><td>01 Discovery</td><td>USD</td><td class="num">$7,030</td><td class="num">$555</td><td class="num">$6,475</td><td class="num">7.9%</td><td class="num">84.0%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ SECTION: FORECAST ============ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>9. Cash Flow Forecast</h2>
+    <span class="chevron">&#9660;</span>
+  </div>
+  <div class="section-body">
+    <h3 style="margin:0 0 0.5rem;font-size:0.95rem;">Revenue Forecast (30/60/90 Days)</h3>
+    <table>
+      <thead><tr><th>Window</th><th>Committed</th><th>Pipeline</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>30 Days</td><td class="num">$204,626</td><td class="num">$0</td><td class="num"><strong>$204,626</strong></td></tr>
+        <tr><td>60 Days</td><td class="num">$373,387</td><td class="num">$3,675</td><td class="num"><strong>$377,062</strong></td></tr>
+        <tr><td>90 Days</td><td class="num">$635,896</td><td class="num">$3,675</td><td class="num"><strong>$639,571</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin:1.5rem 0 0.5rem;font-size:0.95rem;">Cash Flow Forecast</h3>
+    <table>
+      <thead><tr><th>Window</th><th>Inflows</th><th>Outflows</th><th>Net Cash Flow</th></tr></thead>
+      <tbody>
+        <tr><td>30 Days</td><td class="num">$35,865</td><td class="num">$11,195</td><td class="num" style="color:#00b894"><strong>+$24,670</strong></td></tr>
+        <tr><td>60 Days</td><td class="num">$153,998</td><td class="num">$22,390</td><td class="num" style="color:#00b894"><strong>+$131,608</strong></td></tr>
+        <tr><td>90 Days</td><td class="num">$272,131</td><td class="num">$33,585</td><td class="num" style="color:#00b894"><strong>+$238,546</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin:1.5rem 0 0.5rem;font-size:0.95rem;">Scenario Analysis (90-Day)</h3>
+    <table>
+      <thead><tr><th>Scenario</th><th>Revenue</th><th>Net Cash</th><th>Assumptions</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag tag-green">Optimistic</span></td><td class="num">$729,166</td><td class="num" style="color:#00b894">+$617,011</td><td style="font-size:0.8rem">All pipeline converts, full AR collection</td></tr>
+        <tr><td><span class="tag tag-yellow">Expected</span></td><td class="num">$639,571</td><td class="num" style="color:#00b894">+$238,546</td><td style="font-size:0.8rem">Weighted pipeline, avg payment timing</td></tr>
+        <tr><td><span class="tag tag-red">Pessimistic</span></td><td class="num">$317,997</td><td class="num" style="color:#00b894">+$139,759</td><td style="font-size:0.8rem">No pipeline, 20% bad debt, 40% slippage</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin:1.5rem 0 0.5rem;font-size:0.95rem;">Outstanding AR Collection Schedule</h3>
+    <table>
+      <thead><tr><th>Invoice</th><th>Client</th><th>Amount (USD)</th><th>Expected</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>001-ELTE-26</td><td>Elte</td><td class="num">$7,006</td><td>2026-03-07</td><td><span class="tag tag-red">Overdue</span></td></tr>
+        <tr><td>002-WIRE-26</td><td>Wire America</td><td class="num">$3,700</td><td>2026-03-15</td><td><span class="tag tag-green">Current</span></td></tr>
+        <tr><td>001-ENNI-26</td><td>Ennis</td><td class="num">$5,557</td><td>2026-03-17</td><td><span class="tag tag-red">Overdue</span></td></tr>
+        <tr><td>002-TAA-26</td><td>TA</td><td class="num">$8,721</td><td>2026-03-17</td><td><span class="tag tag-red">Overdue</span></td></tr>
+        <tr><td>003-ATLA-26</td><td>Atlas Workwear</td><td class="num">$10,882</td><td>2026-03-23</td><td><span class="tag tag-green">Current</span></td></tr>
+      </tbody>
+    </table>
+
+    <div style="background:#fff8e1;border-radius:6px;padding:1rem;margin-top:1rem;font-size:0.85rem;">
+      <strong style="color:#e17055;">Warnings:</strong>
+      <ul style="margin-top:0.5rem;padding-left:1.2rem;">
+        <li>3 invoices totaling $21,283 are past due</li>
+        <li>$482,175 in completed work not yet invoiced -- bill promptly</li>
+        <li>February collections dropped 39% from January</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION: TRENDS ============ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>10. Trends & KPIs (Baseline)</h2>
+    <span class="chevron">&#9660;</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:0.85rem;color:#636e72;margin-bottom:1rem;">First run -- all values establish the baseline. MoM/QoQ/YoY trends will be available after subsequent monthly runs.</p>
+
+    <h3 style="margin:1rem 0 0.5rem;font-size:0.95rem;">Monthly Revenue History</h3>
+    <table>
+      <thead><tr><th>Month</th><th>Collected (USD)</th><th>MoM Change</th><th>Visual</th></tr></thead>
+      <tbody>
+        <tr><td>2025-10</td><td class="num">$79,944</td><td class="num">--</td><td><div class="bar-container"><div class="bar-fill green" style="width:165px"></div></div></td></tr>
+        <tr><td>2025-11</td><td class="num">$94,137</td><td class="num" style="color:#00b894">+17.8%</td><td><div class="bar-container"><div class="bar-fill green" style="width:195px"></div></div></td></tr>
+        <tr><td>2025-12</td><td class="num">$43,343</td><td class="num" style="color:#e17055">-53.9%</td><td><div class="bar-container"><div class="bar-fill red" style="width:90px"></div></div></td></tr>
+        <tr><td>2026-01</td><td class="num">$96,685</td><td class="num" style="color:#00b894">+123.0%</td><td><div class="bar-container"><div class="bar-fill green" style="width:200px"></div></div></td></tr>
+        <tr><td>2026-02</td><td class="num">$59,109</td><td class="num" style="color:#e17055">-38.9%</td><td><div class="bar-container"><div class="bar-fill yellow" style="width:122px"></div></div></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.82rem;color:#636e72;margin-top:0.5rem;">5-month average: $74,644/mo. Revenue shows a sawtooth pattern -- strong months followed by dips.</p>
+
+    <h3 style="margin:1.5rem 0 0.5rem;font-size:0.95rem;">Within-Period Trends (Jan vs Feb 2026)</h3>
+    <table>
+      <thead><tr><th>Metric</th><th>January</th><th>February</th><th>Change</th></tr></thead>
+      <tbody>
+        <tr><td>Invoiced</td><td class="num">$78,676</td><td class="num">$57,881</td><td class="num" style="color:#e17055">-26.4%</td></tr>
+        <tr><td>Collected</td><td class="num">$73,384</td><td class="num">$29,900</td><td class="num" style="color:#e17055">-59.2%</td></tr>
+        <tr><td>Collection Rate</td><td class="num">93.3%</td><td class="num">51.7%</td><td class="num" style="color:#e17055">-41.6 pts</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin:1.5rem 0 0.5rem;font-size:0.95rem;">Key Insights</h3>
+    <ol style="font-size:0.85rem;padding-left:1.5rem;line-height:1.8;">
+      <li><strong>Revenue volatility:</strong> Monthly revenue swings between $43K and $97K (2.2x range). Lumpy project billing rather than smooth recurring revenue.</li>
+      <li><strong>Critical utilization:</strong> 12.8% billable utilization is the most pressing operational concern. Significant idle capacity.</li>
+      <li><strong>Healthy AR:</strong> DSO of 10 days and 0% AR over 60 days are strong indicators.</li>
+      <li><strong>Concentration risk:</strong> Top client at 34.2%, top 3 at 61.5%. Diversify the client base.</li>
+      <li><strong>7 unprofitable clients:</strong> $14,560 in combined losses across 305.6 hours. Review and wind down.</li>
+      <li><strong>Bill the backlog:</strong> $482K in unbilled work represents a massive cash flow opportunity.</li>
+      <li><strong>5 budget overruns:</strong> New Pro Container has $20,885 in overruns across 3 phases.</li>
+      <li><strong>Strong pipeline:</strong> 90-day forecast of $639,571 shows healthy committed backlog.</li>
+    </ol>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ============ FOOTER ============ -->
+<div class="footer">
+  Makro Agency -- CEO Financial Dashboard | Period: Jan 1 - Mar 2, 2026 | Generated: Mar 2, 2026<br>
+  Data: Productive.io (live) | OpEx: reference-data.md | FX: CAD/USD = 0.735 | Cost rate: $50/hr
+</div>
+
+<!-- ============ JAVASCRIPT ============ -->
+<script>
+// Toggle collapsible sections
+function toggleSection(header) {
+  header.classList.toggle('open');
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+// Sortable tables
+document.querySelectorAll('table.sortable').forEach(table => {
+  const headers = table.querySelectorAll('thead th');
+  headers.forEach((th, idx) => {
+    th.addEventListener('click', () => {
+      const tbody = table.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const isAsc = th.classList.contains('sort-asc');
+
+      // Clear sort classes from all headers in this table
+      headers.forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+
+      rows.sort((a, b) => {
+        let aVal = a.children[idx]?.textContent.trim() || '';
+        let bVal = b.children[idx]?.textContent.trim() || '';
+
+        // Try numeric sort
+        const aNum = parseFloat(aVal.replace(/[$,%]/g, '').replace(/,/g, ''));
+        const bNum = parseFloat(bVal.replace(/[$,%]/g, '').replace(/,/g, ''));
+
+        if (!isNaN(aNum) && !isNaN(bNum)) {
+          return isAsc ? bNum - aNum : aNum - bNum;
+        }
+        // String sort
+        return isAsc ? bVal.localeCompare(aVal) : aVal.localeCompare(bVal);
+      });
+
+      th.classList.add(isAsc ? 'sort-desc' : 'sort-asc');
+      rows.forEach(r => tbody.appendChild(r));
+    });
+  });
+});
+</script>
+
+</body>
+</html>

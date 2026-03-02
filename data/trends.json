@@ -1,0 +1,290 @@
+{
+  "period": {
+    "from": "2026-01-01",
+    "to": "2026-03-02"
+  },
+  "snapshot_date": "2026-03-02",
+  "historical_snapshots_available": 0,
+  "first_run": true,
+  "note": "First run -- no historical data for comparison. Baseline values established. Trend directions (MoM, QoQ, YoY) will be available after the next monthly run.",
+
+  "baseline_kpis": {
+    "total_revenue": {
+      "value": 219253.75,
+      "unit": "USD",
+      "period_months": 2,
+      "monthly_average": 109626.88,
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "Total invoiced revenue for Jan-Feb 2026. Jan: $78,676 invoiced, Feb: $57,881 invoiced. MoM within-period drop of 26.4%."
+    },
+    "total_collected": {
+      "value": 155793.18,
+      "unit": "USD",
+      "period_months": 2,
+      "monthly_average": 77896.59,
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "Cash received in period. Collection rate: 75.6% of invoiced amounts."
+    },
+    "mrr_estimate": {
+      "value": 43478.62,
+      "unit": "USD",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "Estimated MRR from 8 recurring clients: ACME, Atlas, BioK, CL001, Ennis, NewPath, Sealand, TAA."
+    },
+    "gross_margin_pct": {
+      "value": 96.1,
+      "unit": "%",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "Likely inflated -- time entries cover only ~3 weeks of the 2-month period while invoices cover the full period. True margins lower. Agency-wide gross margin from clients.json is 77.4%, which is more realistic."
+    },
+    "net_margin_pct": {
+      "value": 95.1,
+      "unit": "%",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "Same caveat as gross margin -- inflated due to partial time-entry data. Operating expenses: $2,260.65 for the period."
+    },
+    "agency_gross_margin_pct": {
+      "value": 77.4,
+      "unit": "%",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "From clients.json -- includes full cost data. Total revenue $219,254, total cost $49,478, profit $169,775."
+    },
+    "dso_days": {
+      "value": 10.0,
+      "unit": "days",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "health": "green",
+      "notes": "DSO = (AR $35,865 / Revenue $219,254) x 61 days. Green threshold: < 30 days."
+    },
+    "ar_over_60_days_pct": {
+      "value": 0.0,
+      "unit": "%",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "health": "green",
+      "notes": "No AR in 60+ day bucket. 3 overdue invoices exist but all < 60 days (13d, 11d, 5d overdue)."
+    },
+    "total_ar": {
+      "value": 35865.04,
+      "unit": "USD",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "5 outstanding sent invoices. All in current aging bucket."
+    },
+    "billable_utilization_pct": {
+      "value": 12.8,
+      "unit": "%",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "health": "red",
+      "notes": "615.7 billable hours out of 4,816 available hours across 14 team members. Critical underutilization."
+    },
+    "total_utilization_pct": {
+      "value": 52.5,
+      "unit": "%",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "2,527.9 total tracked hours out of 4,816 available. 1,912.3 hours are non-billable."
+    },
+    "client_count": {
+      "value": 14,
+      "unit": "clients",
+      "subtype": "with_revenue",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "14 clients with revenue, 6 additional with cost only (20 total active). 7 clients are unprofitable."
+    },
+    "avg_revenue_per_client": {
+      "value": 15660.98,
+      "unit": "USD",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "$219,254 / 14 revenue-generating clients. Top client Atlas Workwear at $46,636 (21.3%)."
+    },
+    "bench_cost": {
+      "value": 176825.00,
+      "unit": "USD",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "11 of 14 team members on bench (< 20% billable utilization). 3,536.5 bench hours at $50/hr."
+    },
+    "concentration_risk_top_client_pct": {
+      "value": 34.2,
+      "unit": "%",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "Atlas (ATLA) is 34.2% of invoiced revenue. Top 3 clients = 61.5%. High concentration risk."
+    },
+    "agency_effective_rate": {
+      "value": 3654.23,
+      "unit": "USD/hr",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "Average effective bill rate per project hour across the agency."
+    },
+    "forecast_90d_expected_revenue": {
+      "value": 639570.53,
+      "unit": "USD",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "90-day expected scenario: $635,896 committed + $3,675 pipeline."
+    },
+    "forecast_90d_net_cash": {
+      "value": 238545.64,
+      "unit": "USD",
+      "trend": "baseline",
+      "indicator": "--",
+      "mom_change_pct": null,
+      "qoq_change_pct": null,
+      "yoy_change_pct": null,
+      "anomaly": false,
+      "notes": "90-day net cash flow: $272,131 inflows - $33,585 outflows."
+    }
+  },
+
+  "monthly_revenue_history": {
+    "2025-10": 79944.37,
+    "2025-11": 94137.21,
+    "2025-12": 43342.73,
+    "2026-01": 96684.69,
+    "2026-02": 59108.50
+  },
+
+  "within_period_trends": {
+    "jan_to_feb_invoiced_change_pct": -26.4,
+    "jan_to_feb_collected_change_pct": -59.2,
+    "jan_collection_rate": 93.3,
+    "feb_collection_rate": 51.7,
+    "note": "Significant within-period deterioration from January to February in both invoicing and collections."
+  },
+
+  "budget_health_summary": {
+    "total_budgets": 44,
+    "green": 39,
+    "yellow": 0,
+    "red": 5,
+    "total_budget_value": 620600.18,
+    "total_spent": 228763.22,
+    "total_remaining": 391836.96,
+    "overrun_budgets": [
+      {"name": "01 New Pro B2B - Discovery", "overrun_pct": 177.4},
+      {"name": "02 New Pro B2B - Design", "overrun_pct": 7.3},
+      {"name": "04 New Pro B2B - QA / UAT", "overrun_pct": 34.9},
+      {"name": "Wire America - Launch Support", "overrun_pct": 95.2},
+      {"name": "Stonz - Budget", "overrun_pct": 61.8}
+    ]
+  },
+
+  "risk_flags": {
+    "overdue_invoices": {
+      "count": 3,
+      "total_usd": 21283.38,
+      "details": [
+        {"client": "TA", "invoice": "002-TAA-26", "amount_usd": 8720.77, "days_overdue": 13},
+        {"client": "Ennis", "invoice": "001-ENNI-26", "amount_usd": 5556.60, "days_overdue": 11},
+        {"client": "Elte", "invoice": "001-ELTE-26", "amount_usd": 7006.00, "days_overdue": 5}
+      ]
+    },
+    "unprofitable_clients": {
+      "count": 7,
+      "clients": ["Sealand", "ACME", "Stonz", "Cowpokes", "Organika", "Fast Fix", "New Pro Container"],
+      "total_loss_usd": 14560.16
+    },
+    "high_unbilled_work": {
+      "total_usd": 482174.66,
+      "count": 50
+    }
+  },
+
+  "insights": [
+    "BASELINE ESTABLISHED: This is the first trend analysis run. All KPIs set as baseline values for future comparison.",
+    "REVENUE WITHIN-PERIOD DIP: February invoicing ($57,881) dropped 26.4% from January ($78,677). February collections ($29,900) dropped further -- only 51.7% collection rate vs January's 93.3%.",
+    "CRITICAL UTILIZATION: Billable utilization at 12.8% is far below healthy agency benchmarks (typically 60-75%). 11 of 14 team members are effectively on the bench. Bench cost of $176,825 is significant.",
+    "STRONG DSO: Days Sales Outstanding of 10 days is excellent. All AR is in the current bucket with 0% over 60 days.",
+    "CONCENTRATION RISK: Top client (Atlas) accounts for 34.2% of revenue. Top 3 clients represent 61.5%. Loss of any major client would materially impact the business.",
+    "7 UNPROFITABLE CLIENTS: Sealand, ACME, Stonz, Cowpokes, Organika, Fast Fix, and New Pro Container are consuming resources with negative or zero margins. Combined loss of $14,560.",
+    "LARGE UNBILLED PIPELINE: $482,175 in completed work has not been invoiced. Billing promptly would significantly improve cash position.",
+    "5 BUDGETS IN RED: New Pro Container has 3 overrun budgets (Discovery at 277% burn). Wire America Launch Support at 195% burn. Stonz at 162% burn.",
+    "STRONG PIPELINE: 90-day revenue forecast of $639,571 (expected scenario) shows a healthy committed backlog of $635,896.",
+    "3 OVERDUE INVOICES: $21,283 past due from TA (13 days), Ennis (11 days), and Elte (5 days). All expected to collect within 30 days."
+  ],
+
+  "next_run_note": "After the next monthly snapshot (expected 2026-04-01), MoM changes will be calculated for all KPIs. QoQ trends available after 3 months of data. YoY after 12 months.",
+
+  "computed_at": "2026-03-02T16:40:00.000Z"
+}

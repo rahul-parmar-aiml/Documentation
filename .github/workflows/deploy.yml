@@ -1,0 +1,113 @@
+name: Deploy Encrypted Docs to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install StatiCrypt
+        run: npm install -g staticrypt@3
+
+      - name: Prepare site
+        run: |
+          mkdir -p _site
+
+          # Copy everything except .git, .github, _site
+          rsync -a --exclude='.git' --exclude='.github' --exclude='_site' . _site/
+
+      - name: Generate root index page
+        run: |
+          cat > _site/index.html << 'HTMLEOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Makro Agency — CEO Dashboard</title>
+            <style>
+              * { box-sizing: border-box; margin: 0; padding: 0; }
+              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #18181b; color: #fafafa; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+              .container { max-width: 600px; width: 90%; padding: 48px 0; }
+              h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+              .subtitle { color: #a1a1aa; font-size: 14px; margin-bottom: 32px; }
+              .doc-list { list-style: none; }
+              .doc-list li { margin-bottom: 12px; }
+              .doc-list a {
+                display: block; padding: 16px 20px; background: #27272a; border: 1px solid #3f3f46;
+                border-radius: 10px; color: #fafafa; text-decoration: none; font-size: 16px; font-weight: 500;
+                transition: all 0.15s;
+              }
+              .doc-list a:hover { background: #3f3f46; border-color: #52525b; }
+              .doc-list .folder { color: #a1a1aa; font-size: 12px; margin-top: 4px; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <h1>Makro Agency — CEO Dashboard</h1>
+              <p class="subtitle">Financial intelligence reports</p>
+              <ul class="doc-list">
+          HTMLEOF
+
+          # Find all HTML files (excluding root index) and add links
+          find _site -name '*.html' -not -name 'index.html' -not -path '_site/index.html' | sort | while read f; do
+            rel="${f#_site/}"
+            dir=$(dirname "$rel")
+            name=$(basename "$rel" .html)
+            # Extract title from <title> tag if present
+            title=$(grep -oP '(?<=<title>).*?(?=</title>)' "$f" 2>/dev/null | head -1)
+            [ -z "$title" ] && title="$name"
+            echo "        <li><a href=\"$rel\">$title<div class=\"folder\">$dir</div></a></li>" >> _site/index.html
+          done
+
+          cat >> _site/index.html << 'HTMLEOF'
+              </ul>
+            </div>
+          </body>
+          </html>
+          HTMLEOF
+
+      - name: Encrypt all HTML with StatiCrypt
+        run: |
+          find _site -name '*.html' | while read f; do
+            staticrypt "$f" -p "${{ secrets.DOCS_PASSWORD }}" -o "$f" --short \
+              --template-title "Makro Agency — Login" \
+              --template-instructions "Enter the password to view this page." \
+              --template-color-primary "#18181b" \
+              --template-color-secondary "#27272a" \
+              --remember 30
+          done
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

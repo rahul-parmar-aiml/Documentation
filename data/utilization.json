@@ -1,0 +1,369 @@
+{
+  "period": {
+    "from": "2026-01-01",
+    "to": "2026-03-02"
+  },
+  "agency_wide": {
+    "active_team_members": 14,
+    "working_days": 43,
+    "available_hours": 4816,
+    "billable_hours": 615.7,
+    "non_billable_hours": 1912.3,
+    "total_tracked_hours": 2527.9,
+    "billable_utilization_pct": 12.8,
+    "total_utilization_pct": 52.5,
+    "health": "red"
+  },
+  "per_person": [
+    {
+      "person_id": "1039051",
+      "person_name": "Zineb Chouiref",
+      "available_hours": 344,
+      "billable_hours": 136.4,
+      "non_billable_hours": 195.7,
+      "total_tracked_hours": 332.1,
+      "untracked_hours": 11.9,
+      "utilization_pct": 39.7,
+      "status": "under"
+    },
+    {
+      "person_id": "1040225",
+      "person_name": "Will M",
+      "available_hours": 344,
+      "billable_hours": 122.3,
+      "non_billable_hours": 45.5,
+      "total_tracked_hours": 167.8,
+      "untracked_hours": 176.2,
+      "utilization_pct": 35.6,
+      "status": "under"
+    },
+    {
+      "person_id": "1040230",
+      "person_name": "Shakeel Mumtaz",
+      "available_hours": 344,
+      "billable_hours": 109.5,
+      "non_billable_hours": 31.2,
+      "total_tracked_hours": 140.7,
+      "untracked_hours": 203.3,
+      "utilization_pct": 31.8,
+      "status": "under"
+    },
+    {
+      "person_id": "1040226",
+      "person_name": "Haley .",
+      "available_hours": 344,
+      "billable_hours": 53.4,
+      "non_billable_hours": 151.3,
+      "total_tracked_hours": 204.7,
+      "untracked_hours": 139.3,
+      "utilization_pct": 15.5,
+      "status": "under"
+    },
+    {
+      "person_id": "1040231",
+      "person_name": "Jonathan Garay",
+      "available_hours": 344,
+      "billable_hours": 37.2,
+      "non_billable_hours": 9.0,
+      "total_tracked_hours": 46.2,
+      "untracked_hours": 297.8,
+      "utilization_pct": 10.8,
+      "status": "under"
+    },
+    {
+      "person_id": "1040224",
+      "person_name": "Jake Bennett",
+      "available_hours": 344,
+      "billable_hours": 36.1,
+      "non_billable_hours": 31.6,
+      "total_tracked_hours": 67.8,
+      "untracked_hours": 276.2,
+      "utilization_pct": 10.5,
+      "status": "under"
+    },
+    {
+      "person_id": "1110661",
+      "person_name": "Noel de Toledo",
+      "available_hours": 344,
+      "billable_hours": 34.8,
+      "non_billable_hours": 281.2,
+      "total_tracked_hours": 316.0,
+      "untracked_hours": 28.0,
+      "utilization_pct": 10.1,
+      "status": "under"
+    },
+    {
+      "person_id": "1025542",
+      "person_name": "Rahul P",
+      "available_hours": 344,
+      "billable_hours": 23.5,
+      "non_billable_hours": 129.5,
+      "total_tracked_hours": 153.0,
+      "untracked_hours": 191.0,
+      "utilization_pct": 6.8,
+      "status": "under"
+    },
+    {
+      "person_id": "1086451",
+      "person_name": "Nathan V",
+      "available_hours": 344,
+      "billable_hours": 23.2,
+      "non_billable_hours": 266.2,
+      "total_tracked_hours": 289.4,
+      "untracked_hours": 54.6,
+      "utilization_pct": 6.7,
+      "status": "under"
+    },
+    {
+      "person_id": "1039094",
+      "person_name": "Ella Fedorenko",
+      "available_hours": 344,
+      "billable_hours": 18.8,
+      "non_billable_hours": 276.1,
+      "total_tracked_hours": 294.8,
+      "untracked_hours": 49.2,
+      "utilization_pct": 5.5,
+      "status": "under"
+    },
+    {
+      "person_id": "1040229",
+      "person_name": "John Keats",
+      "available_hours": 344,
+      "billable_hours": 11.4,
+      "non_billable_hours": 221.0,
+      "total_tracked_hours": 232.4,
+      "untracked_hours": 111.6,
+      "utilization_pct": 3.3,
+      "status": "under"
+    },
+    {
+      "person_id": "1040227",
+      "person_name": "Daniel Ken",
+      "available_hours": 344,
+      "billable_hours": 9.1,
+      "non_billable_hours": 225.4,
+      "total_tracked_hours": 234.5,
+      "untracked_hours": 109.5,
+      "utilization_pct": 2.6,
+      "status": "under"
+    },
+    {
+      "person_id": "1033407",
+      "person_name": "Isabel Maier",
+      "available_hours": 344,
+      "billable_hours": 0.0,
+      "non_billable_hours": 48.0,
+      "total_tracked_hours": 48.0,
+      "untracked_hours": 296.0,
+      "utilization_pct": 0.0,
+      "status": "under"
+    },
+    {
+      "person_id": "1039063",
+      "person_name": "Olu O",
+      "available_hours": 344,
+      "billable_hours": 0.0,
+      "non_billable_hours": 0.5,
+      "total_tracked_hours": 0.5,
+      "untracked_hours": 343.5,
+      "utilization_pct": 0.0,
+      "status": "under"
+    }
+  ],
+  "bench": {
+    "people_on_bench": [
+      {
+        "person_id": "1040226",
+        "person_name": "Haley .",
+        "utilization_pct": 15.5,
+        "bench_hours": 290.6,
+        "bench_cost": 14530.0
+      },
+      {
+        "person_id": "1040231",
+        "person_name": "Jonathan Garay",
+        "utilization_pct": 10.8,
+        "bench_hours": 306.8,
+        "bench_cost": 15340.0
+      },
+      {
+        "person_id": "1040224",
+        "person_name": "Jake Bennett",
+        "utilization_pct": 10.5,
+        "bench_hours": 307.9,
+        "bench_cost": 15395.0
+      },
+      {
+        "person_id": "1110661",
+        "person_name": "Noel de Toledo",
+        "utilization_pct": 10.1,
+        "bench_hours": 309.2,
+        "bench_cost": 15460.0
+      },
+      {
+        "person_id": "1025542",
+        "person_name": "Rahul P",
+        "utilization_pct": 6.8,
+        "bench_hours": 320.5,
+        "bench_cost": 16025.0
+      },
+      {
+        "person_id": "1086451",
+        "person_name": "Nathan V",
+        "utilization_pct": 6.7,
+        "bench_hours": 320.8,
+        "bench_cost": 16040.0
+      },
+      {
+        "person_id": "1039094",
+        "person_name": "Ella Fedorenko",
+        "utilization_pct": 5.5,
+        "bench_hours": 325.2,
+        "bench_cost": 16260.0
+      },
+      {
+        "person_id": "1040229",
+        "person_name": "John Keats",
+        "utilization_pct": 3.3,
+        "bench_hours": 332.6,
+        "bench_cost": 16630.0
+      },
+      {
+        "person_id": "1040227",
+        "person_name": "Daniel Ken",
+        "utilization_pct": 2.6,
+        "bench_hours": 334.9,
+        "bench_cost": 16745.0
+      },
+      {
+        "person_id": "1033407",
+        "person_name": "Isabel Maier",
+        "utilization_pct": 0.0,
+        "bench_hours": 344.0,
+        "bench_cost": 17200.0
+      },
+      {
+        "person_id": "1039063",
+        "person_name": "Olu O",
+        "utilization_pct": 0.0,
+        "bench_hours": 344.0,
+        "bench_cost": 17200.0
+      }
+    ],
+    "total_bench_hours": 3536.5,
+    "total_bench_cost": 176825.0
+  },
+  "over_allocated": [],
+  "capacity_next_30_days": {
+    "forecast_period": {
+      "from": "2026-03-02",
+      "to": "2026-04-01"
+    },
+    "forecast_working_days": 23,
+    "total_capacity_hours": 2576,
+    "total_booked_hours": 0,
+    "total_available_hours": 2576,
+    "note": "No bookings found for this period. All capacity is unallocated.",
+    "by_person": [
+      {
+        "person_id": "1039051",
+        "person_name": "Zineb Chouiref",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1040225",
+        "person_name": "Will M",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1040230",
+        "person_name": "Shakeel Mumtaz",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1040226",
+        "person_name": "Haley .",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1040231",
+        "person_name": "Jonathan Garay",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1040224",
+        "person_name": "Jake Bennett",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1110661",
+        "person_name": "Noel de Toledo",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1025542",
+        "person_name": "Rahul P",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1086451",
+        "person_name": "Nathan V",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1039094",
+        "person_name": "Ella Fedorenko",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1040229",
+        "person_name": "John Keats",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1040227",
+        "person_name": "Daniel Ken",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1033407",
+        "person_name": "Isabel Maier",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      },
+      {
+        "person_id": "1039063",
+        "person_name": "Olu O",
+        "total_capacity_hours": 184,
+        "booked_hours": 0,
+        "available_hours": 184
+      }
+    ]
+  },
+  "computed_at": "2026-03-02T16:34:35.236085Z"
+}

@@ -1,0 +1,365 @@
+{
+  "period": {
+    "from": "2026-01-01",
+    "to": "2026-03-02"
+  },
+  "base_currency": "USD",
+  "conversion_rates": {
+    "CAD_to_USD": 0.735
+  },
+  "total_invoiced_usd": 136557.25,
+  "total_invoiced_by_currency": {
+    "CAD": 95350.0,
+    "USD": 66475.0
+  },
+  "total_collected_usd": 103284.25,
+  "total_outstanding_usd": 33273.0,
+  "total_draft_pipeline_usd": 82696.5,
+  "collection_rate_pct": 75.6,
+  "avg_days_to_payment": 17.1,
+  "on_time_payment_pct": 15.4,
+  "cash_received_in_period_usd": 155793.18,
+  "cash_received_by_currency": {
+    "CAD": 120548.55,
+    "USD": 67190.0
+  },
+  "mrr_estimate_usd": 43478.62,
+  "recurring_clients": [
+    "ACME",
+    "Atlas (ATLA)",
+    "BioK",
+    "CL001 Client",
+    "Ennis (ENNI)",
+    "NewPath (NEWP)",
+    "Sealand (SQF)",
+    "TAA"
+  ],
+  "non_recurring_revenue_usd": 49600.0,
+  "revenue_by_client": [
+    {
+      "client_name": "Atlas (ATLA)",
+      "invoiced_usd": 46635.75,
+      "collected_usd": 36272.25,
+      "outstanding_usd": 10363.5,
+      "pct_of_total": 34.2,
+      "invoice_count": 3
+    },
+    {
+      "client_name": "Perficient (PERF)",
+      "invoiced_usd": 21000.0,
+      "collected_usd": 21000.0,
+      "outstanding_usd": 0,
+      "pct_of_total": 15.4,
+      "invoice_count": 2
+    },
+    {
+      "client_name": "CL001 Client",
+      "invoiced_usd": 16200.0,
+      "collected_usd": 16200.0,
+      "outstanding_usd": 0,
+      "pct_of_total": 11.9,
+      "invoice_count": 2
+    },
+    {
+      "client_name": "TAA",
+      "invoiced_usd": 15435.0,
+      "collected_usd": 7717.5,
+      "outstanding_usd": 7717.5,
+      "pct_of_total": 11.3,
+      "invoice_count": 2
+    },
+    {
+      "client_name": "Fume (FUME)",
+      "invoiced_usd": 9500.0,
+      "collected_usd": 9500.0,
+      "outstanding_usd": 0,
+      "pct_of_total": 7.0,
+      "invoice_count": 1
+    },
+    {
+      "client_name": "Wireline (WIRE)",
+      "invoiced_usd": 7400.0,
+      "collected_usd": 3700.0,
+      "outstanding_usd": 3700.0,
+      "pct_of_total": 5.4,
+      "invoice_count": 2
+    },
+    {
+      "client_name": "Eltera (ELTE)",
+      "invoiced_usd": 6200.0,
+      "collected_usd": 0,
+      "outstanding_usd": 6200.0,
+      "pct_of_total": 4.5,
+      "invoice_count": 1
+    },
+    {
+      "client_name": "Ennis (ENNI)",
+      "invoiced_usd": 5292.0,
+      "collected_usd": 0,
+      "outstanding_usd": 5292.0,
+      "pct_of_total": 3.9,
+      "invoice_count": 1
+    },
+    {
+      "client_name": "Hovercraft (HOVE)",
+      "invoiced_usd": 3700.0,
+      "collected_usd": 3700.0,
+      "outstanding_usd": 0,
+      "pct_of_total": 2.7,
+      "invoice_count": 1
+    },
+    {
+      "client_name": "BioK",
+      "invoiced_usd": 2719.5,
+      "collected_usd": 2719.5,
+      "outstanding_usd": 0,
+      "pct_of_total": 2.0,
+      "invoice_count": 1
+    },
+    {
+      "client_name": "MIAB",
+      "invoiced_usd": 1800.0,
+      "collected_usd": 1800.0,
+      "outstanding_usd": 0,
+      "pct_of_total": 1.3,
+      "invoice_count": 1
+    },
+    {
+      "client_name": "ACME",
+      "invoiced_usd": 675.0,
+      "collected_usd": 675.0,
+      "outstanding_usd": 0,
+      "pct_of_total": 0.5,
+      "invoice_count": 1
+    }
+  ],
+  "revenue_by_month": [
+    {
+      "month": "2026-01",
+      "invoiced_usd": 78676.25,
+      "collected_usd": 73384.25,
+      "collection_rate": 93.3,
+      "mom_growth_pct": null
+    },
+    {
+      "month": "2026-02",
+      "invoiced_usd": 57881.0,
+      "collected_usd": 29900.0,
+      "collection_rate": 51.7,
+      "mom_growth_pct": -26.4
+    }
+  ],
+  "concentration_risk": {
+    "top_client_pct": 34.2,
+    "top_3_clients_pct": 61.5
+  },
+  "invoice_count": {
+    "total_period": 29,
+    "sent_or_paid": 18,
+    "drafts": 11,
+    "paid": 13,
+    "sent_unpaid": 5
+  },
+  "payment_count_in_period": 22,
+  "invoices_detail": [
+    {
+      "id": "1142252",
+      "number": "001-BIOK-26",
+      "client": "BioK",
+      "issue_date": "2026-01-01",
+      "currency": "CAD",
+      "amount": 3700.0,
+      "amount_usd": 2719.5,
+      "status": "paid",
+      "paid_on": "2026-02-03"
+    },
+    {
+      "id": "1142268",
+      "number": "001-TAA-26",
+      "client": "TAA",
+      "issue_date": "2026-01-01",
+      "currency": "CAD",
+      "amount": 10500.0,
+      "amount_usd": 7717.5,
+      "status": "paid",
+      "paid_on": "2026-01-22"
+    },
+    {
+      "id": "1165118",
+      "number": "001-CL001-26",
+      "client": "CL001 Client",
+      "issue_date": "2026-01-02",
+      "currency": "USD",
+      "amount": 8100.0,
+      "amount_usd": 8100.0,
+      "status": "paid",
+      "paid_on": "2026-01-16"
+    },
+    {
+      "id": "1164858",
+      "number": "001-HOVE-26",
+      "client": "Hovercraft (HOVE)",
+      "issue_date": "2026-01-07",
+      "currency": "USD",
+      "amount": 3700.0,
+      "amount_usd": 3700.0,
+      "status": "paid",
+      "paid_on": "2026-01-26"
+    },
+    {
+      "id": "1080891",
+      "number": "001-ATLA-26",
+      "client": "Atlas (ATLA)",
+      "issue_date": "2026-01-08",
+      "currency": "CAD",
+      "amount": 28200.0,
+      "amount_usd": 20727.0,
+      "status": "paid",
+      "paid_on": "2026-01-28"
+    },
+    {
+      "id": "1142258",
+      "number": "001-ENNI-26",
+      "client": "Ennis (ENNI)",
+      "issue_date": "2026-01-08",
+      "currency": "CAD",
+      "amount": 7200.0,
+      "amount_usd": 5292.0,
+      "status": "sent",
+      "paid_on": null
+    },
+    {
+      "id": "1142273",
+      "number": "001-WIRE-26",
+      "client": "Wireline (WIRE)",
+      "issue_date": "2026-01-08",
+      "currency": "USD",
+      "amount": 3700.0,
+      "amount_usd": 3700.0,
+      "status": "paid",
+      "paid_on": "2026-02-06"
+    },
+    {
+      "id": "1164579",
+      "number": "001-PERF-26",
+      "client": "Perficient (PERF)",
+      "issue_date": "2026-01-20",
+      "currency": "USD",
+      "amount": 10500.0,
+      "amount_usd": 10500.0,
+      "status": "paid",
+      "paid_on": "2026-01-26"
+    },
+    {
+      "id": "1153963",
+      "number": null,
+      "client": "ACME",
+      "issue_date": "2026-01-23",
+      "currency": "USD",
+      "amount": 675.0,
+      "amount_usd": 675.0,
+      "status": "paid",
+      "paid_on": "2026-02-13"
+    },
+    {
+      "id": "1080895",
+      "number": "002-ATLA-26",
+      "client": "Atlas (ATLA)",
+      "issue_date": "2026-01-27",
+      "currency": "CAD",
+      "amount": 21150.0,
+      "amount_usd": 15545.25,
+      "status": "paid",
+      "paid_on": "2026-02-13"
+    },
+    {
+      "id": "1164515",
+      "number": "002-PERF-26",
+      "client": "Perficient (PERF)",
+      "issue_date": "2026-02-02",
+      "currency": "USD",
+      "amount": 10500.0,
+      "amount_usd": 10500.0,
+      "status": "paid",
+      "paid_on": "2026-02-18"
+    },
+    {
+      "id": "1165150",
+      "number": "002-CL001-26",
+      "client": "CL001 Client",
+      "issue_date": "2026-02-02",
+      "currency": "USD",
+      "amount": 8100.0,
+      "amount_usd": 8100.0,
+      "status": "paid",
+      "paid_on": "2026-02-17"
+    },
+    {
+      "id": "1165216",
+      "number": "002-TAA-26",
+      "client": "TAA",
+      "issue_date": "2026-02-02",
+      "currency": "CAD",
+      "amount": 10500.0,
+      "amount_usd": 7717.5,
+      "status": "sent",
+      "paid_on": null
+    },
+    {
+      "id": "1178553",
+      "number": "001-MIAB-26",
+      "client": "MIAB",
+      "issue_date": "2026-02-10",
+      "currency": "USD",
+      "amount": 1800.0,
+      "amount_usd": 1800.0,
+      "status": "paid",
+      "paid_on": "2026-02-13"
+    },
+    {
+      "id": "1207597",
+      "number": "001-ELTE-26",
+      "client": "Eltera (ELTE)",
+      "issue_date": "2026-02-10",
+      "currency": "USD",
+      "amount": 6200.0,
+      "amount_usd": 6200.0,
+      "status": "sent",
+      "paid_on": null
+    },
+    {
+      "id": "1207595",
+      "number": "001-FUME-26",
+      "client": "Fume (FUME)",
+      "issue_date": "2026-02-17",
+      "currency": "USD",
+      "amount": 9500.0,
+      "amount_usd": 9500.0,
+      "status": "paid",
+      "paid_on": "2026-02-25"
+    },
+    {
+      "id": "1165325",
+      "number": "002-WIRE-26",
+      "client": "Wireline (WIRE)",
+      "issue_date": "2026-02-18",
+      "currency": "USD",
+      "amount": 3700.0,
+      "amount_usd": 3700.0,
+      "status": "sent",
+      "paid_on": null
+    },
+    {
+      "id": "1080893",
+      "number": "003-ATLA-26",
+      "client": "Atlas (ATLA)",
+      "issue_date": "2026-02-26",
+      "currency": "CAD",
+      "amount": 14100.0,
+      "amount_usd": 10363.5,
+      "status": "sent",
+      "paid_on": null
+    }
+  ],
+  "computed_at": "2026-03-02T16:31:03.987831Z"
+}
