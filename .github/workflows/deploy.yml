@@ -122,7 +122,7 @@ jobs:
           find _site -name '*.html' -print
           for f in $(find _site -name '*.html'); do
             echo "Encrypting: $f"
-            staticrypt "$f" -p "${{ secrets.DOCS_PASSWORD }}" -o "$f" \
+            staticrypt "$f" -p "${{ secrets.DOCS_PASSWORD }}" -o "$f" --short \
               --template-title "Makro Agency — Login" \
               --template-instructions "Enter the password to view this page." \
               --template-color-primary "#18181b" \
