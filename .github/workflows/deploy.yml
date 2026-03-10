@@ -116,20 +116,22 @@ jobs:
 
       - name: Encrypt all HTML with StatiCrypt
         run: |
-          echo "StatiCrypt version:"
-          staticrypt --version || true
-          echo "Files to encrypt:"
-          find _site -name '*.html' -print
+          mkdir -p _encrypted
           for f in $(find _site -name '*.html'); do
-            echo "Encrypting: $f"
-            staticrypt "$f" -p "${{ secrets.DOCS_PASSWORD }}" -o "$f" --short \
+            rel="${f#_site/}"
+            dir=$(dirname "$rel")
+            mkdir -p "_encrypted/$dir"
+            staticrypt "$f" -p "${{ secrets.DOCS_PASSWORD }}" -d "_encrypted/$dir" --short \
               --template-title "Makro Agency — Login" \
               --template-instructions "Enter the password to view this page." \
               --template-color-primary "#18181b" \
               --template-color-secondary "#27272a" \
               --remember 30
-            echo "Done: $f"
+            echo "Encrypted: $rel"
           done
+          # Replace originals with encrypted versions
+          cp -r _encrypted/* _site/
+          rm -rf _encrypted
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
