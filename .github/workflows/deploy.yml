@@ -116,13 +116,19 @@ jobs:
 
       - name: Encrypt all HTML with StatiCrypt
         run: |
-          find _site -name '*.html' | while read f; do
-            staticrypt "$f" -p "${{ secrets.DOCS_PASSWORD }}" -o "$f" --short \
+          echo "StatiCrypt version:"
+          staticrypt --version || true
+          echo "Files to encrypt:"
+          find _site -name '*.html' -print
+          for f in $(find _site -name '*.html'); do
+            echo "Encrypting: $f"
+            staticrypt "$f" -p "${{ secrets.DOCS_PASSWORD }}" -o "$f" \
               --template-title "Makro Agency — Login" \
               --template-instructions "Enter the password to view this page." \
               --template-color-primary "#18181b" \
               --template-color-secondary "#27272a" \
               --remember 30
+            echo "Done: $f"
           done
 
       - name: Upload Pages artifact
