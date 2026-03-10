@@ -1,4 +1,4 @@
-name: Deploy Encrypted Docs to GitHub Pages
+name: Build & Deploy Encrypted Docs
 
 on:
   push:
@@ -24,15 +24,46 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install StatiCrypt
-        run: npm install -g staticrypt@3
+      - name: Install tools
+        run: |
+          sudo apt-get update && sudo apt-get install -y pandoc
+          npm install -g staticrypt@3
 
-      - name: Prepare site
+      - name: Build site from mixed content
         run: |
           mkdir -p _site
 
-          # Copy everything except .git, .github, _site
-          rsync -a --exclude='.git' --exclude='.github' --exclude='_site' . _site/
+          # Convert markdown files to HTML
+          find . -name '*.md' -not -path './.github/*' -not -path './_site/*' | while read md; do
+            rel="${md#./}"
+            dir=$(dirname "$rel")
+            base=$(basename "$rel" .md)
+            mkdir -p "_site/$dir"
+            pandoc "$md" \
+              --standalone \
+              --metadata title="$(head -1 "$md" | sed 's/^#\s*//')" \
+              --css="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css" \
+              --template=_template.html \
+              -o "_site/$dir/$base.html"
+          done
+
+          # Copy HTML files as-is
+          find . -name '*.html' -not -path './.github/*' -not -path './_site/*' -not -name '_template.html' | while read f; do
+            rel="${f#./}"
+            dir=$(dirname "$rel")
+            mkdir -p "_site/$dir"
+            cp "$f" "_site/$rel"
+          done
+
+          # Copy all non-markdown, non-HTML assets
+          find . -not -path './.git/*' -not -path './.github/*' -not -path './_site/*' \
+                 -not -name '*.md' -not -name '*.html' -not -name '_template.html' -not -name '*.yml' \
+                 -type f | while read f; do
+            rel="${f#./}"
+            dir=$(dirname "$rel")
+            mkdir -p "_site/$dir"
+            cp "$f" "_site/$rel"
+          done
 
       - name: Generate root index page
         run: |
@@ -42,7 +73,7 @@ jobs:
           <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Makro Agency — CEO Dashboard</title>
+            <title>Makro Agency — Documentation</title>
             <style>
               * { box-sizing: border-box; margin: 0; padding: 0; }
               body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #18181b; color: #fafafa; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
@@ -62,17 +93,15 @@ jobs:
           </head>
           <body>
             <div class="container">
-              <h1>Makro Agency — CEO Dashboard</h1>
-              <p class="subtitle">Financial intelligence reports</p>
+              <h1>Makro Agency — Documentation</h1>
+              <p class="subtitle">Internal reports & documentation</p>
               <ul class="doc-list">
           HTMLEOF
 
-          # Find all HTML files (excluding root index) and add links
           find _site -name '*.html' -not -name 'index.html' -not -path '_site/index.html' | sort | while read f; do
             rel="${f#_site/}"
             dir=$(dirname "$rel")
             name=$(basename "$rel" .html)
-            # Extract title from <title> tag if present
             title=$(grep -oP '(?<=<title>).*?(?=</title>)' "$f" 2>/dev/null | head -1)
             [ -z "$title" ] && title="$name"
             echo "        <li><a href=\"$rel\">$title<div class=\"folder\">$dir</div></a></li>" >> _site/index.html
