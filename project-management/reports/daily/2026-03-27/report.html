@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Workwear B2B — PM Report | March 27, 2026</title>
+<style>
+:root {
+  --color-background: #FFFFFF;
+  --color-foreground: #090909;
+  --color-foreground-secondary: #6B6B6B;
+  --color-accent: #090909;
+  --color-border: #E5E2DF;
+  --color-surface: #F7F6F4;
+  --color-surface-alt: #F0EFED;
+  --color-red: #dc2626;
+  --color-amber: #ca8a04;
+  --color-green: #16a34a;
+  --color-blue: #2563eb;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-sans); color: var(--color-foreground); background: var(--color-background); line-height: 1.6; font-size: 14px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+h2 { font-size: 20px; font-weight: 700; margin-top: 32px; margin-bottom: 12px; border-bottom: 2px solid var(--color-border); padding-bottom: 8px; }
+h3 { font-size: 16px; font-weight: 600; margin-top: 20px; margin-bottom: 8px; }
+h4 { font-size: 14px; font-weight: 600; margin-top: 16px; margin-bottom: 6px; }
+p { margin-bottom: 8px; }
+.body-small { font-size: 12px; color: var(--color-foreground-secondary); }
+.muted { color: var(--color-foreground-secondary); }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+th { background: var(--color-surface); text-align: left; padding: 8px 10px; font-weight: 600; border-bottom: 2px solid var(--color-border); }
+td { padding: 8px 10px; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+tr:hover { background: var(--color-surface); }
+.severity-p0 { background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600; }
+.severity-p1 { background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600; }
+.severity-p2 { background:#ca8a04;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600; }
+.severity-p3 { background:#2563eb;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600; }
+.rag-red { background: #fecaca; color: #991b1b; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 13px; display: inline-block; }
+.rag-amber { background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 13px; display: inline-block; }
+.rag-green { background: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 13px; display: inline-block; }
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 12px 0; }
+.kpi-card { background: var(--color-surface); border-radius: 8px; padding: 14px; border: 1px solid var(--color-border); }
+.kpi-card .label { font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--color-foreground-secondary); margin-bottom: 4px; }
+.kpi-card .value { font-size: 22px; font-weight: 700; }
+.kpi-card .trend { font-size: 12px; color: var(--color-foreground-secondary); }
+.comm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0; }
+.comm-card { background: var(--color-surface); border-radius: 8px; padding: 12px; border: 1px solid var(--color-border); text-align: center; }
+.comm-card .comm-value { font-size: 20px; font-weight: 700; }
+.comm-card .comm-label { font-size: 11px; color: var(--color-foreground-secondary); }
+.alert-red { background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 12px; margin: 8px 0; }
+.alert-amber { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 12px; margin: 8px 0; }
+.progress-bar { background: var(--color-surface-alt); border-radius: 4px; height: 8px; overflow: hidden; margin: 4px 0; }
+.progress-fill { height: 100%; border-radius: 4px; }
+.source-badge { padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+.source-productive { background: #F0EFED; color: #090909; }
+.source-jira { background: #DBEAFE; color: #2563EB; }
+.source-slack { background: #EDE9FE; color: #7C3AED; }
+.source-gmail { background: #D1FAE5; color: #0C4238; }
+.source-github { background: #E5E2DF; color: #4D4C4B; }
+.source-fireflies { background: #FFEDD5; color: #A83C00; }
+.source-raid { background: #FEE2E2; color: #991B1B; }
+.type-badge { padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; background: var(--color-surface-alt); color: var(--color-foreground-secondary); }
+.sentiment-badge { padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+.sentiment-badge.dip { background: #fef2f2; color: #dc2626; }
+details { margin: 8px 0; }
+details summary { cursor: pointer; font-weight: 600; padding: 6px 0; }
+details summary:hover { color: var(--color-blue); }
+.timeline { margin: 16px 0; }
+.timeline-stats { font-size: 13px; color: var(--color-foreground-secondary); margin-bottom: 12px; padding: 8px 12px; background: var(--color-surface); border-radius: 8px; }
+.timeline-day { border-left: 2px solid var(--color-border); margin-left: 12px; padding-left: 16px; }
+.timeline-event { margin-bottom: 12px; padding: 10px; background: var(--color-surface); border-radius: 8px; }
+.event-badges { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; flex-wrap: wrap; }
+.event-title { font-weight: 600; font-size: 13px; }
+.event-meta { font-size: 12px; color: var(--color-foreground-secondary); }
+.achievement-card { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 14px; margin: 8px 0; }
+.achievement-card .ach-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.achievement-card .ach-desc { font-size: 13px; color: var(--color-foreground-secondary); }
+.achievement-card .ach-impact { font-size: 12px; color: #166534; margin-top: 4px; }
+.action-row { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 8px; }
+.action-num { background: var(--color-foreground); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.history-pills { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+.history-pill { padding: 4px 10px; border-radius: 16px; font-size: 12px; background: var(--color-surface); border: 1px solid var(--color-border); }
+.badge-stale { background: #fef2f2; color: #991b1b; font-size: 11px; padding: 1px 6px; border-radius: 8px; }
+.badge-open { background: #eff6ff; color: #1e40af; font-size: 11px; padding: 1px 6px; border-radius: 8px; }
+.badge-in-progress { background: #f0fdf4; color: #166534; font-size: 11px; padding: 1px 6px; border-radius: 8px; }
+.signal-card { background: var(--color-surface); border-radius: 8px; padding: 12px; margin: 8px 0; border-left: 3px solid var(--color-border); }
+.signal-card blockquote { font-style: italic; color: var(--color-foreground-secondary); margin: 6px 0; padding-left: 8px; border-left: 2px solid var(--color-border); }
+/* Tab Navigation */
+.tab-nav { position: relative; }
+.tab-nav input[type="radio"] { display: none; }
+.tab-nav label {
+  display: inline-block; padding: 12px 24px; cursor: pointer;
+  font-weight: 600; font-size: 14px; border-bottom: 3px solid transparent;
+  color: var(--color-foreground-secondary);
+}
+.tab-nav input[type="radio"]:checked + label {
+  color: var(--color-foreground);
+  border-bottom-color: var(--color-accent);
+}
+.tab-content { display: none; padding: 24px 0; }
+#tab-report:checked ~ #content-report { display: block; }
+#tab-sentiment:checked ~ #content-sentiment { display: block; }
+.report-footer { margin-top: 32px; padding: 16px 0; border-top: 1px solid var(--color-border); font-size: 12px; color: var(--color-foreground-secondary); text-align: center; }
+@media (max-width: 768px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .comm-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<h1>Atlas Workwear B2B Website</h1>
+<div class="body-small">March 27, 2026 &middot; Run ID: run-2026-03-27-001 &middot; Prepared by Makro Agency</div>
+<div class="body-small muted">Last updated: March 27, 2026 at 12:42 PM IST</div>
+
+<!-- TAB NAVIGATION -->
+<div class="tab-nav">
+  <input type="radio" id="tab-report" name="tabs" checked>
+  <label for="tab-report">Report</label>
+  <input type="radio" id="tab-sentiment" name="tabs">
+  <label for="tab-sentiment">Sentiment</label>
+
+  <!-- ==================== REPORT TAB ==================== -->
+  <div class="tab-content" id="content-report">
+
+<!-- ===== SECTION 1: DATA CONFIDENCE ===== -->
+<h2>1. Data Confidence</h2>
+<table>
+  <tr>
+    <th>Source</th><th>Status</th><th>Items Synced</th>
+  </tr>
+  <tr><td>Productive</td><td data-source="data_confidence.sources.productive.status">&#9989; completed</td><td data-source="data_confidence.sources.productive.items_synced">902</td></tr>
+  <tr><td>Jira</td><td data-source="data_confidence.sources.jira.status">&#9989; completed</td><td data-source="data_confidence.sources.jira.items_synced">1,622</td></tr>
+  <tr><td>Slack</td><td data-source="data_confidence.sources.slack.status">&#9989; completed</td><td data-source="data_confidence.sources.slack.items_synced">141</td></tr>
+  <tr><td>Gmail</td><td data-source="data_confidence.sources.gmail.status">&#9989; completed</td><td data-source="data_confidence.sources.gmail.items_synced">201</td></tr>
+  <tr><td>GitHub</td><td data-source="data_confidence.sources.github.status">&#9989; completed</td><td data-source="data_confidence.sources.github.items_synced">339</td></tr>
+  <tr><td>Fireflies</td><td data-source="data_confidence.sources.fireflies.status">&#9989; completed</td><td data-source="data_confidence.sources.fireflies.items_synced">96</td></tr>
+</table>
+<p class="muted" style="font-size:12px;">All 6 data sources synced successfully. Total items: 3,301. Numbers may understate actual situation where coverage is partial.</p>
+
+<!-- ===== SECTION 2: PROJECT PULSE ===== -->
+<h2>2. Project Pulse</h2>
+<p class="muted"><em>"Is the project on track?"</em></p>
+
+<!-- 2a: Three-Pillar Health -->
+<h3>2a. Three-Pillar Health (Makro Standard)</h3>
+<div style="display:flex;gap:12px;margin:12px 0;flex-wrap:wrap;">
+  <div style="flex:1;min-width:200px;text-align:center;">
+    <span class="rag-red">BUDGET: RED</span>
+    <p class="muted" style="font-size:12px;margin-top:6px;">Immediate intervention required. 3 expired budget phases, $5,244 design overrun, projected $11,261 shortfall.</p>
+  </div>
+  <div style="flex:1;min-width:200px;text-align:center;">
+    <span class="rag-red">TIMELINE: RED</span>
+    <p class="muted" style="font-size:12px;margin-top:6px;">Immediate intervention required. SPI 0.58, April 1 B2B launch physically impossible, minimum 5-7 working days of critical path remaining.</p>
+  </div>
+  <div style="flex:1;min-width:200px;text-align:center;">
+    <span class="rag-red">RAID: RED</span>
+    <p class="muted" style="font-size:12px;margin-top:6px;">Immediate intervention required. 4 P0 RAID items, 22 P1 items, 14 active blockers (5 at P1), 24 open commitments with 0% completion.</p>
+  </div>
+</div>
+<div class="alert-red">
+  <strong>Overall Status: RED</strong> &mdash; All three pillars at Red. The project requires immediate executive-level intervention. April 1 B2B launch is not achievable; realistic earliest date is April 7-10.
+</div>
+
+<!-- 2a2: KPI Dashboard -->
+<h3>2a2. KPI Dashboard</h3>
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="label">SPI</div>
+    <div class="value" data-source="kpi_dashboard.spi.current">0.58</div>
+    <div class="trend" data-source="kpi_dashboard.spi.trend_arrow">&rarr; (was 0.59)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Budget Utilization %</div>
+    <div class="value" data-source="kpi_dashboard.budget_utilization_pct.current">39.8%</div>
+    <div class="trend" data-source="kpi_dashboard.budget_utilization_pct.trend_arrow">&rarr; (was 39.8%)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Velocity (pts/week)</div>
+    <div class="value" data-source="kpi_dashboard.velocity_avg.current">5.2</div>
+    <div class="trend" data-source="kpi_dashboard.velocity_avg.trend_arrow">&rarr; (was 5.2)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Days Remaining</div>
+    <div class="value" data-source="kpi_dashboard.days_remaining.current" style="color:var(--color-red);">3</div>
+    <div class="trend" data-source="kpi_dashboard.days_remaining.trend_arrow">&darr; (was 4)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Scope Drift %</div>
+    <div class="value" data-source="kpi_dashboard.scope_drift_pct.current">0.0%</div>
+    <div class="trend" data-source="kpi_dashboard.scope_drift_pct.trend_arrow">&rarr; (was 0.0%)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Open Blockers</div>
+    <div class="value" data-source="kpi_dashboard.open_blockers.current" style="color:var(--color-red);">11</div>
+    <div class="trend" data-source="kpi_dashboard.open_blockers.trend_arrow">&rarr; (was 11)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Client Concerns</div>
+    <div class="value" data-source="kpi_dashboard.client_concerns_count.current" style="color:var(--color-red);">19</div>
+    <div class="trend" data-source="kpi_dashboard.client_concerns_count.trend_arrow">&uarr; (was 18)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Completion %</div>
+    <div class="value" data-source="kpi_dashboard.completion_pct.current">58.1%</div>
+    <div class="trend" data-source="kpi_dashboard.completion_pct.trend_arrow">&rarr; (was 58.7%)</div>
+  </div>
+</div>
+
+<h4>Budget Totals</h4>
+<div style="display:flex;gap:16px;flex-wrap:wrap;margin:8px 0;">
+  <div class="kpi-card" style="flex:1;min-width:200px;">
+    <div class="label">Total Allocated (All Phases)</div>
+    <div class="value" data-source="budget_totals.all_total_cents">$105,524.00</div>
+  </div>
+  <div class="kpi-card" style="flex:1;min-width:200px;">
+    <div class="label">Total Spent (All Phases)</div>
+    <div class="value" data-source="budget_totals.all_spent_cents">$81,137.92</div>
+  </div>
+  <div class="kpi-card" style="flex:1;min-width:200px;">
+    <div class="label">Active Budget (Open Phases)</div>
+    <div class="value" data-source="budget_totals.open_total_cents">$78,255.00</div>
+  </div>
+  <div class="kpi-card" style="flex:1;min-width:200px;">
+    <div class="label">Active Remaining</div>
+    <div class="value" data-source="budget_totals.open_total_cents - budget_totals.open_spent_cents">$25,616.33</div>
+  </div>
+</div>
+
+<!-- 2e: Communication Pulse -->
+<h3>2e. Communication Pulse</h3>
+<div class="comm-grid">
+  <div class="comm-card">
+    <div class="comm-value" data-source="communication_health.slack.avg_messages_per_day">2.4</div>
+    <div class="comm-label">Slack msgs/day</div>
+  </div>
+  <div class="comm-card">
+    <div class="comm-value" data-source="communication_health.slack.unanswered_messages">0</div>
+    <div class="comm-label">Unanswered Slack</div>
+  </div>
+  <div class="comm-card">
+    <div class="comm-value" data-source="communication_health.email.unread_count">5</div>
+    <div class="comm-label">Emails Unread</div>
+  </div>
+  <div class="comm-card" style="border-color:var(--color-red);">
+    <div class="comm-value" style="color:var(--color-red);" data-source="communication_health.email.unread_client_emails">4</div>
+    <div class="comm-label">Unread Client Emails</div>
+  </div>
+  <div class="comm-card">
+    <div class="comm-value" data-source="communication_health.meetings.count_this_week">2</div>
+    <div class="comm-label">Meetings This Week</div>
+  </div>
+  <div class="comm-card">
+    <div class="comm-value" data-source="communication_health.meetings.total_minutes_this_week">0</div>
+    <div class="comm-label">Meeting Minutes</div>
+  </div>
+</div>
+<div class="alert-red">
+  <strong>4 unread client emails</strong> from Kevin Fafard, Eric Parsons (x2), and Tye Willcott. Per Makro Belief #10: silence is unacceptable. These require immediate acknowledgment.
+</div>
+<div class="comm-grid">
+  <div class="comm-card">
+    <div class="comm-value" data-source="kpi_dashboard.slack_messages_today.current">0</div>
+    <div class="comm-label">Slack Messages Today</div>
+  </div>
+  <div class="comm-card">
+    <div class="comm-value" data-source="kpi_dashboard.emails_today.current">0</div>
+    <div class="comm-label">Emails Today</div>
+  </div>
+  <div class="comm-card">
+    <div class="comm-value" data-source="kpi_dashboard.meetings_today.current">1</div>
+    <div class="comm-label">Meetings Today</div>
+  </div>
+</div>
+
+<!-- 2b: Progress Narrative -->
+<h3>2b. Progress Narrative</h3>
+<table>
+  <tr><th>Date</th><th>Mood</th><th>Narrative</th></tr>
+  <tr>
+    <td data-source="progress_narrative.entries[0].journal_date">2026-03-27</td>
+    <td>&#x1F7E0; concerning</td>
+    <td data-source="progress_narrative.entries[0].narrative">A new blocker emerged today when Rahul flagged via Slack that the variant split (AW-1133) and item weight changes are blocked by developer (Zeyneb) holidays, directly impacting two in-progress commitments and the Monday integration UAT target. The weekly connect meeting from March 26 was fully processed, yielding 5 new commitments and 2 new blockers. With 14 active blockers (up from 13 yesterday), zero resolutions for the second consecutive day, and 5 blockers now aged 15-16 days without resolution, the project continues its concerning trajectory with just 5 days to the April 1 B2B launch target.
+      <details><summary>Key movements</summary><ul>
+        <li>New P1 blocker: developer holiday blocks variant split and item weight changes</li>
+        <li>Weekly Connect meeting (3/26) processed: 5 commitments, 2 blockers, 9 action items captured</li>
+        <li>2 new Jira tickets: AW-1133 (Variant Split) and AW-1134 ([Client] Remove Line)</li>
+        <li>14 active blockers total &mdash; zero resolved today; 5 blockers aged past 15 days</li>
+        <li>21 open/in-progress commitments aged; 8 stale commitments remain unresolved</li>
+      </ul></details>
+    </td>
+  </tr>
+  <tr>
+    <td data-source="progress_narrative.entries[1].journal_date">2026-03-26</td>
+    <td>&#x1F7E0; concerning</td>
+    <td data-source="progress_narrative.entries[1].narrative">AW-450 (Round 1 Content Population) completed by Ella Fedorenko, but overshadowed by continued blocker stagnation. All 11 active blockers aged another day with zero resolutions. Noel extended budget end dates: Development and Integration moved to March 27, UAT to April 10.
+      <details><summary>Key movements</summary><ul>
+        <li>AW-450 moved to Done</li>
+        <li>Budget end dates extended: Dev/Integration to Mar 27, UAT to Apr 10</li>
+        <li>Timeline review commitment past due (was due Mar 25)</li>
+        <li>All 11 blockers aging with no resolutions</li>
+      </ul></details>
+    </td>
+  </tr>
+  <tr>
+    <td data-source="progress_narrative.entries[2].journal_date">2026-03-25</td>
+    <td>&#x1F7E0; concerning</td>
+    <td data-source="progress_narrative.entries[2].narrative">One blocker resolved (AW-1099 unblocked), but 11 active blockers remain. 3 new P1 RAID entries raised covering client environment confusion, scope accommodation without change requests, and 46% velocity decline. AW-674 (SEO) regressed from UAT to In Progress.
+      <details><summary>Key movements</summary><ul>
+        <li>AW-1099 blocker resolved by Noel Perez</li>
+        <li>3 new P1 RAID entries: environment confusion, unfunded scope creep, velocity decline</li>
+        <li>2 commitments marked stale (15 days)</li>
+        <li>AW-674 regressed UAT to In Progress</li>
+      </ul></details>
+    </td>
+  </tr>
+  <tr>
+    <td data-source="progress_narrative.entries[3].journal_date">2026-03-24</td>
+    <td>&#x1F7E0; concerning</td>
+    <td data-source="progress_narrative.entries[3].narrative">AW-1099 resolved. Variant split advanced: Rahul sent requirements doc to Tye, split table completed. But 6 commitments from March 10-12 crossed 14-day stale threshold. 11 blockers remain active.
+      <details><summary>Key movements</summary><ul>
+        <li>AW-1099 resolved: client customization SKU exclusion complete</li>
+        <li>Variant split doc sent to client, Tye completed split table</li>
+        <li>6 commitments went stale at 15 days</li>
+        <li>3 new P1 RAID entries</li>
+      </ul></details>
+    </td>
+  </tr>
+</table>
+
+<!-- 2c: Client Sentiment Snapshot -->
+<h3>2c. Client Sentiment Snapshot</h3>
+<div style="background:var(--color-surface);border-radius:8px;padding:16px;margin:8px 0;border-left:4px solid var(--color-red);">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+    <span style="font-size:28px;">&#x1F7E0;</span>
+    <span style="font-size:18px;font-weight:700;" data-source="client_sentiment.state_summary.state">Concerned</span>
+    <span style="font-size:18px;" data-source="client_sentiment.state_summary.direction">&darr; declining</span>
+    <span style="border:1px dashed var(--color-foreground-secondary);padding:2px 8px;border-radius:12px;font-size:11px;" data-source="client_sentiment.state_summary.confidence">medium confidence</span>
+  </div>
+  <p style="font-size:13px;" data-source="client_sentiment.state_summary.narrative">Weekly Connect (March 26) provided the first formal client touchpoint since the Re-Alignment Meeting (March 20), but only Tye Willcott attended &mdash; Eric Parsons (COO) and Kevin Fafard (Customer Success Manager) were both absent without explanation. This is a significant engagement red flag 4 days before B2B launch (April 1). Direction shifts to declining based on 2 of 3 stakeholders disengaging from the critical pre-launch cadence.</p>
+  <p style="font-size:12px;margin-top:8px;"><a href="#" onclick="document.getElementById('tab-sentiment').checked=true;return false;">Full analysis &rarr;</a></p>
+</div>
+
+<!-- 2d: Scope Drift Indicator -->
+<h3>2d. Scope Drift Indicator</h3>
+<div style="display:flex;align-items:center;gap:16px;margin:8px 0;">
+  <div class="kpi-card" style="text-align:center;min-width:180px;">
+    <div class="label">Scope Drift %</div>
+    <div class="value" data-source="scope_drift_latest.current_drift_pct"><span style="color:var(--color-foreground-secondary);">Not available</span></div>
+    <div class="trend" data-source="kpi_dashboard.scope_drift_pct.trend_arrow">&rarr; (was 0.0%)</div>
+  </div>
+  <div style="font-size:13px;">
+    <p>Scope additions continue: 2 new tickets today (AW-1133, AW-1134). OHSA/Hybrid collection split agreed without formal change request. 10 unapproved additions since March 17.</p>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: OPEN RISKS & BLOCKERS ===== -->
+<h2>3. Open Risks &amp; Blockers</h2>
+<p class="muted"><em>"What's threatening the project right now?"</em></p>
+
+<h3>Active Blockers (14)</h3>
+<table>
+  <tr><th>ID</th><th>Blocker</th><th>Source</th><th>Severity</th><th>Days Open</th><th>Mitigation</th></tr>
+  <tr><td data-source="risks_blockers.active_blockers[0].id">blk-mi-01KJT-001</td><td>NetSuite parent-child SKU data structure prevents clean Shopify import</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p1">P1</span></td><td>15</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td data-source="risks_blockers.active_blockers[1].id">blk-mi-01KJT-002</td><td>Client dissatisfaction flagged by Sales Lead (Mike) &mdash; delivery not matching sales expectations</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p1">P1</span></td><td>15</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td data-source="risks_blockers.active_blockers[2].id">blk-fire-01kkcqgb-01</td><td>NetSuite product data quality issues blocking clean product display</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p1">P1</span></td><td>8</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td data-source="risks_blockers.active_blockers[3].id">blk-fire-01kkcqgb-02</td><td>Custom integration logic needed for orange variants adds complexity</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p1">P1</span></td><td>8</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td data-source="risks_blockers.active_blockers[4].id">blk-dev-holiday-variant-split</td><td>Developer holiday blocks variant split and item weight changes</td><td><span class="source-badge source-slack">Slack</span></td><td><span class="severity-p1">P1</span></td><td>0</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td>blk-01KJAVPJ-filter-exclusion</td><td>Filter/exclusion resolution blocking UAT open tickets and product display</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p2">P2</span></td><td>16</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td>blk-AW-880-blocked</td><td>Integration E2E UAT blocked (AW-880)</td><td><span class="source-badge source-jira">Jira</span></td><td><span class="severity-p2">P2</span></td><td>16</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td>blk-fire-01kkcqgb-03</td><td>Color selection button feature is a larger development effort than expected</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p2">P2</span></td><td>8</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td>blk-vision-content</td><td>Content dependency on Vision team for corporate site launch</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p2">P2</span></td><td>6</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td>blk-manual-cust</td><td>Risk of incomplete customer setup when manually adding B2B customers</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p2">P2</span></td><td>6</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td>blk-mtg-01km0-001</td><td>Client made unauthorized code changes to theme</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p2">P2</span></td><td>0</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td>blk-mtg-01km0-002</td><td>Unactioned items from realignment call remain outstanding</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p2">P2</span></td><td>0</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td>blk-01KHPDRK8TTP6GHYYZ3SH4HTN3-01</td><td>Integration progress stalled &mdash; no changes since last week</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p3">P3</span></td><td>16</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td>blk-weight-data</td><td>Product weight data in NetSuite not detailed enough for carrier rate calculations</td><td><span class="source-badge source-fireflies">Meeting</span></td><td><span class="severity-p3">P3</span></td><td>6</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+</table>
+
+<h3>Open RAID Items (P0)</h3>
+<table>
+  <tr><th>ID</th><th>Risk</th><th>Severity</th><th>Days Open</th><th>Owner</th></tr>
+  <tr><td data-source="risks_blockers.open_raid_items[0].id">1</td><td>Critical SPI gap &mdash; 50.6% complete at 97% elapsed</td><td><span class="severity-p0">P0</span></td><td>16</td><td>Noel de Toledo</td></tr>
+  <tr><td data-source="risks_blockers.open_raid_items[1].id">6</td><td>Client relationship crisis &mdash; COO and Sales Lead flagging delivery failure</td><td><span class="severity-p0">P0</span></td><td>16</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td data-source="risks_blockers.open_raid_items[2].id">18</td><td>NetSuite data structure is root cause for 4+ risks, 5 blockers, and 4 client concerns</td><td><span class="severity-p0">P0</span></td><td>12</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+  <tr><td data-source="risks_blockers.open_raid_items[3].id">36</td><td>April 1 B2B launch physically impossible &mdash; critical path requires minimum 5-7 working days</td><td><span class="severity-p0">P0</span></td><td>0</td><td><span style="color:var(--color-foreground-secondary);">Not available</span></td></tr>
+</table>
+
+<details><summary>Open RAID Items (P1) &mdash; 22 items</summary>
+<table>
+  <tr><th>ID</th><th>Risk</th><th>Days Open</th><th>Owner</th></tr>
+  <tr><td>2</td><td>Integration and UAT blockers stalling pre-launch validation</td><td>16</td><td>Rahul P</td></tr>
+  <tr><td>3</td><td>Client data quality concerns &mdash; variant imports and collection display</td><td>16</td><td>Noel de Toledo</td></tr>
+  <tr><td>4</td><td>Integration budget phase ending at 71.3% utilization</td><td>16</td><td>Noel de Toledo</td></tr>
+  <tr><td>5</td><td>Highest priority client-facing variant issue (AW-1113)</td><td>16</td><td>Rahul P</td></tr>
+  <tr><td>7</td><td>Content entry milestone pushed to April 16</td><td>16</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>8</td><td>Undocumented timeline extensions creating change control gap</td><td>16</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>10</td><td>Scope creep via unclassified client defects absorbing budget</td><td>15</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>11</td><td>Development and Integration budget phases ending with significant work remaining</td><td>15</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>13</td><td>Stale commitments creating execution gap &mdash; 0 completed in 4 days</td><td>14</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>14</td><td>Unassigned high-priority client-reported variant tickets</td><td>14</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>15</td><td>March 18 Technical Alignment call is single point of failure</td><td>13</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>16</td><td>Budget phase boundary undefined &mdash; team working post-phase-end</td><td>13</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>17</td><td>Implicit assumptions operating without RAID tracking</td><td>12</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>20</td><td>March 18 Technical Alignment call overloaded</td><td>11</td><td>Noel de Toledo</td></tr>
+  <tr><td>22</td><td>Product catalog gaps expanding incrementally</td><td>9</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>23</td><td>March 18 call outcomes unconfirmed</td><td>9</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>24</td><td>AW-1099 regression &mdash; second QA process failure</td><td>8</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>25</td><td>Completion % declining despite active work</td><td>8</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>27</td><td>Key personnel OOO during final 10 days</td><td>7</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>30</td><td>Post-meeting follow-through failure pattern</td><td>4</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>31</td><td>April 1 go/no-go criteria undefined</td><td>4</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>35</td><td>Velocity declining into final sprint: 5.2 tickets/week, lowest tracked</td><td>3</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>37</td><td>Client unauthorized theme code edit</td><td>0</td><td><span class="muted">Not available</span></td></tr>
+  <tr><td>38</td><td>COO and CSM absent from critical pre-launch Weekly Connect</td><td>0</td><td><span class="muted">Not available</span></td></tr>
+</table>
+</details>
+
+<!-- ===== SECTION 4: OPEN ACTION ITEMS & ISSUES ===== -->
+<h2>4. Open Action Items &amp; Issues</h2>
+<p class="muted"><em>"What's pending and overdue?"</em></p>
+
+<h3>Commitments (28 total: 8 stale, 17 open, 3 in_progress)</h3>
+<table>
+  <tr><th>Item</th><th>Owner</th><th>Type</th><th>Days Open</th><th>Due Date</th><th>Status</th></tr>
+  <tr><td>Reach out to Eric before end of day about invoice</td><td>Noel de Toledo</td><td>commitment</td><td>15</td><td><span class="muted">Not available</span></td><td><span class="badge-stale">stale</span></td></tr>
+  <tr><td>Send UAT ticket updates to Tye</td><td>Noel de Toledo</td><td>commitment</td><td>15</td><td><span class="muted">Not available</span></td><td><span class="badge-stale">stale</span></td></tr>
+  <tr><td>Review multiple crest logo demo/workflow</td><td>Tye Willcott</td><td>commitment</td><td>15</td><td><span class="muted">Not available</span></td><td><span class="badge-stale">stale</span></td></tr>
+  <tr><td>Review Vision team styling asks</td><td>Noel de Toledo</td><td>commitment</td><td>15</td><td><span class="muted">Not available</span></td><td><span class="badge-stale">stale</span></td></tr>
+  <tr><td>Share NetSuite safety badge field info with Raul</td><td>Noel de Toledo</td><td>commitment</td><td>15</td><td><span class="muted">Not available</span></td><td><span class="badge-stale">stale</span></td></tr>
+  <tr><td>Send safety badge screenshot to Noel</td><td>Kevin Fafard</td><td>commitment</td><td>15</td><td><span class="muted">Not available</span></td><td><span class="badge-stale">stale</span></td></tr>
+  <tr><td>Monitor integration resolution progress</td><td>Noel de Toledo</td><td>commitment</td><td>15</td><td><span class="muted">Not available</span></td><td><span class="badge-stale">stale</span></td></tr>
+  <tr><td>Bring BA and Strategy into call for grouped change requests</td><td>Isabel Maier</td><td>commitment</td><td>15</td><td><span class="muted">Not available</span></td><td><span class="badge-stale">stale</span></td></tr>
+  <tr><td>Finish variant split work</td><td>Noel de Toledo</td><td>commitment</td><td>1</td><td>2026-03-30</td><td><span class="badge-open">open</span></td></tr>
+  <tr><td>Start integration UAT once products showing (target Monday)</td><td>Noel de Toledo</td><td>commitment</td><td>1</td><td>2026-03-30</td><td><span class="badge-open">open</span></td></tr>
+  <tr><td>Recheck remaining SKUs after Monday product update</td><td>Noel de Toledo</td><td>commitment</td><td>1</td><td>2026-03-31</td><td><span class="badge-open">open</span></td></tr>
+  <tr><td>Prepare updated timeline review with go/no-go criteria</td><td>Isabel Maier</td><td>commitment</td><td>7</td><td>2026-03-25</td><td><span class="badge-open">open</span></td></tr>
+  <tr><td>Complete variant splitting work</td><td>Rahul P</td><td>commitment</td><td>7</td><td><span class="muted">N/A</span></td><td><span class="badge-in-progress">in_progress</span></td></tr>
+  <tr><td>Investigate product weight field sync</td><td>Rahul P</td><td>commitment</td><td>7</td><td><span class="muted">N/A</span></td><td><span class="badge-in-progress">in_progress</span></td></tr>
+</table>
+<p class="muted" style="font-size:12px;">Showing 14 of 28 commitments. 43 Fireflies action items and 17 critical tickets also tracked. See Appendix for full list.</p>
+
+<h3>Critical Tickets (Top 10)</h3>
+<table>
+  <tr><th>Ticket</th><th>Owner</th><th>Days Open</th><th>Due Date</th><th>Status</th></tr>
+  <tr><td data-source="action_items.critical_tickets[0].item">AW-1113: [Client] Variant Issue</td><td>Rahul P</td><td>19</td><td><span class="muted">N/A</span></td><td>Under Client Review</td></tr>
+  <tr><td>AW-336: Build Phase - Batch 1</td><td>Nathan V</td><td>113</td><td>2026-01-16</td><td>In Progress</td></tr>
+  <tr><td>AW-723: Integrations - Batch 4</td><td>Shakeel M</td><td>112</td><td>2026-02-05</td><td>In Progress</td></tr>
+  <tr><td>AW-882: Create Integration Test Plan</td><td>Rahul P</td><td>112</td><td>2026-03-04</td><td>In Progress</td></tr>
+  <tr><td>AW-880: Integration E2E UAT</td><td>Rahul P</td><td>112</td><td>2026-03-10</td><td style="color:var(--color-red);">Blocked</td></tr>
+  <tr><td>AW-991: Round 2 Content Population</td><td>Noel Perez</td><td>73</td><td>2026-03-11</td><td>In Progress</td></tr>
+  <tr><td>AW-699: Round 2 Client Demo &amp; UAT</td><td>Zineb Chouiref</td><td>112</td><td>2026-03-11</td><td>In Progress</td></tr>
+  <tr><td>AW-441: Round 1 Client Demo &amp; UAT</td><td>Zineb Chouiref</td><td>112</td><td>2026-03-11</td><td>UAT</td></tr>
+  <tr><td>AW-796: SEO &amp; Schema Validation</td><td>Zineb Chouiref</td><td>112</td><td>2026-03-20</td><td>In Progress</td></tr>
+  <tr><td>AW-705: Bug Triage &amp; Assignments</td><td>Nathan V</td><td>112</td><td>2026-03-05</td><td>In Progress</td></tr>
+</table>
+
+<!-- ===== SECTION 5: SCOPE PERSPECTIVE ===== -->
+<h2>5. Scope Perspective</h2>
+<p class="muted"><em>"Is scope creeping? What changed?"</em></p>
+
+<div class="alert-amber">
+  <strong>Decision Question:</strong> Should the April 1 B2B launch proceed with a reduced scope (critical path only), or should a formal date extension be communicated to the client with a revised scope plan?
+</div>
+
+<h3>Scope Changelog (Last 14 Days)</h3>
+<table>
+  <tr><th>Date</th><th>Type</th><th>Description</th><th>Points &Delta;</th><th>Tickets &Delta;</th></tr>
+  <tr><td data-source="scope_changelog.entries[0].change_date">2026-03-27</td><td>addition</td><td>New Marker Defect: Variant Split (AW-1133)</td><td data-source="scope_changelog.entries[0].story_points_delta">0</td><td>+1</td></tr>
+  <tr><td data-source="scope_changelog.entries[1].change_date">2026-03-27</td><td>addition</td><td>New Marker Defect: [Client] Remove Line (AW-1134)</td><td data-source="scope_changelog.entries[1].story_points_delta">0</td><td>+1</td></tr>
+  <tr><td>2026-03-26</td><td>addition</td><td>Split OHSA and Hybrid collections into summer and winter subcollections</td><td>0</td><td>0</td></tr>
+  <tr><td>2026-03-24</td><td>addition</td><td>New Marker Defect: AW-1132 &mdash; Item Weight</td><td>0</td><td>+1</td></tr>
+  <tr><td>2026-03-20</td><td>modification</td><td>Launch strategy changed to staggered approach: B2B April 1, corporate April 16+</td><td>0</td><td>0</td></tr>
+  <tr><td>2026-03-20</td><td>addition</td><td>Product weight field added to integration sync</td><td>+1</td><td>0</td></tr>
+  <tr><td>2026-03-19</td><td>addition</td><td>AW-839 Weekly Defect Triage, AW-840 Hypercare Tickets, AW-846 Project Closure</td><td>0</td><td>+3</td></tr>
+  <tr><td>2026-03-18</td><td>addition</td><td>AW-1130 padding issue, AW-1131 subcategory clickable</td><td>0</td><td>+2</td></tr>
+  <tr><td>2026-03-17</td><td>addition</td><td>Orange variant integration logic, color selection button feature</td><td>0</td><td>+1</td></tr>
+  <tr><td>2026-03-17</td><td>modification</td><td>Employee name embroidery removal from specific SKUs</td><td>0</td><td>+1</td></tr>
+</table>
+
+<p><strong>Assessment:</strong> 10 unapproved scope additions since March 17, all with empty <code>approved_by</code> fields. The agency is absorbing scope to maintain velocity but at the cost of budget governance. Per Makro Belief #1: scope integrity over speed.</p>
+<p><strong>Recommendation:</strong> Noel de Toledo (PM) to prepare a formal scope freeze for April 1 B2B launch &mdash; defining exactly which tickets are in-scope for Phase 1 vs deferred to Phase 2 (corporate launch April 16+). Present to Eric Parsons for approval.</p>
+
+<!-- ===== SECTION 6: TIMELINE & DELIVERY FORECAST ===== -->
+<h2>6. Timeline &amp; Delivery Forecast</h2>
+<p class="muted"><em>"When will we deliver? Are we on pace?"</em></p>
+
+<div style="display:flex;gap:16px;flex-wrap:wrap;margin:12px 0;">
+  <div class="kpi-card" style="flex:1;min-width:140px;text-align:center;">
+    <div class="label">SPI</div>
+    <div class="value" style="color:var(--color-red);" data-source="delivery_forecast.spi">0.58</div>
+  </div>
+  <div class="kpi-card" style="flex:1;min-width:140px;text-align:center;">
+    <div class="label">% Elapsed</div>
+    <div class="value" data-source="delivery_forecast.pct_elapsed">99.6%</div>
+  </div>
+  <div class="kpi-card" style="flex:1;min-width:140px;text-align:center;">
+    <div class="label">% Complete</div>
+    <div class="value" data-source="delivery_forecast.pct_complete">58.1%</div>
+  </div>
+  <div class="kpi-card" style="flex:1;min-width:140px;text-align:center;">
+    <div class="label">Remaining Tickets</div>
+    <div class="value" data-source="delivery_forecast.remaining_pts">78</div>
+  </div>
+  <div class="kpi-card" style="flex:1;min-width:140px;text-align:center;">
+    <div class="label">Target End Date</div>
+    <div class="value" style="font-size:16px;" data-source="delivery_forecast.target_end_date">2026-03-30</div>
+  </div>
+</div>
+
+<h3>Velocity Trailing (Weekly)</h3>
+<table>
+  <tr><th>Week</th><th>Resolved</th><th>Points</th></tr>
+  <tr><td data-source="delivery_forecast.velocity_trailing[0].week">2026-W08</td><td data-source="delivery_forecast.velocity_trailing[0].resolved">1</td><td data-source="delivery_forecast.velocity_trailing[0].points">1</td></tr>
+  <tr><td data-source="delivery_forecast.velocity_trailing[1].week">2026-W09</td><td data-source="delivery_forecast.velocity_trailing[1].resolved">2</td><td data-source="delivery_forecast.velocity_trailing[1].points">2</td></tr>
+  <tr><td data-source="delivery_forecast.velocity_trailing[2].week">2026-W10</td><td data-source="delivery_forecast.velocity_trailing[2].resolved">20</td><td data-source="delivery_forecast.velocity_trailing[2].points">20</td></tr>
+  <tr><td data-source="delivery_forecast.velocity_trailing[3].week">2026-W11</td><td data-source="delivery_forecast.velocity_trailing[3].resolved">2</td><td data-source="delivery_forecast.velocity_trailing[3].points">2</td></tr>
+  <tr><td data-source="delivery_forecast.velocity_trailing[4].week">2026-W12</td><td data-source="delivery_forecast.velocity_trailing[4].resolved">1</td><td data-source="delivery_forecast.velocity_trailing[4].points">1</td></tr>
+</table>
+<p class="muted" style="font-size:12px;">Average velocity: <strong data-source="delivery_forecast.avg_velocity_per_week">5.2</strong> tickets/week. Peak: <strong data-source="delivery_forecast.peak_velocity">20</strong>. Low: <strong data-source="delivery_forecast.low_velocity">1</strong>.</p>
+
+<h3>Completion Forecast</h3>
+<table>
+  <tr><th>Scenario</th><th>Velocity</th><th>Weeks Needed</th><th>Projected Date</th><th>vs Deadline (Mar 30)</th></tr>
+  <tr style="background:#f0fdf4;">
+    <td><strong>Best</strong></td>
+    <td data-source="delivery_forecast.scenarios.best.velocity">20</td>
+    <td data-source="delivery_forecast.scenarios.best.weeks_needed">3.9</td>
+    <td data-source="delivery_forecast.scenarios.best.projected_date">2026-04-23</td>
+    <td style="color:var(--color-red);">+24 days late</td>
+  </tr>
+  <tr style="background:#fffbeb;">
+    <td><strong>Expected</strong></td>
+    <td data-source="delivery_forecast.scenarios.expected.velocity">5.2</td>
+    <td data-source="delivery_forecast.scenarios.expected.weeks_needed">15.0</td>
+    <td data-source="delivery_forecast.scenarios.expected.projected_date">2026-07-10</td>
+    <td style="color:var(--color-red);">+102 days late</td>
+  </tr>
+  <tr style="background:#fef2f2;">
+    <td><strong>Worst</strong></td>
+    <td data-source="delivery_forecast.scenarios.worst.velocity">1</td>
+    <td data-source="delivery_forecast.scenarios.worst.weeks_needed">78.0</td>
+    <td data-source="delivery_forecast.scenarios.worst.projected_date">2027-09-24</td>
+    <td style="color:var(--color-red);">+544 days late</td>
+  </tr>
+</table>
+<div class="alert-red">
+  <strong>Even the best-case scenario (peak velocity of 20/week, never sustained) projects completion 24 days past the March 30 deadline.</strong> The April 1 B2B launch is physically impossible given the remaining critical path. Realistic minimum launch date: April 7-10.
+</div>
+
+<!-- ===== SECTION 7: BUDGET & FINANCIAL HEALTH ===== -->
+<h2>7. Budget &amp; Financial Health</h2>
+<p class="muted"><em>"Are we burning too fast? Invoices ok?"</em></p>
+
+<h3>All Budgets</h3>
+<table>
+  <tr><th>Budget Name</th><th>Total</th><th>Spent</th><th>Remaining</th><th>Util%</th><th>Margin%</th><th>Status</th></tr>
+  <tr>
+    <td data-source="budgets.rows[0].name">02 03 Design</td>
+    <td data-source="budgets.rows[0].budget_total_cents">$16,650.00</td>
+    <td data-source="budgets.rows[0].spent_cents" style="color:var(--color-red);">$21,894.75</td>
+    <td data-source="budgets.rows[0].remaining_cents" style="color:var(--color-red);">-$5,244.75</td>
+    <td data-source="budgets.rows[0].utilization_pct" style="color:var(--color-red);">131.5%</td>
+    <td data-source="budgets.rows[0].margin_pct">61.88%</td>
+    <td><span style="background:#fecaca;color:#991b1b;padding:2px 8px;border-radius:12px;font-size:11px;">Closed</span></td>
+  </tr>
+  <tr>
+    <td data-source="budgets.rows[1].name">01 Discovery</td>
+    <td data-source="budgets.rows[1].budget_total_cents">$10,619.00</td>
+    <td data-source="budgets.rows[1].spent_cents">$6,604.50</td>
+    <td data-source="budgets.rows[1].remaining_cents">$4,014.50</td>
+    <td data-source="budgets.rows[1].utilization_pct">62.2%</td>
+    <td data-source="budgets.rows[1].margin_pct">94.5%</td>
+    <td><span style="background:var(--color-surface-alt);padding:2px 8px;border-radius:12px;font-size:11px;">Closed</span></td>
+  </tr>
+  <tr>
+    <td data-source="budgets.rows[2].name">03 Development</td>
+    <td data-source="budgets.rows[2].budget_total_cents">$49,025.00</td>
+    <td data-source="budgets.rows[2].spent_cents">$37,644.42</td>
+    <td data-source="budgets.rows[2].remaining_cents">$11,380.58</td>
+    <td data-source="budgets.rows[2].utilization_pct">76.8%</td>
+    <td data-source="budgets.rows[2].margin_pct">74.61%</td>
+    <td><span class="badge-open">Open</span></td>
+  </tr>
+  <tr>
+    <td data-source="budgets.rows[3].name">04 Integration</td>
+    <td data-source="budgets.rows[3].budget_total_cents">$16,280.00</td>
+    <td data-source="budgets.rows[3].spent_cents">$12,348.75</td>
+    <td data-source="budgets.rows[3].remaining_cents">$3,931.25</td>
+    <td data-source="budgets.rows[3].utilization_pct">75.9%</td>
+    <td data-source="budgets.rows[3].margin_pct">73.42%</td>
+    <td><span class="badge-open">Open</span></td>
+  </tr>
+  <tr>
+    <td data-source="budgets.rows[4].name">05 UAT</td>
+    <td data-source="budgets.rows[4].budget_total_cents">$5,550.00</td>
+    <td data-source="budgets.rows[4].spent_cents">$2,368.00</td>
+    <td data-source="budgets.rows[4].remaining_cents">$3,182.00</td>
+    <td data-source="budgets.rows[4].utilization_pct">42.7%</td>
+    <td data-source="budgets.rows[4].margin_pct">81.88%</td>
+    <td><span class="badge-open">Open</span></td>
+  </tr>
+  <tr>
+    <td data-source="budgets.rows[5].name">06 Hypercare</td>
+    <td data-source="budgets.rows[5].budget_total_cents">$7,400.00</td>
+    <td data-source="budgets.rows[5].spent_cents">$277.50</td>
+    <td data-source="budgets.rows[5].remaining_cents">$7,122.50</td>
+    <td data-source="budgets.rows[5].utilization_pct">3.8%</td>
+    <td data-source="budgets.rows[5].margin_pct">98.61%</td>
+    <td><span class="badge-open">Open</span></td>
+  </tr>
+  <tr>
+    <td data-source="budgets.rows[6].name">07 Non-Billable</td>
+    <td data-source="budgets.rows[6].budget_total_cents">$0.00</td>
+    <td data-source="budgets.rows[6].spent_cents">$0.00</td>
+    <td data-source="budgets.rows[6].remaining_cents">$0.00</td>
+    <td data-source="budgets.rows[6].utilization_pct">0.0%</td>
+    <td data-source="budgets.rows[6].margin_pct">0.0%</td>
+    <td><span class="badge-open">Open</span></td>
+  </tr>
+</table>
+
+<h3>Invoice Status</h3>
+<table>
+  <tr><th>Invoice</th><th>Date</th><th>Amount</th><th>Status</th><th>Days Overdue</th></tr>
+  <tr style="background:#fef2f2;">
+    <td data-source="invoices.rows[0].invoice_number">003-ATLA-26</td>
+    <td data-source="invoices.rows[0].issue_date">2026-02-26</td>
+    <td data-source="invoices.rows[0].amount_cents">$14,805.00</td>
+    <td style="color:var(--color-red);font-weight:700;" data-source="invoices.rows[0].status">OVERDUE</td>
+    <td style="color:var(--color-red);font-weight:700;" data-source="invoices.rows[0].days_overdue">14</td>
+  </tr>
+  <tr>
+    <td data-source="invoices.rows[1].invoice_number">002-ATLA-26</td>
+    <td>2026-01-27</td>
+    <td>$22,207.50</td>
+    <td style="color:var(--color-green);">Paid</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td data-source="invoices.rows[2].invoice_number">001-ATLA-26</td>
+    <td>2026-01-08</td>
+    <td>$29,610.00</td>
+    <td style="color:var(--color-green);">Paid</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>002-ATLA-25</td>
+    <td>2025-12-15</td>
+    <td>$22,207.50</td>
+    <td style="color:var(--color-green);">Paid</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>001-ATLA-25</td>
+    <td>2025-11-20</td>
+    <td>$22,207.50</td>
+    <td style="color:var(--color-green);">Paid</td>
+    <td>0</td>
+  </tr>
+</table>
+
+<div class="alert-red">
+  <strong>Invoice 003-ATLA-26 ($14,805.00) is 14 days overdue</strong> &mdash; approaching the worst-case payment variance of 15 days. Was not raised at the Weekly Connect (March 26). PM must escalate directly to Eric Parsons (COO) via email.
+</div>
+
+<p><strong>Burn Rate:</strong> Average weekly burn ~$3,128/week. Remaining budget ($25,616.33) supports ~8.2 weeks. However, remaining work requires ~15 weeks at current velocity. Projected shortfall: ~$11,261.</p>
+
+<!-- ===== SECTION 8: PM ACTION PLAN ===== -->
+<h2>8. PM Action Plan</h2>
+<p class="muted"><em>"What should I do about all of this?"</em></p>
+
+<h3>Priority Actions (Top 5)</h3>
+<table>
+  <tr><th>#</th><th>Action</th><th>Owner</th><th>Deadline</th><th>Source Finding</th><th>Section</th></tr>
+  <tr>
+    <td><span class="action-num">1</span></td>
+    <td>Send Weekly Connect recap email to Eric Parsons and Kevin Fafard with all decisions made (code freeze, OHSA/Hybrid split, variant split Monday target). Confirm their availability for remaining pre-launch activities.</td>
+    <td><strong>Noel de Toledo (PM)</strong></td>
+    <td style="color:var(--color-red);">Today (Mar 27)</td>
+    <td><span class="severity-p0">P0</span> Client engagement</td>
+    <td>Risks (#3)</td>
+  </tr>
+  <tr>
+    <td><span class="action-num">2</span></td>
+    <td>Reply to all 4 unread client emails (Kevin re: Parka Hoods, Eric re: Weekly Connect Reschedule, Tye re: Parka Hoods, Eric re: Employee Name Removal). Per Makro Belief #10: silence is unacceptable.</td>
+    <td><strong>Noel de Toledo (PM)</strong></td>
+    <td style="color:var(--color-red);">Today (Mar 27)</td>
+    <td><span class="severity-p0">P0</span> Email SLA violation</td>
+    <td>Comms (#2e)</td>
+  </tr>
+  <tr>
+    <td><span class="action-num">3</span></td>
+    <td>Escalate Invoice 003-ATLA-26 ($14,805, 14 days overdue) directly to Eric Parsons via email. Do not wait for next meeting.</td>
+    <td><strong>Noel de Toledo (PM)</strong></td>
+    <td style="color:var(--color-red);">Today (Mar 27)</td>
+    <td><span class="severity-p1">P1</span> Invoice overdue</td>
+    <td>Budget (#7)</td>
+  </tr>
+  <tr>
+    <td><span class="action-num">4</span></td>
+    <td>Extend Development (03) and Integration (04) budget end dates in Productive &mdash; both expired today (March 27). Third extension cycle for Development.</td>
+    <td><strong>Noel de Toledo (PM)</strong></td>
+    <td style="color:var(--color-red);">Today (Mar 27)</td>
+    <td><span class="severity-p0">P0</span> Budget phase expiry</td>
+    <td>Budget (#7)</td>
+  </tr>
+  <tr>
+    <td><span class="action-num">5</span></td>
+    <td>Send written confirmation of code freeze policy to all client stakeholders (Eric, Tye, Kevin). Policy was established verbally at March 26 meeting but only Tye was present.</td>
+    <td><strong>Noel de Toledo (PM)</strong></td>
+    <td>Tomorrow (Mar 28)</td>
+    <td><span class="severity-p1">P1</span> Unauthorized code edit</td>
+    <td>Risks (#3)</td>
+  </tr>
+</table>
+
+<h3>Resource Decisions</h3>
+<p class="muted" style="font-size:12px;">Resource data has null names/roles due to a field-mapping issue in the Productive API collection script (P1 data quality finding). Key team members from findings:</p>
+<table>
+  <tr><th>Person</th><th>Role</th><th>Key Responsibility</th><th>Status</th></tr>
+  <tr><td>Noel de Toledo</td><td>PM</td><td>Client comms, budget governance, commitment tracking</td><td style="background:#fecaca;">Critical &mdash; 4 urgent actions today</td></tr>
+  <tr><td>Rahul P</td><td>Tech Lead / Integration</td><td>Variant split, integration UAT, product data</td><td style="background:#fef3c7;">Blocked &mdash; developer holiday until Monday</td></tr>
+  <tr><td>Isabel Maier</td><td>Delivery Coach / BA</td><td>Timeline review, UAT opening, code audit</td><td style="background:#fef3c7;">Overdue on timeline review (due Mar 25)</td></tr>
+  <tr><td>Nathan V</td><td>Frontend Lead</td><td>Bug fixes, PR reviews, Lighthouse optimization</td><td style="background:#dcfce7;">Active</td></tr>
+  <tr><td>Shakeel M</td><td>Integration Lead</td><td>Item weight, variant split code</td><td style="background:#fecaca;">On holiday &mdash; blocking critical path</td></tr>
+  <tr><td>Zineb Chouiref</td><td>BA / Data</td><td>Collection creation, content, data import</td><td style="background:#fef3c7;">Blocked on developer return</td></tr>
+</table>
+
+<!-- ===== SECTION 9: PROJECT TIMELINE ===== -->
+<h2>9. Project Timeline</h2>
+<p class="muted"><em>"What happened and when?"</em></p>
+
+<div class="timeline-stats">
+  <span>18+ events</span> &middot; <span>14 open blockers</span> &middot; <span>March 11 &ndash; March 27, 2026</span>
+</div>
+
+<div class="timeline">
+  <details open>
+    <summary>March 27, 2026 &mdash; 1 event</summary>
+    <div class="timeline-day">
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-productive">Productive</span>
+          <span class="type-badge">Budget Alert</span>
+          <span class="severity-p1">P1</span>
+        </div>
+        <div class="event-title">Invoice #003-ATLA-26 overdue (due 2026-03-13)</div>
+        <div class="event-meta">14 days overdue &middot; $14,805.00</div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>March 26, 2026 &mdash; 1 event</summary>
+    <div class="timeline-day">
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-fireflies">Meeting</span>
+          <span class="type-badge">Client Meeting</span>
+          <span class="severity-p3">P3</span>
+        </div>
+        <div class="event-title">Meeting: Atlas x Makro | Weekly Connect</div>
+        <div class="event-meta">noel@makroagency.com</div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>March 24, 2026 &mdash; 1 event</summary>
+    <div class="timeline-day">
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-jira">Jira</span>
+          <span class="type-badge">Resolved</span>
+          <span class="severity-p3">P3</span>
+        </div>
+        <div class="event-title">Resolved: AW-1099 &mdash; [Client] Some items cannot be customized</div>
+        <div class="event-meta">Noel Perez</div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>March 20, 2026 &mdash; 1 event</summary>
+    <div class="timeline-day">
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-fireflies">Meeting</span>
+          <span class="type-badge">Client Meeting</span>
+          <span class="severity-p3">P3</span>
+        </div>
+        <div class="event-title">Meeting: Atlas x Makro | Re-alignment Session</div>
+        <div class="event-meta">noel@makroagency.com</div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>March 19, 2026 &mdash; 5 events</summary>
+    <div class="timeline-day">
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-github">GitHub</span>
+          <span class="type-badge">PR Merged</span>
+          <span class="severity-p3">P3</span>
+        </div>
+        <div class="event-title">PR merged: #102 AW-674</div>
+        <div class="event-meta">jakeMakro</div>
+      </div>
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-github">GitHub</span>
+          <span class="type-badge">PR Merged</span>
+        </div>
+        <div class="event-title">PR merged: #7 Claude/goofy kare</div>
+        <div class="event-meta">itshakeel23</div>
+      </div>
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-github">GitHub</span>
+          <span class="type-badge">PR Merged</span>
+        </div>
+        <div class="event-title">PR merged: #6 Claude/goofy kare</div>
+        <div class="event-meta">itshakeel23</div>
+      </div>
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-github">GitHub</span>
+          <span class="type-badge">PR Merged</span>
+        </div>
+        <div class="event-title">PR merged: #5 feat: add product variant split functionality</div>
+        <div class="event-meta">itshakeel23</div>
+      </div>
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-jira">Jira</span>
+          <span class="type-badge">Resolved</span>
+        </div>
+        <div class="event-title">Resolved: AW-1130 &mdash; the padding looks off</div>
+        <div class="event-meta">Nathan V</div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>March 17, 2026 &mdash; 2 events</summary>
+    <div class="timeline-day">
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-fireflies">Meeting</span>
+          <span class="type-badge">Client Meeting</span>
+        </div>
+        <div class="event-title">Meeting: Atlas x Makro | Weekly Connect &amp; Technical Discussion</div>
+        <div class="event-meta">noel@makroagency.com</div>
+      </div>
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-jira">Jira</span>
+          <span class="type-badge">Resolved</span>
+        </div>
+        <div class="event-title">Resolved: AW-1097 &mdash; [Client] Wholesale Application Issues</div>
+        <div class="event-meta">Nathan V</div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>March 11&ndash;16, 2026 &mdash; 7 events</summary>
+    <div class="timeline-day">
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-jira">Jira</span>
+          <span class="type-badge">Resolved</span>
+        </div>
+        <div class="event-title">Resolved: AW-1127 &mdash; [Client] Visual Error</div>
+        <div class="event-meta">Nathan V</div>
+      </div>
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-github">GitHub</span>
+          <span class="type-badge">PR Merged</span>
+        </div>
+        <div class="event-title">PR merged: #100 fixed megamenu issue AW-1127</div>
+        <div class="event-meta">Haley-makro</div>
+      </div>
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-jira">Jira</span>
+          <span class="type-badge">Resolved</span>
+        </div>
+        <div class="event-title">Resolved: AW-1120 &mdash; Price/Add to Cart visibility fix</div>
+        <div class="event-meta">Nathan V</div>
+      </div>
+      <div class="timeline-event">
+        <div class="event-badges">
+          <span class="source-badge source-jira">Jira</span>
+          <span class="type-badge">Resolved</span>
+        </div>
+        <div class="event-title">Resolved: AW-1128 &mdash; [Client] Off centre product pages</div>
+        <div class="event-meta">Nathan V</div>
+      </div>
+    </div>
+  </details>
+</div>
+
+<!-- ===== SECTION 10: CLIENT COMMUNICATION DRAFT ===== -->
+<h2>10. Client Communication Draft</h2>
+<p class="muted"><em>"What do I send the client?"</em></p>
+
+<div style="background:var(--color-surface);border-radius:8px;padding:16px;margin:12px 0;border:1px solid var(--color-border);">
+<p><strong>Subject: Atlas x Makro | Weekly Progress Update &mdash; March 27</strong></p>
+
+<p>Hi Eric, Tye, and Kevin,</p>
+
+<p>Thank you for our Wednesday connect &mdash; here is a summary of progress and next steps. On the product front, the variant split work is progressing and we expect all products to display correctly by Monday, March 31. Once that is confirmed, Tye, you are welcome to begin updating product specs and descriptions. The re-alignment session decisions are being actioned: OHSA and Hybrid collections are being split into summer and winter categories as discussed, and we have established a controlled change process for the theme code to protect everyone's work going forward.</p>
+
+<p>A few items that would benefit from your input: we would like to confirm the next meeting time with all three of you to cover final pre-launch items. We also want to make sure Eric and Kevin are up to date on the decisions from Wednesday's call, including the collection split approach and the Monday timeline for product updates. If there are any scheduling constraints, please let us know and we will accommodate.</p>
+
+<p>Looking ahead to next week: Monday is our target to have all products showing correctly, at which point we will begin integration testing. We will share an updated project timeline covering the testing period, launch preparation checklist, and warranty coverage details. We are committed to guiding you through each step to ensure a smooth launch experience.</p>
+
+<p>Best regards,<br>Noel de Toledo<br>Project Manager, Makro Agency</p>
+</div>
+
+<!-- ===== SECTION 11: BRIGHT SPOTS & LEARNINGS ===== -->
+<h2>11. Bright Spots &amp; Learnings</h2>
+<p class="muted"><em>"What's going well? What did we learn?"</em></p>
+
+<h3>11a. Client Showcase</h3>
+<div class="achievement-card">
+  <div class="ach-title" data-source="achievements.client_showcase[0].title">Re-alignment Meeting Produced 4 Achievements with Positive Client Response</div>
+  <div class="ach-desc" data-source="achievements.client_showcase[0].description">The March 20 re-alignment session produced 4 documented achievements including content audit, integration documentation, and project retrospective. Meeting mood rated positive.</div>
+  <div class="ach-impact" data-source="achievements.client_showcase[0].impact_description">Demonstrated project progress and transparency to the client, rebuilding confidence after the March 10 tension.</div>
+  <span class="source-badge source-fireflies">Meeting</span>
+</div>
+
+<div class="achievement-card">
+  <div class="ach-title" data-source="achievements.client_showcase[1].title">4 Blockers Resolved in 14 Days Including Critical Integration UAT Gate</div>
+  <div class="ach-desc" data-source="achievements.client_showcase[1].description">AW-994 Integration UAT (10 days), AW-1099 Client Customization (3 days), AW-1130 Padding (1 day), AW-635 Setup and Config (6 days) all resolved. Blocked ticket count decreased from 3 to 1.</div>
+  <div class="ach-impact" data-source="achievements.client_showcase[1].impact_description">Critical integration testing milestone cleared, enabling the team to begin integration UAT as planned.</div>
+  <span class="source-badge" style="background:#E5E2DF;color:#4D4C4B;">Cross-source</span>
+</div>
+
+<div class="achievement-card">
+  <div class="ach-title" data-source="achievements.client_showcase[2].title">4 Client-Reported Defects Resolved in 14 Days</div>
+  <div class="ach-desc">AW-1127 Visual Error, AW-1097 Wholesale Application, AW-1130 Padding, AW-1099 Customization Items &mdash; all resolved by Nathan V and Noel Perez.</div>
+  <div class="ach-impact">All client-visible defects from recent UAT rounds have been addressed, maintaining quality ahead of B2B launch.</div>
+  <span class="source-badge source-jira">Jira</span>
+</div>
+
+<h3>11b. All Achievements by Category</h3>
+<details>
+  <summary>Client Satisfaction (3 achievements)</summary>
+  <ul>
+    <li>Re-alignment Meeting Produced 4 Achievements with Positive Client Response</li>
+    <li>Orange Variant Integration Approach Aligned Cross-Functionally</li>
+    <li>Re-alignment Meeting Produced 4 Achievements (duplicate from different source)</li>
+  </ul>
+</details>
+<details>
+  <summary>Risk Resolution (1 achievement)</summary>
+  <ul>
+    <li>4 Blockers Resolved in 14 Days Including Critical Integration UAT Gate</li>
+  </ul>
+</details>
+<details>
+  <summary>Delivery (1 achievement)</summary>
+  <ul>
+    <li>4 Client-Reported Defects Resolved in 14 Days</li>
+  </ul>
+</details>
+
+<h3>11c. Bright Spots</h3>
+<table>
+  <tr><th>Bright Spot</th><th>Evidence</th><th>Trend</th></tr>
+  <tr><td>Tye actively engaged at Weekly Connect</td><td>Volunteered to split OHSA/Hybrid collections, confirmed variant split document complete</td><td>&uarr; improving (Tye)</td></tr>
+  <tr><td>PR review turnaround sub-hour</td><td>12 PRs merged in 14 days with fast review cycles</td><td>&rarr; consistent</td></tr>
+  <tr><td>AW-994 integration UAT blocker resolved</td><td>10-day blocker cleared by Rahul P &mdash; integration testing can proceed</td><td>&uarr; positive</td></tr>
+  <tr><td>Staggered launch strategy reduces risk</td><td>B2B first / corporate second decouples Vision content dependency</td><td>&rarr; stable</td></tr>
+  <tr><td>Client agreed to wait until Monday for spec updates</td><td>Tye cooperative and risk-aware at Weekly Connect</td><td>&uarr; positive signal</td></tr>
+</table>
+
+<h3>11d. Learnings</h3>
+<table>
+  <tr><th>Learning</th><th>Type</th><th>Recommendation</th></tr>
+  <tr>
+    <td data-source="learnings.rows[0].title">Commitment tracking without deadlines &mdash; 9 open commitments have no due_date</td>
+    <td>Anti-pattern</td>
+    <td>PM to add due_date to every commitment at creation time. Client-facing commitments max 48h from creation.</td>
+  </tr>
+  <tr>
+    <td data-source="learnings.rows[1].title">Commitment completion rate critically low at 10%</td>
+    <td>Anti-pattern</td>
+    <td>Commitments are being recorded but not tracked to resolution. Gap between Fireflies 43.2% action item completion and 0% commitment register completion.</td>
+  </tr>
+</table>
+
+<!-- ===== SECTION 12: APPENDIX: EVIDENCE INDEX ===== -->
+<h2>12. Appendix: Evidence Index</h2>
+<p class="muted"><em>"Where's the proof?"</em></p>
+
+<h3>Severity Distribution</h3>
+<div style="display:flex;gap:12px;margin:8px 0;">
+  <span class="severity-p0">P0: 18</span>
+  <span class="severity-p1">P1: 55</span>
+  <span class="severity-p2">P2: 44</span>
+  <span class="severity-p3">P3: 15</span>
+  <span style="font-size:13px;color:var(--color-foreground-secondary);align-self:center;">Total: 132 findings</span>
+</div>
+
+<h3>Key Findings (P0)</h3>
+<table>
+  <tr><th>ID</th><th>Section</th><th>Agent</th><th>Severity</th><th>Title</th></tr>
+  <tr>
+    <td data-source="evidence_index.rows[0].id">1604</td>
+    <td>4, 8</td>
+    <td>accountability-agent</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Zero commitment completion rate: 24 open commitments, 0 resolved in 14 days</td>
+  </tr>
+  <tr>
+    <td data-source="evidence_index.rows[1].id">1685</td>
+    <td>2e, 8</td>
+    <td>client-analyst</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Client Email Acknowledgment SLA Violation: 3 Emails Unacknowledged 71-87 Hours</td>
+  </tr>
+  <tr>
+    <td data-source="evidence_index.rows[2].id">1598</td>
+    <td>7</td>
+    <td>finance-analyst</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Budget Health Critical: 57.9% Work Complete vs 76.9% Budget Consumed &mdash; 19% Gap</td>
+  </tr>
+  <tr>
+    <td>1600</td>
+    <td>7</td>
+    <td>finance-analyst</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Three Budget Phases Expired With Work Continuing</td>
+  </tr>
+  <tr>
+    <td>1675</td>
+    <td>7</td>
+    <td>finance-analyst</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Budget Exhaustion Projected in ~3.8 Weeks</td>
+  </tr>
+  <tr>
+    <td>1692</td>
+    <td>2a</td>
+    <td>finance-analyst</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Financial RAG Status: RED &mdash; Budget Pillar Assessment</td>
+  </tr>
+  <tr>
+    <td>1605</td>
+    <td>6</td>
+    <td>proactive-pm</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Critical SPI Gap: Project Cannot Meet March 30 Deadline</td>
+  </tr>
+  <tr>
+    <td>1618</td>
+    <td>7</td>
+    <td>proactive-pm</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Budget Runway Exhausted: 3 of 4 Active Budgets Expired</td>
+  </tr>
+  <tr>
+    <td>1631</td>
+    <td>6</td>
+    <td>proactive-pm</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Velocity Declining During Final Sprint &mdash; Zero Tickets Resolved in 5 Days</td>
+  </tr>
+  <tr>
+    <td>1613</td>
+    <td>2a</td>
+    <td>risk-analyst</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Three-Pillar Assessment: Budget=Red, Timeline=Red, RAID=Red &rarr; Overall=Red</td>
+  </tr>
+  <tr>
+    <td>1628</td>
+    <td>3</td>
+    <td>risk-analyst</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Root Cause: NetSuite Data Structure Incompatibility</td>
+  </tr>
+  <tr>
+    <td>1644</td>
+    <td>7</td>
+    <td>risk-analyst</td>
+    <td><span class="severity-p0">P0</span></td>
+    <td>Expired Budget Phases With Unauthorized Work Continuation</td>
+  </tr>
+</table>
+<p class="muted" style="font-size:12px;">Showing 12 of 18 P0 findings. Full evidence index contains 132 findings across 13 agents.</p>
+
+  </div><!-- end content-report -->
+
+  <!-- ==================== SENTIMENT TAB ==================== -->
+  <div class="tab-content" id="content-sentiment">
+
+<h2>Client Sentiment Deep Dive</h2>
+
+<!-- 1. Header -->
+<div style="display:flex;align-items:center;gap:16px;margin:16px 0;padding:20px;background:var(--color-surface);border-radius:12px;border-left:4px solid #ea580c;">
+  <span style="font-size:48px;">&#x1F7E0;</span>
+  <div>
+    <div style="font-size:24px;font-weight:700;" data-source="sentiment_state.current.state">Concerned</div>
+    <div style="font-size:18px;" data-source="sentiment_state.current.direction">&darr; Declining</div>
+  </div>
+  <span style="border:1px dashed var(--color-foreground-secondary);padding:4px 12px;border-radius:16px;font-size:12px;margin-left:auto;" data-source="sentiment_state.current.confidence">medium confidence</span>
+</div>
+
+<!-- 2. Narrative -->
+<h3>Narrative</h3>
+<p data-source="sentiment_state.current.narrative">Weekly Connect (March 26) provided the first formal client touchpoint since the Re-Alignment Meeting (March 20), but only Tye Willcott attended &mdash; Eric Parsons (COO) and Kevin Fafard (Customer Success Manager) were both absent without explanation. This is a significant engagement red flag 4 days before B2B launch (April 1). Tye was cooperative and engaged (offered to split OHSA/Hybrid products, confirmed variant split document completion), but also revealed he had edited theme code without coordination, requiring Isabel to establish a code freeze policy on-the-spot. The meeting mood was neutral, decisions were made with 1 of 3 client stakeholders present, and critical topics were not raised (missing product categories, invoice 003-ATLA-26 now 14 days overdue, budget phase expiry). Zero new client emails since March 23 (4 days). The communication gap with Eric and Kevin is now at 4 days and widening. Direction shifts to declining based on 2 of 3 stakeholders disengaging from the critical pre-launch cadence.</p>
+<p class="muted" style="font-size:12px;margin-top:8px;">Previously: &#x1F7E0; Concerned &rarr; stable</p>
+
+<!-- 3. Signals -->
+<h3>Latest Signals</h3>
+
+<div class="signal-card" style="border-left-color:#16a34a;">
+  <div class="event-badges" style="margin-bottom:6px;">
+    <span class="source-badge source-fireflies">Meeting</span>
+    <span style="font-size:12px;color:var(--color-foreground-secondary);">2026-03-26</span>
+    <span style="font-size:12px;">&uarr; improving</span>
+  </div>
+  <div style="font-size:13px;font-weight:600;">Tye Willcott &mdash; Communication</div>
+  <p style="font-size:13px;">Tye actively engaged at Weekly Connect: volunteered to split OHSA/Hybrid products into summer/winter collections, confirmed variant split document complete.</p>
+  <blockquote>"I did winter and summer for both of these. So if you could just make the collections, I can split the products up properly."</blockquote>
+</div>
+
+<div class="signal-card" style="border-left-color:#dc2626;">
+  <div class="event-badges" style="margin-bottom:6px;">
+    <span class="source-badge source-fireflies">Meeting</span>
+    <span style="font-size:12px;color:var(--color-foreground-secondary);">2026-03-26</span>
+    <span style="font-size:12px;">&darr; declining</span>
+  </div>
+  <div style="font-size:13px;font-weight:600;">Eric Parsons &mdash; Communication</div>
+  <p style="font-size:13px;">Eric Parsons (COO) absent from Weekly Connect &mdash; the first formal meeting since Re-Alignment Meeting he initiated. Kevin Fafard also absent. Only 1 of 3 client stakeholders attended critical pre-launch meeting.</p>
+  <blockquote>N/A &mdash; absence signal</blockquote>
+</div>
+
+<div class="signal-card" style="border-left-color:#dc2626;">
+  <div class="event-badges" style="margin-bottom:6px;">
+    <span class="source-badge source-fireflies">Meeting</span>
+    <span style="font-size:12px;color:var(--color-foreground-secondary);">2026-03-26</span>
+    <span style="font-size:12px;">&darr; declining</span>
+  </div>
+  <div style="font-size:13px;font-weight:600;">Tye Willcott &mdash; Quality</div>
+  <p style="font-size:13px;">Tye revealed he directly edited Shopify theme code (added Accentuate button) without coordinating with Makro, causing layout issues. Isabel had to enforce code freeze policy during the call.</p>
+  <blockquote>"I struggled but I did it... it was messing with the shape of these backgrounds"</blockquote>
+</div>
+
+<!-- 4. Topic Breakdown -->
+<h3>Topic Sentiment Breakdown</h3>
+<table>
+  <tr><th>Topic</th><th>State</th><th>Direction</th><th>Signal Count</th><th>Note</th></tr>
+  <tr>
+    <td>Timeline</td>
+    <td>&#x1F7E0; concerned</td>
+    <td>&darr; declining</td>
+    <td>1</td>
+    <td>Variant split blocked until Monday. B2B launch April 1 leaves zero buffer.</td>
+  </tr>
+  <tr>
+    <td>Quality</td>
+    <td>&#x1F7E0; concerned</td>
+    <td>&darr; declining</td>
+    <td>1</td>
+    <td>Tye edited theme code without coordination. Code freeze established but audit pending.</td>
+  </tr>
+  <tr>
+    <td>Budget</td>
+    <td>&#x1F7E0; concerned</td>
+    <td>&rarr; stable</td>
+    <td>0</td>
+    <td>No budget signals from client. Invoice 14 days overdue. Not discussed at Weekly Connect.</td>
+  </tr>
+  <tr>
+    <td>Scope</td>
+    <td>&#x1F7E0; concerned</td>
+    <td>&rarr; stable</td>
+    <td>0</td>
+    <td>10 unapproved scope additions since March 17. OHSA/Hybrid split another addition without CR.</td>
+  </tr>
+  <tr>
+    <td>Communication</td>
+    <td>&#x1F7E0; concerned</td>
+    <td>&darr; declining</td>
+    <td>2</td>
+    <td>2 of 3 stakeholders absent from pre-launch meeting. Eric and Kevin 4-day email silence.</td>
+  </tr>
+</table>
+
+<!-- 5. Suggested Actions -->
+<details open>
+  <summary>Suggested Actions (3)</summary>
+  <div style="margin:8px 0;">
+    <div class="action-row">
+      <span class="action-num">1</span>
+      <div>
+        <strong>Noel de Toledo (PM)</strong> to send Weekly Connect recap email to Eric Parsons and Kevin Fafard TODAY (March 27), sharing all decisions made and confirming their availability for remaining pre-launch activities.
+        <span class="severity-p0" style="margin-left:4px;">Immediate</span>
+      </div>
+    </div>
+    <div class="action-row">
+      <span class="action-num">2</span>
+      <div>
+        <strong>Noel de Toledo (PM)</strong> to reply to all unread client emails. Oldest is Kevin Fafard Technical Alignment (March 13, 14 days unacknowledged). Per Makro belief #10: silence is unacceptable.
+        <span class="severity-p0" style="margin-left:4px;">Immediate</span>
+      </div>
+    </div>
+    <div class="action-row">
+      <span class="action-num">3</span>
+      <div>
+        <strong>Noel de Toledo (PM)</strong> to schedule a brief check-in call with Eric Parsons this week (before Monday March 31) to confirm COO engagement for the final sprint to B2B launch.
+        <span class="severity-p1" style="margin-left:4px;">This week</span>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- 6. Open Concerns -->
+<h3>Open Concerns (Top 10 by Times Raised)</h3>
+<table>
+  <tr><th>Concern</th><th>Theme</th><th>Times Raised</th><th>Status</th></tr>
+  <tr><td>Kevin Fafard communication pattern &mdash; absent from Weekly Connect, 4-day silence</td><td>communication</td><td data-source="sentiment_state.open_concerns[0].times_raised">16</td><td><span class="badge-open">open</span></td></tr>
+  <tr><td>Accommodation over-extension &mdash; Dev/Integration budgets expire today, 10 unapproved additions</td><td>scope</td><td data-source="sentiment_state.open_concerns[1].times_raised">16</td><td><span class="badge-stale">recurring</span></td></tr>
+  <tr><td>Eric Parsons delivery expectations &mdash; absent from Weekly Connect, 4-day silence</td><td>delivery-expectations</td><td data-source="sentiment_state.open_concerns[2].times_raised">14</td><td><span class="badge-open">open</span></td></tr>
+  <tr><td>Budget phase dates &mdash; Dev/Integration expire today, third extension for Dev</td><td>budget</td><td data-source="sentiment_state.open_concerns[3].times_raised">14</td><td><span class="badge-stale">recurring</span></td></tr>
+  <tr><td>Client engagement pattern &mdash; 2/3 stakeholders missed pre-launch Weekly Connect</td><td>readiness</td><td data-source="sentiment_state.open_concerns[4].times_raised">14</td><td><span class="badge-stale">recurring</span></td></tr>
+  <tr><td>Client confidence signals &mdash; moderate confidence, slight decline</td><td>readiness</td><td>13</td><td><span class="badge-open">open</span></td></tr>
+  <tr><td>Invoice 003-ATLA-26 ($14,805) now 14 days overdue</td><td>budget</td><td>13</td><td><span class="badge-stale">recurring</span></td></tr>
+  <tr><td>Scope drift trajectory &mdash; 10 unapproved additions</td><td>scope</td><td>11</td><td><span class="badge-stale">recurring</span></td></tr>
+  <tr><td>Products missing or incorrectly imported into Shopify</td><td>quality</td><td>9</td><td><span class="badge-open">open</span></td></tr>
+  <tr><td>Product data disorganization in Shopify</td><td>data-quality</td><td>9</td><td><span class="badge-stale">recurring</span></td></tr>
+</table>
+
+<!-- 7. Assessment History -->
+<h3>Assessment History</h3>
+<div class="history-pills">
+  <span class="history-pill">&#x1F7E0; Mar 27 &darr;</span>
+  <span class="history-pill">&#x1F7E0; Mar 26 &rarr;</span>
+  <span class="history-pill">&#x1F7E0; Mar 25 &rarr;</span>
+  <span class="history-pill">&#x1F7E0; Mar 24 &uarr;</span>
+  <span class="history-pill">&#x1F7E0; Mar 23 &rarr;</span>
+  <span class="history-pill">&#x1F7E0; Mar 22 &rarr;</span>
+  <span class="history-pill">&#x1F7E0; Mar 21 &uarr;</span>
+  <span class="history-pill">&#x1F7E0; Mar 20 &uarr;</span>
+  <span class="history-pill">&#x1F7E0; Mar 19 &rarr;</span>
+  <span class="history-pill">&#x1F7E0; Mar 18 &uarr;</span>
+</div>
+<p class="muted" style="font-size:12px;">All 10 assessments show "concerned" state. Direction has shifted between improving, stable, and now declining.</p>
+
+  </div><!-- end content-sentiment -->
+
+</div><!-- end tab-nav -->
+
+<!-- FOOTER -->
+<div class="report-footer">
+  Data extracted at 2026-03-27T06:58:51 UTC &middot; Report generated at March 27, 2026 at 12:42 PM IST
+</div>
+
+</div><!-- end container -->
+</body>
+</html>
