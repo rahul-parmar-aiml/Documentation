@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Workwear B2B - Project Report April 20, 2026 &mdash; Makro Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: local('PP Neue Montreal');
+  font-display: swap;
+}
+:root {
+  --color-background: #FCFBFA;
+  --color-background-secondary: #F6F5F4;
+  --color-background-tertiary: #090909;
+  --color-foreground: #090909;
+  --color-foreground-secondary: #4D4C4B;
+  --color-foreground-tertiary: #FCFBFA;
+  --color-button: #090909;
+  --color-button-text: #FCFBFA;
+  --color-border: #E5E2DF;
+  --color-error: #C2150A;
+  --color-error-background: #FCF4F4;
+  --color-warning: #A83C00;
+  --color-warning-background: #FAF3EB;
+  --color-success-text: #0C4238;
+  --color-success-background: #EFF3EC;
+  --font-main: 'PP Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-size-h1: 40px; --font-size-h2: 32px; --font-size-h3: 24px; --font-size-h4: 20px; --font-size-h5: 16px;
+  --font-size-body: 16px; --font-size-body-s: 14px; --font-size-subtitle: 12px;
+  --border-radius-main: 12px; --border-radius-secondary: 6px; --border-radius-button: 100px;
+  --max-width: 1440px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-main); font-size: var(--font-size-body); line-height: 1.6; color: var(--color-foreground); background-color: var(--color-background); -webkit-font-smoothing: antialiased; }
+.report-container { max-width: var(--max-width); margin: 0 auto; padding: 48px 64px; }
+@media (max-width: 768px) { .report-container { padding: 24px 20px; } :root { --font-size-h1: 28px; --font-size-h2: 24px; --font-size-h3: 20px; } }
+.tab-nav { position: relative; }
+.tab-nav input[type="radio"] { display: none; }
+.tab-nav label { display: inline-block; padding: 12px 24px; cursor: pointer; font-weight: 600; font-size: 14px; border-bottom: 3px solid transparent; color: var(--color-foreground-secondary); }
+.tab-nav input[type="radio"]:checked + label { color: var(--color-foreground); border-bottom-color: var(--color-foreground); }
+.tab-content { display: none; padding: 24px 0; }
+#tab-report:checked ~ #content-report { display: block; }
+#tab-sentiment:checked ~ #content-sentiment { display: block; }
+.source-badge { padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+.source-productive { background: #F0EFED; color: #090909; }
+.source-jira { background: #DBEAFE; color: #2563EB; }
+.source-slack { background: #EDE9FE; color: #7C3AED; }
+.source-gmail { background: #D1FAE5; color: #0C4238; }
+.source-github { background: #E5E2DF; color: #4D4C4B; }
+.source-fireflies { background: #FFEDD5; color: #A83C00; }
+table { width: 100%; border-collapse: collapse; font-family: var(--font-main); font-size: var(--font-size-body-s); }
+th { padding: 14px 16px; text-align: left; font-weight: 500; font-size: var(--font-size-subtitle); text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-foreground-tertiary); background: var(--color-background-tertiary); border-bottom: 1px solid var(--color-border); }
+hr.section { border: none; border-top: 1px solid var(--color-border); margin: 48px 0; }
+h2 { font-size: var(--font-size-h2); font-weight: 500; line-height: 1.25; margin-bottom: 16px; }
+h3 { font-size: var(--font-size-h3); font-weight: 500; line-height: 1.3; margin-bottom: 12px; }
+h4 { font-size: var(--font-size-h4); font-weight: 500; line-height: 1.4; margin-bottom: 8px; }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 24px 0; }
+.metric-card { background: var(--color-background-secondary); border-radius: var(--border-radius-main); padding: 20px; }
+.metric-label { font-size: var(--font-size-subtitle); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-foreground-secondary); margin-bottom: 8px; }
+.metric-value { font-family: var(--font-mono); font-size: var(--font-size-h3); font-weight: 500; color: var(--color-foreground); }
+.metric-trend { font-size: 13px; color: var(--color-foreground-secondary); margin-top: 4px; }
+.alert-error { background: var(--color-error-background); border-radius: var(--border-radius-main); padding: 20px 24px; margin: 24px 0; display: flex; gap: 12px; align-items: flex-start; }
+.rag-pill { display: inline-block; padding: 8px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; margin-right: 8px; }
+.rag-red { background: #dc2626; color: #fff; }
+.rag-amber { background: #ea580c; color: #fff; }
+.rag-green { background: #0C4238; color: #fff; }
+.tbl-wrap { margin: 24px 0; overflow-x: auto; border-radius: var(--border-radius-main); border: 1px solid var(--color-border); }
+@media (max-width: 768px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="report-container">
+
+<header style="margin-bottom:48px">
+<div style="font-size:var(--font-size-subtitle);font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-foreground-secondary);margin-bottom:12px">PROJECT REPORT</div>
+<h1 style="font-size:var(--font-size-h1);font-weight:500;line-height:1.2;margin-bottom:8px">Atlas Workwear B2B Website</h1>
+<div class="body-small" style="font-size:var(--font-size-body-s);color:var(--color-foreground-secondary)">April 20, 2026 &middot; Run ID: run-1776667124 &middot; Prepared by Makro Agency</div>
+<div class="body-small muted" style="font-size:var(--font-size-body-s);color:var(--color-foreground-secondary)">Last updated: April 20, 2026 at 12:21 PM IST</div>
+</header>
+
+<div class="tab-nav">
+<input type="radio" id="tab-report" name="tabs" checked>
+<label for="tab-report">Report</label>
+<input type="radio" id="tab-sentiment" name="tabs">
+<label for="tab-sentiment">Sentiment</label>
+
+<div class="tab-content" id="content-report">
+
+<!-- ===== SECTION 1: DATA CONFIDENCE ===== -->
+<h2>1. Data Confidence</h2>
+<div style="background:var(--color-background-secondary);border-radius:var(--border-radius-main);padding:20px;margin:16px 0">
+<div data-source="data_confidence.sources"><span style="margin-right:16px">✅ Fireflies (130 items)</span><span style="margin-right:16px">✅ Github (591 items)</span><span style="margin-right:16px">⚠️ Gmail (205 items)</span><span style="margin-right:16px">✅ Jira (2148 items)</span><span style="margin-right:16px">✅ Productive (846 items)</span><span style="margin-right:16px">✅ Slack (179 items)</span></div>
+</div>
+<p style="font-size:var(--font-size-body-s);color:var(--color-foreground-secondary);margin-top:8px">Numbers may understate actual situation where coverage is partial. Gmail sync status: failed (OAuth token expired).</p>
+
+<hr class="section">
+
+<!-- ===== SECTION 2: PROJECT PULSE ===== -->
+<h2>2. Project Pulse</h2>
+
+<h3>2a. Three-Pillar Health</h3>
+<div style="margin:16px 0">
+<span class="rag-pill rag-red" data-source="p0_p1_risk_findings.three_pillar">Budget: RED</span>
+<span class="rag-pill rag-red" data-source="p0_p1_risk_findings.three_pillar">Timeline: RED</span>
+<span class="rag-pill rag-red" data-source="p0_p1_risk_findings.three_pillar">RAID: RED</span>
+</div>
+<div class="alert-error">
+<span style="color:var(--color-error);font-size:20px">&#9888;</span>
+<div>
+<div style="font-weight:500;color:var(--color-error)">Overall Status: RED &mdash; Immediate Intervention Required</div>
+<div style="font-size:var(--font-size-body-s);color:var(--color-error)">All three pillars are independently Red. Budget consumed 72.4% vs 58.5% work completed. SPI at 0.57 for 14+ days. 71 open risks with zero resolutions. Hypercare budget expires April 24 (4 days). Executive intervention required.</div>
+</div>
+</div>
+
+<h3>2a2. KPI Dashboard</h3>
+<div class="metric-grid">
+<div class="metric-card">
+<div class="metric-label">SPI</div>
+<div class="metric-value" data-source="kpi_dashboard.spi">0.57</div>
+<div class="metric-trend">→ (was 0.57)</div>
+</div><div class="metric-card">
+<div class="metric-label">Budget Util %</div>
+<div class="metric-value" data-source="kpi_dashboard.budget_util_pct">49.2</div>
+<div class="metric-trend">→ (was 49.2)</div>
+</div><div class="metric-card">
+<div class="metric-label">Velocity</div>
+<div class="metric-value" data-source="kpi_dashboard.velocity">6.3</div>
+<div class="metric-trend">→ (was 6.3)</div>
+</div><div class="metric-card">
+<div class="metric-label">Completion %</div>
+<div class="metric-value" data-source="kpi_dashboard.completion_pct">58.9</div>
+<div class="metric-trend">→ (was 58.9)</div>
+</div><div class="metric-card">
+<div class="metric-label">Days Remaining</div>
+<div class="metric-value" data-source="kpi_dashboard.days_remaining">0.0</div>
+<div class="metric-trend">→ (was 0.0)</div>
+</div><div class="metric-card">
+<div class="metric-label">Open Blockers</div>
+<div class="metric-value" data-source="kpi_dashboard.open_blockers">34.0</div>
+<div class="metric-trend">→ (was 34.0)</div>
+</div><div class="metric-card">
+<div class="metric-label">Client Concerns</div>
+<div class="metric-value" data-source="kpi_dashboard.client_concerns">27.0</div>
+<div class="metric-trend">→ (was 27.0)</div>
+</div><div class="metric-card">
+<div class="metric-label">P0/P1 Count</div>
+<div class="metric-value" data-source="kpi_dashboard.p0_p1_count">65.0</div>
+<div class="metric-trend">→ (was 65.0)</div>
+</div>
+</div>
+<div style="background:var(--color-background-secondary);border-radius:var(--border-radius-main);padding:16px;margin:16px 0">
+<strong>Budget Totals:</strong> Total allocated: <span data-source="budget_totals.all_total_cents" style="font-family:var(--font-mono)">$105,524.00</span> | Active remaining: <span data-source="budget_totals.open_spent_cents" style="font-family:var(--font-mono)">$21,611.08</span> | All spent: <span data-source="budget_totals.all_spent_cents" style="font-family:var(--font-mono)">$85,143.17</span>
+</div>
+
+<h3>2e. Communication Pulse</h3>
+<div class="metric-grid" style="grid-template-columns:repeat(3,1fr)">
+<div class="metric-card"><div class="metric-label">Slack Msgs/Day</div><div class="metric-value" data-source="communication_health.slack.avg_messages_per_day">1.0</div></div>
+<div class="metric-card"><div class="metric-label">Unanswered Slack</div><div class="metric-value" data-source="communication_health.slack.unanswered_messages">0</div></div>
+<div class="metric-card" style="background:#FCF4F4;border:1px solid #C2150A"><div class="metric-label">Unread Client Emails</div><div class="metric-value" data-source="communication_health.email.unread_client_emails">8</div><div class="metric-trend" style="color:#dc2626">CRITICAL: 8 emails 24-28 days old</div></div>
+<div class="metric-card"><div class="metric-label">Meetings This Week</div><div class="metric-value" data-source="communication_health.meetings.count_this_week">1</div></div>
+<div class="metric-card"><div class="metric-label">Emails Today</div><div class="metric-value" data-source="kpi_dashboard.emails_today">0.0</div></div>
+<div class="metric-card"><div class="metric-label">Emails Unread</div><div class="metric-value" data-source="kpi_dashboard.emails_unread">15.0</div></div>
+</div>
+
+<h3>2b. Progress Narrative</h3>
+<div style="margin-bottom:16px;padding:16px;background:var(--color-background-secondary);border-radius:var(--border-radius-main)">
+<div style="font-weight:500;margin-bottom:8px">🔴 2026-04-20</div>
+<p style="font-size:14px;line-height:1.5;color:var(--color-foreground-secondary);margin:0">April 20 is a quiet day with no new data movements — no Jira ticket resolutions, no new blocker events, and no commitment fulfillments. The only changes are the mechanical aging of all open items: 11 open/in-progress commitments ticked forward one day, and 34 active/escalated blockers aged by one da...</p>
+<details style="margin-top:8px"><summary style="cursor:pointer;font-size:12px;color:var(--color-foreground-secondary)">Key movements</summary>
+<p style="font-size:12px;color:var(--color-foreground-secondary);margin-top:4px">No ticket resolutions or new events. All 34 active/escalated blockers aged +1 day. All 11 open/in-progress commitments aged +1 day. 9 P0 blockers now escalated. Hypercare budget cliff in 4 days (April 24). Zero new commitments detected via vector search.</p>
+</details></div><div style="margin-bottom:16px;padding:16px;background:var(--color-background-secondary);border-radius:var(--border-radius-main)">
+<div style="font-weight:500;margin-bottom:8px">🟠 2026-04-19</div>
+<p style="font-size:14px;line-height:1.5;color:var(--color-foreground-secondary);margin:0">A quiet day operationally with one meaningful ticket completion: AW-728 (Import Product Data) moved to Done, though it does not close any tracked commitment. Budget margins continued to erode slightly -- UAT budget (3301589) dropped from 72.47% to 71.85% and Hypercare budget (3301590) fell from 94.4...</p>
+<details style="margin-top:8px"><summary style="cursor:pointer;font-size:12px;color:var(--color-foreground-secondary)">Key movements</summary>
+<p style="font-size:12px;color:var(--color-foreground-secondary);margin-top:4px">AW-728 resolved (Import Product Data); UAT margin -0.62pp to 71.85%; Hypercare margin -4.69pp to 89.77%; 34 blockers active, oldest at 37 days; no new commitments detected</p>
+</details></div><div style="margin-bottom:16px;padding:16px;background:var(--color-background-secondary);border-radius:var(--border-radius-main)">
+<div style="font-weight:500;margin-bottom:8px">🔴 2026-04-18</div>
+<p style="font-size:14px;line-height:1.5;color:var(--color-foreground-secondary);margin:0">Another day of accumulating risk with near-zero forward progress on deliverables. The only ticket movement was AW-1191 (Titles reverting) advancing from To Do to Ready for Testing and reassigned from Shakeel M to Rahul P — still not resolved. No tickets moved to Done, so no commitments were fulfille...</p>
+<details style="margin-top:8px"><summary style="cursor:pointer;font-size:12px;color:var(--color-foreground-secondary)">Key movements</summary>
+<p style="font-size:12px;color:var(--color-foreground-secondary);margin-top:4px">[{"type":"ticket_movement","detail":"AW-1191 moved To Do -&gt; Ready for Testing, reassigned to Rahul P"},{"type":"new_blocker","detail":"blk-raid-70 (P0): Post-April-24 financial cliff - zero authorized budget across all phases"},{"type":"new_blocker","detail":"blk-raid-71 (P1): B2B access control und</p>
+</details></div><div style="margin-bottom:16px;padding:16px;background:var(--color-background-secondary);border-radius:var(--border-radius-main)">
+<div style="font-weight:500;margin-bottom:8px">🔴 2026-04-17</div>
+<p style="font-size:14px;line-height:1.5;color:var(--color-foreground-secondary);margin:0">Day dominated by escalating financial and access-control risks. Two new RAID entries surfaced: a P0 financial cliff warning (RAID-70) flagging that all budget phases expire by April 24 with no extension requested and a 34-day overdue invoice still outstanding, and a P1 access-control gap (RAID-71) n...</p>
+<details style="margin-top:8px"><summary style="cursor:pointer;font-size:12px;color:var(--color-foreground-secondary)">Key movements</summary>
+<p style="font-size:12px;color:var(--color-foreground-secondary);margin-top:4px">[New RAID-70 (P0): Budget cliff — zero authorized budget after April 24,New RAID-71 (P1): Phase 1 Beta access control undefined, blocks demo,New blocker_log entries created for both RAID items,New Jira AW-1191 (Titles reverting) created, To Do, Shakeel M,11 open commitments aged to 3-10 days, none r</p>
+</details></div><div style="margin-bottom:16px;padding:16px;background:var(--color-background-secondary);border-radius:var(--border-radius-main)">
+<div style="font-weight:500;margin-bottom:8px">🔴 2026-04-16</div>
+<p style="font-size:14px;line-height:1.5;color:var(--color-foreground-secondary);margin:0">Mixed signals today: development momentum is visible with AW-1155 (Domain Configuration) completed and Phase 1 Beta infrastructure confirmed ready (domain connected, theme configured, B2B enabled, search exclusion set). Three Slack messages show active demo planning with credit hold, checkout blocki...</p>
+<details style="margin-top:8px"><summary style="cursor:pointer;font-size:12px;color:var(--color-foreground-secondary)">Key movements</summary>
+<p style="font-size:12px;color:var(--color-foreground-secondary);margin-top:4px">["AW-1155 Domain Configuration completed (To Do -&gt; Done)", "Phase 1 Beta launch infrastructure confirmed ready (domain, theme, B2B, search exclusion)", "Demo plan documented for B2B credit hold, checkout blocking, and surcharge logic", "NEW P0: Hypercare budget expires April 24 with Phase 1 incomple</p>
+</details></div><div style="margin-bottom:16px;padding:16px;background:var(--color-background-secondary);border-radius:var(--border-radius-main)">
+<div style="font-weight:500;margin-bottom:8px">🟠 2026-04-15</div>
+<p style="font-size:14px;line-height:1.5;color:var(--color-foreground-secondary);margin:0">A day of mixed signals. Development velocity showed a genuine pulse with Nathan V closing three tickets (AW-1181 checkout blocking fix, AW-1184 collection page breadcrumb, AW-1185 quantity increment cart fix) and PR #107 merged. Five new tickets (AW-1186 through AW-1190) moved to Ready for Testing u...</p>
+<details style="margin-top:8px"><summary style="cursor:pointer;font-size:12px;color:var(--color-foreground-secondary)">Key movements</summary>
+<p style="font-size:12px;color:var(--color-foreground-secondary);margin-top:4px">{"tickets_resolved": ["AW-1181", "AW-1184", "AW-1185"], "tickets_new_or_moved": ["AW-1186", "AW-1187", "AW-1188", "AW-1189", "AW-1190"], "blockers_resolved": ["blk-AW-1152-access", "blk-AW-880-blocked", "blk-dev-holiday-variant-split"], "blockers_created": ["blk-raid-67-hypercare-budget-expiry", "bl</p>
+</details></div><div style="margin-bottom:16px;padding:16px;background:var(--color-background-secondary);border-radius:var(--border-radius-main)">
+<div style="font-weight:500;margin-bottom:8px">🟡 2026-04-14</div>
+<p style="font-size:14px;line-height:1.5;color:var(--color-foreground-secondary);margin:0">Significant batch resolution day: 20 Jira tickets moved to Done, spanning client-reported variant issues (AW-1112/1113/1115/1116), variant split implementation (AW-1133/1135/1138), integration work (AW-1150 Shopify-NetSuite critical), access control (AW-1152 unblocked and completed), UAT items (AW-1...</p>
+<details style="margin-top:8px"><summary style="cursor:pointer;font-size:12px;color:var(--color-foreground-secondary)">Key movements</summary>
+<p style="font-size:12px;color:var(--color-foreground-secondary);margin-top:4px">[{"type":"ticket_resolution","detail":"20 tickets moved to Done including variant fixes, integration, access control, UAT items, and process docs"},{"type":"blocker_resolved","detail":"AW-1152 access blocker resolved (Done); AW-880 unblocked (now In Progress)"},{"type":"risk_new","detail":"RAID #65 </p>
+</details></div>
+
+<h3>2c. Client Sentiment Snapshot</h3>
+<div style="background:var(--color-background-secondary);border-radius:var(--border-radius-main);padding:20px;margin:16px 0">
+<div style="font-size:28px;display:inline" data-source="client_sentiment.state_summary.state">🟠</div>
+<span style="font-weight:600;font-size:20px;margin-left:8px">Concerned</span>
+<span style="font-size:20px;margin-left:8px" data-source="client_sentiment.state_summary.direction">↓</span>
+<span style="background:var(--color-background);padding:2px 12px;border-radius:20px;font-size:12px;margin-left:8px;border:1px dashed var(--color-border)" data-source="client_sentiment.state_summary.confidence">low confidence</span>
+<p style="font-size:14px;color:var(--color-foreground-secondary);margin-top:12px" data-source="client_sentiment.state_summary.narrative">Day 10 post-beta configuration. Zero new client communications — 8th consecutive assessment with no signals. Email silence now 28 days across all 3 client stakeholders (Eric Parsons, Tye Willcott, Kevin Fafard). Last client meeting was April 14 Weekly Connect — 6 days ago, double the 3-day Makro thr...</p>
+<a href="#" onclick="document.getElementById('tab-sentiment').checked=true;return false;" style="font-size:14px;color:var(--color-foreground);font-weight:500;margin-top:8px;display:inline-block">Full analysis &rarr;</a>
+</div>
+
+<h3>2d. Scope Drift Indicator</h3>
+<div style="background:var(--color-background-secondary);border-radius:var(--border-radius-main);padding:20px;margin:16px 0">
+<div class="metric-value" data-source="scope_drift_latest.current_drift_pct"><span style="color:var(--color-foreground-secondary);">Not available</span></div>
+<div style="font-size:14px;color:var(--color-foreground-secondary);margin-top:4px">253 unapproved scope additions. CR proposal due April 16 &mdash; 4 days overdue.</div>
+</div>
+
+<hr class="section">
+
+<!-- ===== SECTION 3: OPEN RISKS & BLOCKERS ===== -->
+<h2>3. Open Risks &amp; Blockers</h2>
+<div style="margin-bottom:16px"><strong>9 P0 blockers</strong> | <strong>13 P1 blockers</strong> | 34 total active blockers | 72 open RAID items</div>
+<div class="tbl-wrap"><table>
+<thead><tr><th>ID</th><th>Risk/Blocker</th><th>Source</th><th>Severity</th><th style="text-align:right">Days Open</th></tr></thead>
+<tbody><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-16-budget-boundary</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Budget phase boundary undefined - team working post-phase-end without </td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">17</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-48-client-silence</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Client relationship damage from undisclosed launch miss compounding da</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">17</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-55-meeting-unprepared</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">April 7 Weekly Connect unprepared — no launch delay communication arti</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">13</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-57-uat-budget-collisi</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">UAT budget/beta deployment date collision — testing authorization expi</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">11</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-58-scope-explosion</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Scope explosion: 44 tickets added vs 7 resolved in 9 days — 14.7:1 add</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">11</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-62-launch-miss-patter</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Second consecutive launch date missed without proactive communication </td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">8</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-67-hypercare-budget-e</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Hypercare budget expires April 24 with Phase 1 incomplete</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">6</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-69-timeline-credibili</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Three consecutive launch dates missed without revised timeline</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">6</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-70-budget-cliff</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Post-April-24 financial cliff: zero authorized budget across all phase</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">4</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-mi-01KJT-001</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">NetSuite parent-child SKU data structure prevents clean Shopify import</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">37</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-mi-01KJT-002</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Client dissatisfaction flagged by Sales Lead (Mike) — delivery not mat</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">37</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-fire-01kkcqgb-01</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">NetSuite product data quality issues blocking clean product display</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">30</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-fire-01kkcqgb-02</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Custom integration logic needed for orange variants adds complexity</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">30</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-47-integration-budget</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Integration budget expires today (April 3) with integration UAT not ye</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">17</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-46-risk-trajectory</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Risk trajectory unsustainable - 45 open risks with zero resolutions in</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">17</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-49-budget-authority</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Budget authority absent during budget expiry - no authorization for co</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">17</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-50-uat-budget-runway</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">UAT budget expires April 10 — only 6 days of authorized budget runway </td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">15</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-51-completion-declini</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Completion percentage declining — scope additions outpacing resolution</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">15</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-54-velocity-zero</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Effective velocity at zero — no tickets resolved since April 1</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">13</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border);font-size:12px">blk-raid-61-beta-scope-explosi</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Beta defect volume signals scope expansion beyond freeze — 6 new defec</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-productive">RAID</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="risks_blockers.active_blockers.days_open">8</td>
+</tr></tbody>
+</table></div>
+<p style="font-size:13px;color:var(--color-foreground-secondary);margin-top:8px">Showing top 20 of 34 active blockers. 72 additional RAID items tracked.</p>
+
+<hr class="section">
+
+<!-- ===== SECTION 4: OPEN ACTION ITEMS & ISSUES ===== -->
+<h2>4. Open Action Items &amp; Issues</h2>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Item</th><th>Owner</th><th>Source</th><th>Type</th><th style="text-align:right">Days Open</th><th>Due Date</th><th>Status</th></tr></thead>
+<tbody><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Schedule a call with Zainab (BA), possibly Raul, and Tye to discuss bu</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Nöel de Toledo</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">32</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Investigate the product weight field sync between NetSuite and Shopify</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Rahul P</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">22</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Complete variant splitting work (separating product color variants int</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Rahul P</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">22</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Reach out to Eric before end of day to ensure he is aware of the invoi</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Nöel de Toledo</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Send responses/updates on each of the five open UAT tickets to Tye as </td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Nöel de Toledo</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Review the multiple crest logo submission demo/workflow</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Tye Willcott</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Review Vision team styling asks with Z (BSA) and respond to Avery with</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Noel de Toledo</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Share NetSuite safety badge field info (custom item 9 through 27) with</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Noel de Toledo</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Send screenshot of NetSuite safety badge field layout to Noel</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Kevin Fafard</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Monitor integration resolution progress and inform team when integrati</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Noel de Toledo</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Bring Zainab (BA) and Olu (Strategy) into a call to review grouped cha</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Isabel Maier</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Send follow-up email confirming the exact orange variant integration l</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Rahul P</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Send marketing team scope of work document to Makro team so both teams</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Eric Parsons</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Investigate color selection button feature internally, determine hours</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Nöel de Toledo</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Copy over all existing collections from current live website to Shopif</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">Isabel Maier</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span class="source-badge source-fireflies">Meeting</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">commitment</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="action_items.commitments.days_open">15</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:var(--color-foreground-secondary);">Not available</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">stale</span></td>
+</tr></tbody>
+</table></div>
+<p style="font-size:13px;color:var(--color-foreground-secondary);margin-top:8px">Showing 15 of 45 commitments. 22 Fireflies action items and 26 critical tickets also tracked.</p>
+
+<hr class="section">
+
+<!-- ===== SECTION 5: SCOPE PERSPECTIVE ===== -->
+<h2>5. Scope Perspective</h2>
+<div class="alert-error" style="background:var(--color-warning-background)">
+<span style="color:var(--color-warning);font-size:20px">&#9888;</span>
+<div><div style="font-weight:500;color:var(--color-warning)">Decision Question: Should the PM enforce a hard scope freeze before Hypercare expires April 24?</div>
+<div style="font-size:var(--font-size-body-s);color:var(--color-warning)">253 unapproved scope additions. CR proposal overdue. 13 post-beta defects without triage process. Scope freeze decision from April 7 has had zero enforcement effect.</div></div>
+</div>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Date</th><th>Change Type</th><th>Description</th><th style="text-align:right">Pts Delta</th><th style="text-align:right">Drift %</th></tr></thead>
+<tbody><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-17</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New ticket: AW-1191 "Titles reverting" (Marker Defect, Medium priority, assigned</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">N/A</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-15</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: Status design needs to change (AW-1187, Medium, unestimated)</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">N/A</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-15</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: Update Placeholder (AW-1188, Medium, unestimated)</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">N/A</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-15</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: Contacts is not in Scope (AW-1189, Medium, unestimated)</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">N/A</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-15</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: Success rate needs to be upto 2 decimals (AW-1190, Medium, unestimat</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">N/A</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-14</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: quantity increment not working on cart but working on PDP (AW-1185, </td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">7866.67</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-14</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: Split Variants (AW-1186, Medium, assigned to Shakeel M)</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">7900.0</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-14</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">Vision Atlas CR: visual change requests from Vision to be scoped as formal chang</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">N/A</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-11</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: Company Failure in Portal</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">7666.67</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-11</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: Add to cart issue</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">7700.0</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-11</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: Checkout blocking should use location metafield instead of company m</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">7733.33</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-11</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: Remove zoom on hover from product cards</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">7766.67</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-11</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: Change image CSS to object-contain instead of cover</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">7800.0</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-11</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New defect: Collection page not captured when navigating from collection</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">7833.33</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">2026-04-09</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">addition</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">New Epic: Deployment Phase 1: B2B Beta &amp; MVP Launch (Invite-Only)</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">0.0</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="scope_changelog.entries">6566.67</td>
+</tr></tbody>
+</table></div>
+<p style="font-size:14px;color:var(--color-foreground-secondary);margin-top:12px"><strong>Recommendation:</strong> Implement a hard scope gate immediately. No new tickets without written PM + client approval. Classify all 253 additions into defects vs change requests. Confirm CR proposal delivery status.</p>
+
+<hr class="section">
+
+<!-- ===== SECTION 6: TIMELINE & DELIVERY FORECAST ===== -->
+<h2>6. Timeline &amp; Delivery Forecast</h2>
+<div class="metric-grid" style="grid-template-columns:repeat(3,1fr)">
+<div class="metric-card"><div class="metric-label">SPI</div><div class="metric-value" data-source="delivery_forecast.spi">0.57</div></div>
+<div class="metric-card"><div class="metric-label">Avg Velocity/Week</div><div class="metric-value" data-source="delivery_forecast.avg_velocity_per_week">6.3</div></div>
+<div class="metric-card"><div class="metric-label">Remaining Tickets</div><div class="metric-value" data-source="delivery_forecast.remaining_pts">99</div></div>
+</div>
+<h4>Velocity Trailing</h4>
+<div style="margin:12px 0" data-source="delivery_forecast.velocity_trailing"><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">2026-W12: 1 resolved</span><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">2026-W14: 3 resolved</span><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">2026-W15: 15 resolved</span></div>
+<h4>Completion Forecast</h4>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Scenario</th><th style="text-align:right">Velocity</th><th style="text-align:right">Weeks Needed</th><th>Projected Date</th></tr></thead>
+<tbody>
+<tr style="background:var(--color-background)"><td style="padding:14px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">Best</td><td style="padding:14px 16px;text-align:right;font-family:var(--font-mono);border-bottom:1px solid var(--color-border)" data-source="delivery_forecast.scenarios.best.velocity">15</td><td style="padding:14px 16px;text-align:right;font-family:var(--font-mono);border-bottom:1px solid var(--color-border)" data-source="delivery_forecast.scenarios.best.weeks_needed">6.6</td><td style="padding:14px 16px;border-bottom:1px solid var(--color-border)" data-source="delivery_forecast.scenarios.best.projected_date">2026-06-05</td></tr>
+<tr style="background:var(--color-background-secondary)"><td style="padding:14px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">Expected</td><td style="padding:14px 16px;text-align:right;font-family:var(--font-mono);border-bottom:1px solid var(--color-border)" data-source="delivery_forecast.scenarios.expected.velocity">6.3</td><td style="padding:14px 16px;text-align:right;font-family:var(--font-mono);border-bottom:1px solid var(--color-border)" data-source="delivery_forecast.scenarios.expected.weeks_needed">15.7</td><td style="padding:14px 16px;border-bottom:1px solid var(--color-border)" data-source="delivery_forecast.scenarios.expected.projected_date">2026-08-07</td></tr>
+<tr style="background:var(--color-background)"><td style="padding:14px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">Worst</td><td style="padding:14px 16px;text-align:right;font-family:var(--font-mono);border-bottom:1px solid var(--color-border)" data-source="delivery_forecast.scenarios.worst.velocity">1</td><td style="padding:14px 16px;text-align:right;font-family:var(--font-mono);border-bottom:1px solid var(--color-border)" data-source="delivery_forecast.scenarios.worst.weeks_needed">99.0</td><td style="padding:14px 16px;border-bottom:1px solid var(--color-border)" data-source="delivery_forecast.scenarios.worst.projected_date">2028-03-13</td></tr>
+</tbody></table></div>
+
+<hr class="section">
+
+<!-- ===== SECTION 7: BUDGET & FINANCIAL HEALTH ===== -->
+<h2>7. Budget &amp; Financial Health</h2>
+<h4>All Budgets</h4>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Budget Name</th><th style="text-align:right">Total</th><th style="text-align:right">Spent</th><th style="text-align:right">Remaining</th><th style="text-align:right">Util%</th><th style="text-align:right">Margin%</th><th>Status</th></tr></thead>
+<tbody><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="budgets.rows">02 03 Atlas Workwear B2B Website - Design</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.budget_total_cents">$16,650.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.spent_cents">$21,894.75</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.remaining_cents">$-5,244.75</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);color:#dc2626" data-source="budgets.rows.utilization_pct">131.5%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.margin_pct">61.88%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#F0EFED;color:#4D4C4B;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">closed</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="budgets.rows">01 Atlas Workwear B2B Website - Discovery</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.budget_total_cents">$10,619.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.spent_cents">$6,604.50</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.remaining_cents">$4,014.50</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);color:#0C4238" data-source="budgets.rows.utilization_pct">62.2%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.margin_pct">94.5%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#F0EFED;color:#4D4C4B;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">closed</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="budgets.rows">04 Atlas Workwear B2B Website - Integration</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.budget_total_cents">$16,280.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.spent_cents">$12,996.25</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.remaining_cents">$3,283.75</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);color:#A83C00" data-source="budgets.rows.utilization_pct">79.8%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.margin_pct">71.92%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#EFF3EC;color:#0C4238;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">open</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="budgets.rows">03 Atlas Workwear B2B Website - Development</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.budget_total_cents">$49,025.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.spent_cents">$38,554.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.remaining_cents">$10,471.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);color:#A83C00" data-source="budgets.rows.utilization_pct">78.6%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.margin_pct">73.93%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#EFF3EC;color:#0C4238;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">open</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="budgets.rows">05 Atlas Workwear B2B Website - UAT</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.budget_total_cents">$5,550.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.spent_cents">$4,131.67</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.remaining_cents">$1,418.33</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);color:#0C4238" data-source="budgets.rows.utilization_pct">74.4%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.margin_pct">71.85%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#EFF3EC;color:#0C4238;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">open</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="budgets.rows">06 Atlas Workwear B2B Website - Hypercare</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.budget_total_cents">$7,400.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.spent_cents">$962.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.remaining_cents">$6,438.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);color:#0C4238" data-source="budgets.rows.utilization_pct">13.0%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.margin_pct">89.77%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#EFF3EC;color:#0C4238;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">open</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="budgets.rows">07 Atlas Workwear B2B Non-Billable Work</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.budget_total_cents">$0.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.spent_cents">$0.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.remaining_cents">$0.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);color:#0C4238" data-source="budgets.rows.utilization_pct">0.0%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="budgets.rows.margin_pct">0.0%</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#EFF3EC;color:#0C4238;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">open</span></td>
+</tr></tbody>
+</table></div>
+<h4>Invoice Status</h4>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Invoice</th><th>Date</th><th style="text-align:right">Amount</th><th>Status</th><th style="text-align:right">Days Overdue</th></tr></thead>
+<tbody><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="invoices.rows">003-ATLA-26</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)" data-source="invoices.rows.issue_date">2026-02-26</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="invoices.rows.amount_cents">$14,805.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)" data-source="invoices.rows.status"><span style="color:#dc2626;font-weight:600">OVERDUE</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);color:#dc2626;font-weight:600" data-source="invoices.rows.days_overdue">38</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="invoices.rows">002-ATLA-26</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)" data-source="invoices.rows.issue_date">2026-01-27</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="invoices.rows.amount_cents">$22,207.50</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)" data-source="invoices.rows.status"><span style="">PAID</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);" data-source="invoices.rows.days_overdue">0</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="invoices.rows">001-ATLA-26</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)" data-source="invoices.rows.issue_date">2026-01-08</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="invoices.rows.amount_cents">$29,610.00</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)" data-source="invoices.rows.status"><span style="">PAID</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);" data-source="invoices.rows.days_overdue">0</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="invoices.rows">002-ATLA-25</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)" data-source="invoices.rows.issue_date">2025-12-15</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="invoices.rows.amount_cents">$22,207.50</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)" data-source="invoices.rows.status"><span style="">PAID</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);" data-source="invoices.rows.days_overdue">0</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)" data-source="invoices.rows">001-ATLA-25</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)" data-source="invoices.rows.issue_date">2025-11-20</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="invoices.rows.amount_cents">$22,207.50</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)" data-source="invoices.rows.status"><span style="">PAID</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono);" data-source="invoices.rows.days_overdue">0</td>
+</tr></tbody>
+</table></div>
+<div class="alert-error">
+<span style="color:var(--color-error);font-size:20px">&#9888;</span>
+<div><div style="font-weight:500;color:var(--color-error)">Invoice 003-ATLA-26: $14,805 overdue 38 days</div>
+<div style="font-size:var(--font-size-body-s);color:var(--color-error)">Not raised with client. Must be addressed in the financial conversation before Hypercare expires April 24.</div></div>
+</div>
+
+<hr class="section">
+
+<!-- ===== SECTION 8: PM ACTION PLAN ===== -->
+<h2>8. PM Action Plan</h2>
+<h4>Priority Actions (Max 5)</h4>
+<div class="tbl-wrap"><table>
+<thead><tr><th>#</th><th>Action</th><th>Source Agent</th><th>Severity</th><th>Recommendation</th></tr></thead>
+<tbody><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border)">1</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Systemic accountability failure: 21 stale commitments, 33.9% action item complet</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">accountability-agent</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:12px">Noel de Toledo (PM) to conduct a triage session today and classify all 21 stale commitments as eithe</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border)">2</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">34 Stale Commitments — Systemic Follow-Through Failure</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">accountability-agent</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:12px">[Noel de Toledo / PM] to immediately triage all 21 stale items and classify as completed, cancelled,</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border)">3</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Repeated Commitment Pattern — Same Items Re-Committed Across Multiple Meetings</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">accountability-agent</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:12px">[Delivery Coach] to intervene directly: the weekly connect should not proceed until the PM can confi</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border)">4</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Client Email Acknowledgment SLA Breach: 8 Unread Client Emails (16-28 Days Old)</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">client-analyst</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:12px">Noel de Toledo (PM) to acknowledge all 8 unread client emails by end of day today April 8. Each emai</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;font-weight:500;border-bottom:1px solid var(--color-border)">5</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Invoice 003-ATLA-26 Overdue 26+ Days — Not Raised With Client at 4th Consecutive</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">client-analyst</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:12px">Noel de Toledo (PM) to email Eric Parsons directly today with a dedicated invoice follow-up — separa</td>
+</tr></tbody>
+</table></div>
+
+<h4>Client Communication Decisions</h4>
+<div style="background:var(--color-error-background);border-radius:var(--border-radius-main);padding:20px;margin:16px 0">
+<p style="font-size:14px;color:var(--color-error);font-weight:500;margin-bottom:8px">CRITICAL: PM must send combined email to Eric Parsons TODAY</p>
+<ul style="font-size:14px;color:var(--color-error);padding-left:24px">
+<li>Phase 1 Beta demo scheduling (6 days overdue)</li>
+<li>CR proposal delivery confirmation (4 days overdue)</li>
+<li>Invoice 003-ATLA-26 reminder ($14,805, 38 days overdue)</li>
+<li>Budget extension request before April 24 cliff</li>
+</ul>
+</div>
+
+<hr class="section">
+
+<!-- ===== SECTION 9: PROJECT TIMELINE ===== -->
+<h2>9. Project Timeline</h2>
+<div style="background:var(--color-background-secondary);border-radius:var(--border-radius-secondary);padding:12px 16px;margin-bottom:16px;display:flex;gap:24px;font-size:14px">
+<span><strong>100</strong> events</span>
+<span><strong>34</strong> open blockers</span>
+<span>Jun 2024 &ndash; Apr 2026</span>
+</div>
+<div class="timeline" style="margin:16px 0">
+
+</div>
+<p style="font-size:13px;color:var(--color-foreground-secondary)">Showing most recent 10 date groups. 253 scope events, 51 decisions, 42 blocker events also tracked.</p>
+
+<hr class="section">
+
+<!-- ===== SECTION 10: CLIENT COMMUNICATION DRAFT ===== -->
+<h2>10. Client Communication Draft</h2>
+<div style="background:var(--color-background-secondary);border-radius:var(--border-radius-main);padding:24px;margin:16px 0">
+<p style="margin-bottom:16px">Hi Eric, Tye, and Kevin &mdash; I wanted to share an update on the Atlas Workwear B2B project. Since our last connect, the team has made meaningful progress: all four client-reported variant issues have been resolved, product data import (AW-728) is complete, the internal QA gate review has passed, and the Phase 1 Beta environment is fully configured with the domain connected, search engine exclusion active, and B2B functionality enabled. We have 142 of 241 deliverables completed to date.</p>
+<p style="margin-bottom:16px">We are ready to walk you through a comprehensive demo of the Phase 1 Beta experience, including the B2B ordering flow, checkout controls, and surcharge logic. I would like to schedule this walkthrough at your earliest convenience this week. We also have a change request proposal ready for the Vision design items we discussed, and I would appreciate confirming your availability for a brief review.</p>
+<p style="margin-bottom:16px">Looking ahead, our focus is on completing the remaining QA items, finalizing access control rules for the beta, and preparing for Phase 2 planning. Your input on the beta demo will directly shape the final launch configuration. Please let me know your availability for a call this week &mdash; we want to ensure the next steps align with your priorities.</p>
+<p style="font-size:12px;color:var(--color-foreground-secondary);font-style:italic">Draft &mdash; review and adjust tone before sending. Avoid mentioning SPI, burn rate, or internal metrics.</p>
+</div>
+
+<hr class="section">
+
+<!-- ===== SECTION 11: BRIGHT SPOTS & LEARNINGS ===== -->
+<h2>11. Bright Spots &amp; Learnings</h2>
+
+<h4>11a. Client Showcase</h4>
+<div style="background:var(--color-background-secondary);border-radius:var(--border-radius-main);padding:20px;margin-bottom:12px;border-left:4px solid var(--color-foreground)">
+<div style="font-weight:500;margin-bottom:4px">18 Tickets Resolved in 14 Days with Single-Day Batch of 20</div>
+<p style="font-size:14px;color:var(--color-foreground-secondary);margin:4px 0">Between April 7-19, the team resolved 18 tickets spanning variant splits, client-reported issues, UI fixes, checkout/cart improvements, and integration items. April 14 alone saw 20 tickets move to Don</p>
+<div style="font-size:12px;color:var(--color-foreground-secondary);margin-top:8px"><span class="source-badge source-jira">Jira</span> Impact: Pushed project completion from approximately 52% to 58.9% (142 of 241 tickets done), demonstrating sustained delivery mo</div>
+</div><div style="background:var(--color-background-secondary);border-radius:var(--border-radius-main);padding:20px;margin-bottom:12px;border-left:4px solid var(--color-foreground)">
+<div style="font-weight:500;margin-bottom:4px">All Client-Reported Variant Issues Resolved Same Day</div>
+<p style="font-size:14px;color:var(--color-foreground-secondary);margin:4px 0">All four client-reported variant issues (AW-1112, AW-1113, AW-1115, AW-1116) resolved on April 14 alongside the orange variant split implementation. Client meeting confirmed no open development ticket</p>
+<div style="font-size:12px;color:var(--color-foreground-secondary);margin-top:8px"><span class="source-badge source-github">Cross-Source</span> Impact: Eliminated the variant data quality problem that had been a persistent client concern, with client acknowledgment in the</div>
+</div><div style="background:var(--color-background-secondary);border-radius:var(--border-radius-main);padding:20px;margin-bottom:12px;border-left:4px solid var(--color-foreground)">
+<div style="font-weight:500;margin-bottom:4px">Core Development Complete and Phase 1 Beta Infrastructure Operational</div>
+<p style="font-size:14px;color:var(--color-foreground-secondary);margin:4px 0">April 14 meeting confirmed all core development is complete with no open tickets. Phase 1 Beta infrastructure is ready: domain connected, theme configured, B2B enabled, search exclusion set (AW-1155 c</p>
+<div style="font-size:12px;color:var(--color-foreground-secondary);margin-top:8px"><span class="source-badge source-github">Cross-Source</span> Impact: Major project milestone — the build phase is effectively complete and the project can transition to UAT and hypercare ph</div>
+</div><div style="background:var(--color-background-secondary);border-radius:var(--border-radius-main);padding:20px;margin-bottom:12px;border-left:4px solid var(--color-foreground)">
+<div style="font-weight:500;margin-bottom:4px">18 Tickets Resolved in 14 Days — Development Sprint Complete</div>
+<p style="font-size:14px;color:var(--color-foreground-secondary);margin:4px 0">18 Jira tickets resolved including variant split work, 5 client-reported variant issues, checkout blocking logic, cart quantity fix, and collection breadcrumb improvements. April 14 saw 20 tickets com</p>
+<div style="font-size:12px;color:var(--color-foreground-secondary);margin-top:8px"><span class="source-badge source-github">Cross-Source</span> Impact: Phase 1 Beta development effectively complete. All client-reported variant issues resolved. Project transitioned from bu</div>
+</div><div style="background:var(--color-background-secondary);border-radius:var(--border-radius-main);padding:20px;margin-bottom:12px;border-left:4px solid var(--color-foreground)">
+<div style="font-weight:500;margin-bottom:4px">Development Milestone: Phase 1 Beta Build Complete</div>
+<p style="font-size:14px;color:var(--color-foreground-secondary);margin:4px 0">April 14 Weekly Connect confirmed all development work completed with no open development tickets. Last variant split on products 4244 and 4242 confirmed done. Client mood was positive.</p>
+<div style="font-size:12px;color:var(--color-foreground-secondary);margin-top:8px"><span class="source-badge source-fireflies">Meeting</span> Impact: Major project milestone achieved. Client acknowledged completion. Project transitions to UAT demo and user acceptance te</div>
+</div>
+
+<h4>11b. All Achievements</h4>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-weight:500;padding:8px 0">Delivery (123 achievements)</summary><ul style="padding-left:24px;margin:8px 0"><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">18 Tickets Resolved in 14 Days with Single-Day Batch of 20</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Core Development Complete and Phase 1 Beta Infrastructure Operational</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">18 Tickets Resolved in 14 Days — Development Sprint Complete</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Development Milestone: Phase 1 Beta Build Complete</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Batch Resolution Surge: 20 Tickets Closed in Single Day</li><li style="font-size:12px;color:var(--color-foreground-secondary)">...and 118 more</li></ul></details><details style="margin-bottom:8px"><summary style="cursor:pointer;font-weight:500;padding:8px 0">Client Satisfaction (40 achievements)</summary><ul style="padding-left:24px;margin:8px 0"><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">All Client-Reported Variant Issues Resolved Same Day</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">5 Client-Reported Issues Resolved in Single Batch</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Re-Alignment Session: 4 Key Deliverables and Client Validation</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Two-Phase Launch Strategy Progressing from Agreement to Action</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Client Engagement Restored After Extended Silence</li><li style="font-size:12px;color:var(--color-foreground-secondary)">...and 35 more</li></ul></details><details style="margin-bottom:8px"><summary style="cursor:pointer;font-weight:500;padding:8px 0">Quality (51 achievements)</summary><ul style="padding-left:24px;margin:8px 0"><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">All Client-Reported Variant Issues Root-Caused and Resolved</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Phase 1 Beta Build Checklist Completed — 6 Pre-Deployment Items Done</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Safety Badge Data Issues Fully Resolved</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Documentation Guide Hub Completed</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Documentation Guide Hub Completed</li><li style="font-size:12px;color:var(--color-foreground-secondary)">...and 46 more</li></ul></details><details style="margin-bottom:8px"><summary style="cursor:pointer;font-weight:500;padding:8px 0">Risk Resolution (27 achievements)</summary><ul style="padding-left:24px;margin:8px 0"><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">31-Day Integration Blocker Resolved</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">SEO Blocker (AW-674) Fully Resolved — Unblocked After 3 Days</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">4 Blockers Resolved in 14 Days Including Critical Integration UAT Gate</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">4 Blockers Resolved Including Integration Test Milestone</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Staggered Launch Strategy Adopted to Reduce Launch Risk</li><li style="font-size:12px;color:var(--color-foreground-secondary)">...and 22 more</li></ul></details><details style="margin-bottom:8px"><summary style="cursor:pointer;font-weight:500;padding:8px 0">Efficiency (30 achievements)</summary><ul style="padding-left:24px;margin:8px 0"><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Budget Efficiency: 67.3% Utilized at 58% Completion</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Budget Utilization Favorable at 67.3% with UAT/Hypercare Reserves Intact</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Budget at 67.3% Utilized with UAT and Hypercare Reserves Intact</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Budget at 67.3% Utilized with 59% Delivery Complete</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Budget Efficiency: 64.7% Utilization with 59% Completion</li><li style="font-size:12px;color:var(--color-foreground-secondary)">...and 25 more</li></ul></details><details style="margin-bottom:8px"><summary style="cursor:pointer;font-weight:500;padding:8px 0">Team Growth (9 achievements)</summary><ul style="padding-left:24px;margin:8px 0"><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Client Commitment Fulfilled — Order Notes for Logo Uploads Delivered</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Meeting Action Item Completion Rate at 81.8%</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Steady Ticket Resolution Despite 24% Scope Expansion</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Rapid Blocker Resolution: AW-1130 Fixed in 1 Day</li><li style="margin-bottom:4px;font-size:14px;color:var(--color-foreground-secondary)">Blocked Ticket Count Reduced from 3 to 1 Over 14 Days</li><li style="font-size:12px;color:var(--color-foreground-secondary)">...and 4 more</li></ul></details>
+
+<h4>11c. Bright Spots</h4>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Bright Spot</th><th>Evidence</th></tr></thead>
+<tbody>
+<tr style="background:var(--color-background)"><td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">20-ticket resolution day (April 14)</td><td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">Highest single-day completion in project history</td></tr>
+<tr style="background:var(--color-background)"><td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">All client variant issues resolved</td><td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">AW-1112, 1113, 1115, 1116 all closed April 14</td></tr>
+<tr style="background:var(--color-background)"><td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">Phase 1 Beta infrastructure operational</td><td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">Domain, theme, B2B, search exclusion all configured</td></tr>
+<tr style="background:var(--color-background)"><td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">Scope governance improving</td><td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">AW-1189 explicitly flagged as out-of-scope</td></tr>
+<tr style="background:var(--color-background)"><td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">Defect resolution keeping pace</td><td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">3 resolved vs 4 new = net +1 manageable rate</td></tr>
+</tbody></table></div>
+
+<h4>11d. Learnings</h4>
+<div style="margin-bottom:12px;padding:12px;background:var(--color-background-secondary);border-radius:var(--border-radius-secondary)">
+<div style="font-weight:500;font-size:14px">Commitment tracking without deadlines — 9 open commitments have no due_date</div>
+<p style="font-size:13px;color:var(--color-foreground-secondary);margin:4px 0">All 9 open commitments in the commitment_register lack due_date values. Includes client-facing items like reaching out to Eric about invoicing and sending UAT updates to Tye. Without deadlines, commit</p>
+</div><div style="margin-bottom:12px;padding:12px;background:var(--color-background-secondary);border-radius:var(--border-radius-secondary)">
+<div style="font-weight:500;font-size:14px">Commitment completion rate critically low at 10%</div>
+<p style="font-size:13px;color:var(--color-foreground-secondary);margin:4px 0">Of 10 tracked commitments, only 1 has been completed (cmt-01KJAVPJ-order-notes-impl). The remaining 9 are open or in-progress, aged 7-8 days with no due dates set. This indicates commitments are being</p>
+</div><div style="margin-bottom:12px;padding:12px;background:var(--color-background-secondary);border-radius:var(--border-radius-secondary)">
+<div style="font-weight:500;font-size:14px">Scope additions absorbed without change control</div>
+<p style="font-size:13px;color:var(--color-foreground-secondary);margin:4px 0">8 scope additions logged between March 11-13, all with NULL approved_by fields and 0 story points. These client-reported Marker Defects were absorbed into the active work without formal change request</p>
+</div><div style="margin-bottom:12px;padding:12px;background:var(--color-background-secondary);border-radius:var(--border-radius-secondary)">
+<div style="font-weight:500;font-size:14px">Zero assumptions tracked in RAID log</div>
+<p style="font-size:13px;color:var(--color-foreground-secondary);margin:4px 0">The RAID log contains 20 open risks (all type R) but zero assumptions (type A). The RAID log has confirmed this pattern via the existing risk entry titled Implicit assumptions operating without RAID t</p>
+</div><div style="margin-bottom:12px;padding:12px;background:var(--color-background-secondary);border-radius:var(--border-radius-secondary)">
+<div style="font-weight:500;font-size:14px">Missing Meeting Follow-Up Emails Create Accountability Gaps</div>
+<p style="font-size:13px;color:var(--color-foreground-secondary);margin:4px 0">Six consecutive client meetings (March 1-29) produced zero follow-up emails. Commitments from these meetings went untracked and 24 of 34 became stale. Without written confirmation, decisions are dispu</p>
+</div>
+
+<hr class="section">
+
+<!-- ===== SECTION 12: APPENDIX: EVIDENCE INDEX ===== -->
+<h2>12. Appendix: Evidence Index</h2>
+<div style="margin-bottom:16px;font-size:14px">
+<span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span> <strong data-source="evidence_index.severity_counts.P0">49</strong> &nbsp;
+<span style="background:#ea580c;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P1</span> <strong data-source="evidence_index.severity_counts.P1">82</strong> &nbsp;
+<span style="background:#ca8a04;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P2</span> <strong data-source="evidence_index.severity_counts.P2">52</strong> &nbsp;
+<span style="background:#2563eb;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P3</span> <strong data-source="evidence_index.severity_counts.P3">14</strong> &nbsp;
+| Total findings: <strong>197</strong>
+</div>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Finding ID</th><th>Section</th><th>Agent</th><th>Severity</th><th>Title</th></tr></thead>
+<tbody><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3432</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">accountability</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">accountability-agent</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Systemic accountability failure: 21 stale commitments, 33.9%</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4329</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">accountability</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">accountability-agent</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">34 Stale Commitments — Systemic Follow-Through Failure</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4389</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">accountability</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">accountability-agent</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Repeated Commitment Pattern — Same Items Re-Committed Across</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3485</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">client</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">client-analyst</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Client Email Acknowledgment SLA Breach: 8 Unread Client Emai</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3507</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">client</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">client-analyst</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Invoice 003-ATLA-26 Overdue 26+ Days — Not Raised With Clien</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4386</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">client</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">client-analyst</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Client Email Acknowledgment SLA Breach: 8 Unacknowledged Ema</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4323</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">communication</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">communication-analyst</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">8 Unread Client Emails — 24+ Day SLA Breach</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3440</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">budget</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">finance-analyst</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Two Budget Phases Expired, Third Expires in 2 Days — Work Co</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4321</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">budget</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">finance-analyst</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Design Phase Over Budget by 31.5% — $5,245 Overrun Absorbed</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4324</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">invoice</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">finance-analyst</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Invoice 003-ATLA-26 Overdue 35 Days — $14,805 Outstanding</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4326</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">budget</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">finance-analyst</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Budget Phase Boundaries Expired — Team Working Without Autho</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3477</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning-agent</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Anti-pattern #5: Lost Macro-Level Status — Budget Expiry and</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4345</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning-agent</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Anti-Pattern #1: Verbal Assurances Over System Evidence — St</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4352</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning-agent</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Anti-Pattern #2: Client Deliverables Without Deadlines — 74%</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4360</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning-agent</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Anti-Pattern #3: Best-Case-Only Planning — Forecast Uses Onl</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4381</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning-agent</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Anti-Pattern #5: Lost Macro-Level Status — No RAID Review or</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4403</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning-agent</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Anti-Pattern #10: Budget by Gut Feel — Budget Utilization No</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4405</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning-agent</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Anti-Pattern #11: Milestone Hit-Rate Declining Silently — Th</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4409</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">learning-agent</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Estimation Accuracy: Project 102.7% Through Timeline But Onl</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3439</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">delivery_plan</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">proactive-pm</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Project 9 Days Past Deadline with SPI 0.58 — Projected Compl</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3454</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">delivery_plan</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">proactive-pm</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Budget Runway Exhaustion Imminent — 3 of 5 Budgets Expired o</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3502</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">delivery_plan</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">proactive-pm</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Week-by-Week Action Plan</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3508</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">delivery_plan</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">proactive-pm</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Resource Blackout: PM, BSA, and QA All on Approved Time Off </td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4338</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">delivery_plan</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">proactive-pm</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Project Past Deadline with SPI 0.57 — Completion Forecast Ju</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4353</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">delivery_plan</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">proactive-pm</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Financial Cliff: All Budget Phases Expire by April 24 — Zero</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4391</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">delivery_plan</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">proactive-pm</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Week-by-Week Action Plan</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">4408</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">delivery_plan</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">proactive-pm</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Top 3 Delivery Risks to On-Time Completion</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3820</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">client_relationship</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">relationship-interpreter</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Beta deployment day passed with minimal client engagement an</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3424</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">resources</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">resource-analyst</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Complete Team Unavailable Apr 13-17 — Zero Project Capacity</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">3426</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">resources</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">resource-analyst</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)"><span style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600">P0</span></td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);font-size:12px">Extended Team Absence Through May — Sustained Capacity Crisi</td>
+</tr></tbody>
+</table></div>
+<p style="font-size:13px;color:var(--color-foreground-secondary);margin-top:8px">Showing 30 of 197 total findings.</p>
+
+</div><!-- end content-report -->
+
+<div class="tab-content" id="content-sentiment">
+<!-- ===== SENTIMENT TAB ===== -->
+
+<h2>Client Sentiment Deep Dive</h2>
+
+<!-- 1. Header -->
+<div style="text-align:center;padding:32px 0">
+<div style="font-size:64px" data-source="sentiment_state.current.state">🟠</div>
+<div style="font-size:var(--font-size-h2);font-weight:500;margin-top:8px">Concerned</div>
+<div style="font-size:24px;margin-top:4px" data-source="sentiment_state.current.direction">↓</div>
+<span style="background:var(--color-background-secondary);padding:4px 16px;border-radius:20px;font-size:14px;border:1px dashed var(--color-border)" data-source="sentiment_state.current.confidence">low confidence</span>
+</div>
+
+<!-- 2. Narrative -->
+<div style="background:var(--color-background-secondary);border-radius:var(--border-radius-main);padding:24px;margin:24px 0">
+<p style="font-size:var(--font-size-body);line-height:1.6" data-source="sentiment_state.current.narrative">Day 10 post-beta configuration. Zero new client communications — 8th consecutive assessment with no signals. Email silence now 28 days across all 3 client stakeholders (Eric Parsons, Tye Willcott, Kevin Fafard). Last client meeting was April 14 Weekly Connect — 6 days ago, double the 3-day Makro threshold. Meeting cadence fully lapsed with no next meeting scheduled. Phase 2 target April 16 passed — 3rd consecutive missed date with no replanning. Demo still not held despite Mon/Tue target from April 14 meeting (6 days overdue). CR proposal was due April 16 — 4 days overdue, delivery status unknown. Invoice 003-ATLA-26 now 38 days overdue. Unacknowledged client emails persist. Hypercare budget ends April 24 — 4 days remaining with margin at 89.77%. Hypercare is the last active budget. PM must force contact today — every communication channel is silent and the project faces a 4-day countdown to total budget expiry.</p>
+<div style="margin-top:12px;font-size:14px;color:var(--color-foreground-secondary)">Previously: 🟠 concerned ↓</div>
+</div>
+
+<!-- 3. Signals -->
+<h3>Signals</h3>
+<p style="font-size:14px;color:var(--color-foreground-secondary);margin:12px 0" data-source="sentiment_state.current.signals">No new signals detected. 8th consecutive assessment with zero client communications analyzed. All channels silent.</p>
+
+<!-- 4. Topic Breakdown -->
+<h3>Topic Breakdown</h3>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Topic</th><th>State</th><th>Direction</th><th style="text-align:right">Signal Count</th></tr></thead>
+<tbody><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">Timeline</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">🟠</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">↓</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.current.topic_sentiment">0</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">Quality</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">🟡</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">→</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.current.topic_sentiment">0</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">Budget</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">🟠</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">↓</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.current.topic_sentiment">0</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">Scope</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">🟠</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">→</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.current.topic_sentiment">0</td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 16px;font-weight:500;border-bottom:1px solid var(--color-border)">Communication</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">🟠</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border)">↓</td>
+<td style="padding:10px 16px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.current.topic_sentiment">0</td>
+</tr></tbody>
+</table></div>
+
+<!-- 5. Suggested Actions -->
+<details><summary style="cursor:pointer;font-weight:500;padding:8px 0">Suggested Actions</summary><ol style="padding-left:24px;margin:8px 0"><li style="margin-bottom:8px;font-size:14px"><strong>Noel de Toledo (PM)</strong>: Noel de Toledo (PM) to send written status update email to Eric Parsons, Tye Willcott, and Kevin Fafard TODAY — include Phase 1 Beta milestone, AW-728 completion, demo scheduling proposal, CR proposal<br><span style="font-size:12px;color:var(--color-warning)">Urgency: today</span></li><li style="margin-bottom:8px;font-size:14px"><strong>Noel de Toledo (PM)</strong>: Noel de Toledo (PM) to schedule next Weekly Connect meeting for this week (April 20-24). Meeting cadence has lapsed 6 days past the 3-day threshold — the sole remaining client touchpoint is broken and<br><span style="font-size:12px;color:var(--color-warning)">Urgency: today</span></li><li style="margin-bottom:8px;font-size:14px"><strong>Isabel Maier (Delivery Coach)</strong>: Isabel Maier (Delivery Coach) to escalate the communication breakdown to Mike Chammas (Sales Lead) if PM outreach receives no response within 24 hours. The 28-day email silence and 6-day meeting silen<br><span style="font-size:12px;color:var(--color-warning)">Urgency: today</span></li></ol></details>
+
+<!-- 6. Open Concerns -->
+<h3>Open Concerns</h3>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Concern</th><th>Theme</th><th style="text-align:right">Times Raised</th><th>Status</th></tr></thead>
+<tbody><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Accommodation over-extension update (April 20): Development (03) budget 24 DAYS </td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">scope</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.open_concerns">39</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">recurring</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Kevin Fafard communication pattern update (April 20): Email silence now 28 DAYS </td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">communication</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.open_concerns">38</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">recurring</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Budget phase dates update (April 20): Development (03) budget 24 DAYS EXPIRED. I</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">budget</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.open_concerns">38</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">recurring</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Client engagement pattern update (April 20, Day 31 post Re-Alignment Meeting): N</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">readiness</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.open_concerns">37</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">recurring</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Invoice 003-ATLA-26 now 38 days overdue (due date March 13, Development budget, </td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">budget</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.open_concerns">37</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">recurring</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Eric Parsons delivery expectations update (April 20 — BETA DAY +10): Phase 1 Bet</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">delivery-expectations</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.open_concerns">36</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">recurring</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Client confidence signals analysis (April 20 — BETA DAY +10):
+
+POSITIVE SIGNALS:</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">readiness</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.open_concerns">36</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">recurring</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Scope drift trajectory update (April 20): 253 unapproved scope additions total (</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">scope</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.open_concerns">34</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">recurring</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Communication gap update (April 20): Email silence now 28 DAYS (last client emai</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">communication-gap</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.open_concerns">27</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">recurring</span></td>
+</tr><tr style="background:var(--color-background)">
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);font-size:13px">Product data disorganization update (April 12): Store data flush completed April</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)">data-quality</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border);text-align:right;font-family:var(--font-mono)" data-source="sentiment_state.open_concerns">24</td>
+<td style="padding:10px 12px;border-bottom:1px solid var(--color-border)"><span style="color:#dc2626;font-weight:600">recurring</span></td>
+</tr></tbody>
+</table></div>
+<p style="font-size:13px;color:var(--color-foreground-secondary);margin-top:8px">Showing top 10 of 39 open concerns.</p>
+
+<!-- 7. Assessment History -->
+<h3>Assessment History</h3>
+<div style="margin:16px 0"><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">🟠 Apr 20</span><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">🟠 Apr 19</span><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">🟠 Apr 18</span><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">🟠 Apr 16</span><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">🟠 Apr 14</span><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">🟠 Apr 13</span><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">🟠 Apr 12</span><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">🟠 Apr 11</span><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">🟠 Apr 10</span><span style="background:var(--color-background-secondary);padding:4px 12px;border-radius:20px;font-size:13px;margin:4px;display:inline-block">🟠 Apr 09</span></div>
+
+</div><!-- end content-sentiment -->
+
+</div><!-- end tab-nav -->
+
+<div class="report-footer" style="border-top:1px solid var(--color-border);padding-top:24px;margin-top:48px;font-size:var(--font-size-body-s);color:var(--color-foreground-secondary)">
+Data extracted at 2026-04-20T06:44:35.796365+00:00 &middot; Report generated at April 20, 2026 at 12:21 PM IST
+</div>
+
+</div><!-- end report-container -->
+</body>
+</html>
