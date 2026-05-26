@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopify Embedded App — TypeScript Framework Research</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f6f6f7;
+      color: #1a1a2e;
+      padding: 40px 20px 80px;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #008060 0%, #004c3f 100%);
+      color: #fff;
+      border-radius: 14px;
+      padding: 40px 44px;
+      margin-bottom: 36px;
+      box-shadow: 0 4px 24px rgba(0,128,96,0.18);
+    }
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1rem;
+      opacity: 0.88;
+    }
+
+    /* Recommendation banner */
+    .banner {
+      background: #e3f9f2;
+      border-left: 5px solid #008060;
+      border-radius: 8px;
+      padding: 18px 24px;
+      margin-bottom: 36px;
+      font-size: 1.05rem;
+    }
+    .banner strong { color: #004c3f; }
+
+    /* Cards */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px 36px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #008060;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card h2 .icon { font-size: 1.4rem; }
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 18px 0 8px;
+      color: #1a1a2e;
+    }
+    .card p, .card li { font-size: 0.95rem; color: #3d3d4e; }
+    .card ul { padding-left: 20px; }
+    .card ul li { margin-bottom: 6px; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      margin-top: 10px;
+    }
+    th {
+      background: #f0faf6;
+      color: #004c3f;
+      font-weight: 600;
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 2px solid #b7e4d4;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #eef0f2;
+      color: #3d3d4e;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f9fffe; }
+    td:first-child, th:first-child { font-weight: 600; color: #1a1a2e; }
+
+    /* Code block */
+    .code-block {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      border-radius: 10px;
+      padding: 22px 26px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin-top: 14px;
+    }
+    .code-block .comment { color: #6c7086; }
+    .code-block .cmd { color: #a6e3a1; }
+
+    /* Tag badges */
+    .badge {
+      display: inline-block;
+      background: #e3f9f2;
+      color: #004c3f;
+      border-radius: 20px;
+      padding: 3px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+    .badge.red { background: #fde8e8; color: #a10000; }
+    .badge.blue { background: #e8f0fe; color: #1a56db; }
+
+    /* Verdict cells */
+    .verdict-yes { color: #008060; font-weight: 600; }
+    .verdict-no { color: #bf0711; font-weight: 600; }
+
+    footer {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #9999aa;
+      margin-top: 48px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Shopify Embedded App — TypeScript Framework Research</h1>
+    <p>Best TypeScript framework for scalable Shopify embedded apps with a unified FE + BE stack</p>
+  </header>
+
+  <div class="banner">
+    <strong>Recommendation:</strong> Use <strong>Remix</strong> — Shopify's officially backed framework. TypeScript end-to-end, single codebase, production-ready Shopify integrations out of the box.
+  </div>
+
+  <!-- Why Remix -->
+  <div class="card">
+    <h2><span class="icon">✅</span> Why Remix Wins</h2>
+
+    <h3>1. Official Shopify Backing</h3>
+    <p>Shopify ships and maintains <code>@shopify/shopify-app-remix</code>, their first-party Node.js package:</p>
+    <ul>
+      <li>OAuth + session token authentication (no cookies — embedded-safe)</li>
+      <li>Webhook registration and verification</li>
+      <li>App Bridge v4 integration (mandatory since March 2024)</li>
+      <li>Shopify Admin GraphQL API client per-store, pre-authenticated</li>
+    </ul>
+
+    <h3>2. Unified TypeScript Codebase</h3>
+    <p>Backend (<code>loader</code> / <code>action</code> functions) and frontend (React + Polaris) live in the same project. Define types once, share everywhere — no API contract drift.</p>
+
+    <h3>3. Scalability Built-In</h3>
+    <ul>
+      <li><strong>Session storage:</strong> Prisma adapter — swap SQLite (dev) → PostgreSQL (prod) with one config line</li>
+      <li><strong>Multi-tenancy:</strong> Every Shopify store is an isolated session; the SDK enforces scoping automatically</li>
+      <li><strong>Webhooks:</strong> Async-safe; offload long jobs to a queue</li>
+      <li><strong>Performance:</strong> Streaming SSR keeps TTFB low at scale</li>
+    </ul>
+
+    <h3>4. GraphQL by Default</h3>
+    <p>Shopify deprecated the REST API in <strong>October 2024</strong>. All new apps must use the GraphQL Admin API. The Remix package ships with a pre-authenticated GraphQL client per request — zero extra setup.</p>
+  </div>
+
+  <!-- Stack table -->
+  <div class="card">
+    <h2><span class="icon">🗂️</span> Recommended Stack</h2>
+    <table>
+      <thead>
+        <tr><th>Layer</th><th>Technology</th><th>Reason</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Framework</td><td><span class="badge">Remix</span></td><td>Official Shopify support, unified FE+BE</td></tr>
+        <tr><td>Language</td><td><span class="badge">TypeScript</span></td><td>End-to-end type safety</td></tr>
+        <tr><td>UI</td><td><span class="badge">@shopify/polaris</span></td><td>Required for embedded app UX compliance</td></tr>
+        <tr><td>Embedding</td><td><span class="badge">App Bridge v4</span></td><td>Mandatory since March 2024</td></tr>
+        <tr><td>ORM</td><td><span class="badge">Prisma</span></td><td>Type-safe, ships in Shopify template</td></tr>
+        <tr><td>DB (dev)</td><td><span class="badge blue">SQLite</span></td><td>Zero-config local dev</td></tr>
+        <tr><td>DB (prod)</td><td><span class="badge blue">PostgreSQL</span></td><td>Scalable, Prisma-compatible</td></tr>
+        <tr><td>API</td><td><span class="badge">GraphQL</span></td><td>REST deprecated Oct 2024</td></tr>
+        <tr><td>Shopify SDK</td><td><span class="badge">@shopify/shopify-app-remix</span></td><td>First-party session, auth, webhooks</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Alternatives -->
+  <div class="card">
+    <h2><span class="icon">⚖️</span> Why Not the Alternatives</h2>
+    <table>
+      <thead>
+        <tr><th>Option</th><th>Verdict</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Next.js</td>
+          <td>No official Shopify package. Requires manual OAuth, session, and App Bridge wiring. Only viable if team has strong Next.js expertise and accepts the extra setup cost.</td>
+        </tr>
+        <tr>
+          <td>T3 Stack (Next.js + tRPC + Prisma)</td>
+          <td>Excellent type safety but community-only Shopify templates. tRPC adds learning curve with no advantage over Remix's native loaders/actions.</td>
+        </tr>
+        <tr>
+          <td>NestJS + Next.js</td>
+          <td class="verdict-no">Overengineered — two runtimes, two build pipelines, increased ops complexity. Reserve only for microservice-scale products.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Getting started -->
+  <div class="card">
+    <h2><span class="icon">🚀</span> Getting Started</h2>
+    <div class="code-block">
+      <span class="comment"># Install Shopify CLI and scaffold the Remix app</span><br>
+      <span class="cmd">npm install -g @shopify/cli</span><br>
+      <span class="cmd">shopify app create --template=remix</span><br><br>
+      <span class="comment"># What you get out of the box:</span><br>
+      <span class="comment"># - OAuth + session tokens</span><br>
+      <span class="comment"># - App Bridge v4</span><br>
+      <span class="comment"># - Polaris components</span><br>
+      <span class="comment"># - Prisma + SQLite session store</span><br>
+      <span class="comment"># - Webhook handler example</span><br>
+      <span class="comment"># - TypeScript throughout</span>
+    </div>
+    <p style="margin-top:16px;">For production, update <code>prisma/schema.prisma</code> datasource to PostgreSQL and set <code>DATABASE_URL</code>.</p>
+  </div>
+
+  <!-- Deployment -->
+  <div class="card">
+    <h2><span class="icon">☁️</span> Deployment Options</h2>
+    <table>
+      <thead>
+        <tr><th>Platform</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Fly.io</td><td>Recommended — persistent Node.js runtime, easy PostgreSQL add-on</td></tr>
+        <tr><td>Railway</td><td>One-click PostgreSQL, minimal config</td></tr>
+        <tr><td>Vercel</td><td>Works but requires serverless-aware session storage configuration</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Summary -->
+  <div class="card">
+    <h2><span class="icon">📋</span> Summary</h2>
+    <p><strong>Remix + <code>@shopify/shopify-app-remix</code> + Prisma + Polaris</strong> is the definitive TypeScript stack for Shopify embedded apps in 2025. Officially maintained by Shopify, it eliminates the most common integration pain points, enforces multi-tenancy patterns, and keeps frontend and backend in a single TypeScript codebase — directly satisfying the goal of a unified stack with reduced complexity.</p>
+  </div>
+
+  <footer>Generated from research · rahul-parmar-aiml/Documentation · 2025</footer>
+
+</div>
+</body>
+</html>
